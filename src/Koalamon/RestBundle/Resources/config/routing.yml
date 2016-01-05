@@ -1,0 +1,34 @@
+# project calls
+koalamon_rest_project_systems:
+    path:     /rest/{project}/systems/
+    defaults: { _controller: KoalamonRestBundle:Project:Systems }
+
+koalamon_rest_project_lastevent:
+    path:     /rest/{project}/lastEvent/
+    defaults: { _controller: KoalamonRestBundle:Project:lastEvent }
+    options:
+        expose: true
+
+koalamon_rest_project_status_lastchange:
+    path:     /rest/{project}/lastStatusChange/
+    defaults: { _controller: KoalamonRestBundle:Project:lastStatusChange }
+    options:
+        expose: true
+
+koalamon_rest_project_events:
+    path:     /rest/{project}/events/
+    defaults: { _controller: KoalamonRestBundle:Project:events }
+
+# event calls
+koalamon_rest_event_lastrun:
+    path:     /rest/{project}/event/{identifier}/lastrun/
+    defaults: { _controller: KoalamonRestBundle::Event:lastRun }
+
+# user calls
+koalamon_rest_user_startswith:
+    path:     /rest/user/startsWith
+    defaults: { _controller: KoalamonRestBundle:User:startsWith }
+
+koalamon_rest_user_projects:
+    path:     /rest/user/projects/
+    defaults: { _controller: KoalamonRestBundle:User:projects }

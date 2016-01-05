@@ -1,0 +1,23 @@
+<div class="pageInfo failure" id="alert"></div>
+
+{% if app.user.username is defined %}
+    <div id="breadcrumb">
+        <ul>
+            <li><a href="{{ path("koalamon_user_homepage") }}">Projects</a></li>
+            {% if project is defined and not project is null %}
+                <li><a href="{{ path("bauer_incident_dashboard_core_homepage", {"project": project.identifier} ) }}">{{ project.name }}</a></li>
+            {% endif %}
+            {% block breadcrumb %}{% endblock %}
+        </ul>
+        {% if project is defined and not project is null %}
+            <div id="btn-admin">
+                {% if app.user.hasUserRole(project, constant('Bauer\\IncidentDashboard\\CoreBundle\\Entity\\UserRole::ROLE_ADMIN')) %}
+                    <a href="{{ path("koalamon_default_project_admin", {"project": project.identifier} ) }}">
+                        <img src="/images/admin.png" width="15" style="margin-right: 5px"/> Administration
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+{% endif %}
+<div style="clear: both"></div>

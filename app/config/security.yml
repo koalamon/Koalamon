@@ -1,0 +1,67 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        secure_area:
+            pattern: ^/
+
+            remember_me:
+                always_remember_me: true
+                key:      "aSecretKey"
+                lifetime: 604800
+                path:     /
+                domain:   ~
+
+            form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+                failure_path: fos_user_security_login
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                default_target_path: koalamon_user_homepage
+                always_use_default_target_path: true
+
+            oauth:
+                failure_path: /secure_area/connect
+                login_path: fos_user_security_login
+                check_path: /secure_area/connect
+
+                default_target_path: koalamon_default_homepage
+                always_use_default_target_path: true
+
+                provider: fos_userbundle
+
+                resource_owners:
+                    facebook:           "/secure_area/login/check-facebook"
+                    github:             "/secure_area/login/check-github"
+                oauth_user_provider:
+                    service: hwi_oauth.user.provider.fosub_bridge
+
+            anonymous: true
+            logout:
+                path:           /secure_area/logout
+            #    target:         amilio_user_post_logout
+
+
+    access_control:
+        - { path: ^/user/, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/user, role: IS_AUTHENTICATED_REMEMBERED }
+
+        - { path: ^/p/, role: IS_AUTHENTICATED_REMEMBERED }
+
+        - { path: ^/secure_area/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/secure_area/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/secure_area/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/secure_area/admin/, role: ROLE_ADMIN }
+
+        - { path: ^/secure_area/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/secure_area/connect, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/secure_area, roles: ROLE_USER }

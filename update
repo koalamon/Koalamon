@@ -1,0 +1,9 @@
+git pull origin develop
+composer.phar update
+./app/console doctrine:schema:update -f
+rm -rf app/cache/*
+./app/console cache:clear --env=prod
+./app/console assetic:dump
+./app/console assets:install
+chmod -R 777 app/cache/
+chmod -R 777 app/logs/

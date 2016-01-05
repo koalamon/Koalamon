@@ -1,0 +1,27 @@
+<style>
+    #informations ul {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 40px;
+    }
+
+    #informations ul li {
+        background-color: #f1c40f;
+        padding: 10px;
+        margin-bottom: 10px;
+        color: white;
+        width: calc(100% - 50px);
+    }
+</style>
+
+{% for information in informations %}
+    {% if loop.first %}
+        <ul>
+    {% endif %}
+    <li class="{{ information.severity }}">
+        {{ information.message }}
+    </li>
+    {% if loop.last %}
+        </ul>
+    {% endif %}
+{% endfor %}

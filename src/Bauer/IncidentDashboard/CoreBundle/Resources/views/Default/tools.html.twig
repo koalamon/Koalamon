@@ -1,0 +1,25 @@
+{% extends '::home.html.twig' %}
+
+{% block content %}
+    <div class="pageInfo">On this page we provide you the current status of all registered tools of this project.</div>
+
+    <div class="content">
+        <div class="box-element first incidentList">
+            <div class="box-element-content">
+                {% for tool in tools %}
+                    <div class="tool">
+                        <div class="tool-image">
+                            {% if tool.image %}
+                                <img src="/images/tools/{{ tool.image }}" style="float: left; height: 40px; padding-right: 20px">
+                            {% endif %}
+                        </div>
+                        <div class="name">{{ tool.name }}</div>
+                        <div class="description">{{ tool.description }}</div>
+                    </div>
+                    <div style="clear: both"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,131 @@
+@media ( max-width: 510px ) {
+    #header {
+        padding-left: 20px;
+        height: 50px;
+        width: calc(100% - 20px);
+    }
+
+    #header h1 {
+        font-size: 25px;
+        vertical-align: middle;
+        padding-top: 5px;
+    }
+
+    #login_form {
+        padding: 20px;
+        margin-top: 80px;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .content-left {
+        width: 100%;
+    }
+
+    .box-element {
+        width: calc(100% - 42px);
+        margin-left: 20px;
+    }
+
+    .box-element.first {
+        margin-top: 80px;
+    }
+
+    .message {
+        width: 100%;
+        margin-left: 10px;
+    }
+
+    .info {
+        margin-left: 30px;
+    }
+
+    #menu {
+        position: fixed;
+        right: 20px;
+        top: 10px;
+    }
+
+    .identifier {
+        font-size: 10px;
+    }
+
+    .system {
+        width: 80%;
+        float: none;
+        padding-bottom: 20px;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    .lastUpdate {
+        margin-left: 30px;
+    }
+
+    #content {
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .centered {
+        width: 100%;
+    }
+
+    div.row {
+        width: calc(100% - 20px);
+    }
+
+    .time {
+        width: calc(50% - 40px);
+    }
+
+    .row_success .lastUpdate {
+        padding-left: 0px;
+    }
+
+    h2 {
+        padding-left: 20px;
+        padding-top: 0px;
+    }
+
+    .stat-button {
+        display: none;
+    }
+
+    .system {
+        margin-left: 20px;
+    }
+
+    #breadcrumb {
+        font-size: 12px;
+        float: right;
+        margin-left: 40px;
+        padding-top: 5px;
+    }
+
+    #breadcrumb select {
+        display: none;
+    }
+
+    .optionsmenu {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    #mobile-submenu {
+        margin-top: 80px;
+        margin-left: 20px;
+    }
+
+    #mobile-submenu select {
+        width: calc(100% - 20px);
+        padding: 40px;
+    }
+}

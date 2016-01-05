@@ -1,0 +1,16 @@
+.idea
+vendor/
+
+app/config/parameters.yml
+app/config/community.yml
+
+app/cache
+app/logs
+app/data
+
+htdocs
+
+composer.lock
+
+web/images/screenshots/
+web/bundles

@@ -1,0 +1,4 @@
+services:
+#    koalamon_default.example:
+#        class: Koalamon\DefaultBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

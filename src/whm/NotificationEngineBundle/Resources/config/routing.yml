@@ -1,0 +1,33 @@
+whm_notification_engine_home:
+    path:     /p/{project}/notifications/
+    defaults: { _controller: whmNotificationEngineBundle:Default:index }
+
+whm_notification_engine_create:
+    path:     /p/{project}/notifications/create/{senderIdentifier}/
+    defaults: { _controller: whmNotificationEngineBundle:Default:create }
+
+whm_notification_engine_delete:
+    path:     /p/{project}/notifications/delete/{notificationConfiguration}/
+    defaults: { _controller: whmNotificationEngineBundle:Default:delete }
+
+whm_notification_engine_edit:
+    path:     /p/{project}/notifications/edir/{notificationConfiguration}/
+    defaults: { _controller: whmNotificationEngineBundle:Default:edit }
+
+whm_notification_engine_store:
+    path:     /p/{project}/notifications/store/
+    defaults: { _controller: whmNotificationEngineBundle:Default:store }
+
+
+# alerts
+whm_notification_engine_alerts_home:
+    path:     /p/{project}/alerts/
+    defaults: { _controller: whmNotificationEngineBundle:Alerts:index }
+
+whm_notification_engine_alerts_edit:
+    path:     /p/{project}/edit/{notificationConfiguration}/
+    defaults: { _controller: whmNotificationEngineBundle:Alerts:edit }
+
+whm_notification_engine_alerts_store:
+    path:     /p/{project}/store/{notificationConfiguration}/
+    defaults: { _controller: whmNotificationEngineBundle:Alerts:store }

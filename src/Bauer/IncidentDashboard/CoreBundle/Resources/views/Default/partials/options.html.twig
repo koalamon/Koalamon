@@ -1,0 +1,37 @@
+{% if app.user == project.owner or not event.unique %}
+    <div class="optionsmenu">
+        <ul>
+            <li class="element">
+                <a href="" onclick="return false" style="font-weight: bold; padding-bottom: 10px; font-size: 12px; color: #555">Options</a>
+                <ul>
+                    {% if not event.unique %}
+                        <li class="submenu">
+                            <a onclick="drawChart('{{ event.id }}', 'stats-{{ event.id }}'); return false;">show stats</a>
+                        </li>
+                    {% endif %}
+                    {% if app.user == project.owner %}
+                        {% if not event.eventIdentifier.knownIssue and event.status == 'failure' %}
+                            <li class="submenu">
+                                <a href="{{ path("koalamon_default_event_knownissue_mark", { "eventIdentifier": event.eventIdentifier.id }) }}">
+                                    mark as known issue
+                                </a>
+                            </li>
+
+                            <li class="submenu">
+                                <a href="{{ path("bauer_incident_dashboard_core_close", { "project": project.identifier, "event": event.id }) }}">
+                                    close incident
+                                </a>
+                            </li>
+                        {% elseif event.eventIdentifier.knownIssue %}
+                            <li class="submenu">
+                                <a href="{{ path("koalamon_default_event_knownissue_unmark", { "eventIdentifier": event.eventIdentifier.id }) }}">
+                                    unmark as known issue
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+{% endif %}

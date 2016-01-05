@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="register" class="modal_form">
+    <h1>Registrieren</h1>
+
+    {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+
+    <div style="text-align: center; width: 100%; padding-top: 30px">
+        <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" target="_parent"><img src="/images/facebook_login.png" /></a>
+    </div>
+</div>
+{% endblock %}

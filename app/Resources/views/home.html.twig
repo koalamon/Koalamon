@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <script>toastr.warning('{{ flash_message }}');</script>
+    {% endfor %}
+    {% for flash_message in app.session.flashbag.get('success') %}
+        <script>toastr.success('{{ flash_message }}');</script>
+    {% endfor %}
+
+    {% if project is defined %}
+        <div id="informations">
+            {{ render(controller('KoalamonDefaultBundle:Information:current', { 'project': project })) }}
+        </div>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+{% endblock %}

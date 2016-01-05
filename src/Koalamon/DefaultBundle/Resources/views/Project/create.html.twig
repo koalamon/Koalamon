@@ -1,0 +1,28 @@
+{% extends '::home.html.twig' %}
+
+{% block content %}
+    <h3>Create new Project</h3>
+
+        <div class="box-element-content">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            {{ form_row(form.name) }}
+            <div class="input-info">The name of the project. When you interact with this project this will be its name.
+                So be sure it's a very meaningful name. You can change this name all the time.
+            </div>
+
+            {{ form_row(form.identifier) }}
+            <div class="input-info">
+                The identifier is used to create clean and speaking urls. The project identifier will be part of the url
+                and is therefore not changeable once it is set.
+            </div>
+
+            {{ form(form) }}
+
+            <div class="button" onclick="document.getElementById('form_save').click()">Create new Project</div>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+{% endblock %}

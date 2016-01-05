@@ -1,0 +1,3 @@
+koalamon_archive_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: KoalamonArchiveBundle:Default:index }

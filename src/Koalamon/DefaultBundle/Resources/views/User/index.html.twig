@@ -1,0 +1,98 @@
+{% extends '::home.html.twig' %}
+
+{% block content %}
+
+    Hello {{ app.user.username }}.
+
+    <h3>My Projects</h3>
+
+    <style>
+        .list tr:nth-child(even) {
+            background-color: #eaeaea;
+        }
+
+        .list th.events {
+            width: 50px;
+        }
+
+        .list th.open {
+            width: 50px;
+        }
+
+        .list th.name {
+            text-align: left;
+        }
+
+        .list th {
+            background-color: #cacaca;
+        }
+
+        .list table {
+            width: calc(100% - 30px);
+        }
+
+        .list td, th {
+            padding: 10px;
+        }
+
+        .list .events {
+            text-align: center;
+        }
+
+        .list .open {
+            text-align: center;
+        }
+
+    </style>
+
+    <div class="list">
+        <table>
+            <thead>
+            <tr>
+                <th class="name">
+                    Name
+                </th>
+                <th class="events">
+                    Systems
+                </th>
+                <th class="events">
+                    Tools
+                </th>
+                <th class="events">
+                    Event<br>Types
+                </th>
+                <th class="events">
+                    Event<br>Count
+                </th>
+                <th class="events">
+                    Failed<br>Events
+                </th>
+                <th class="events">
+                    Failure<br>Rate
+                </th>
+                <th class="open">
+                    Open<br>Incidents
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for myproject in app.user.projects %}
+                <tr>
+                    <td><a href="{{ path('bauer_incident_dashboard_core_homepage', {'project': myproject.identifier }) }}">{{ myproject.name }}</a></td>
+                    <td class="events">{{ myproject.systems|length }}</td>
+                    <td class="events">{{ myproject.tools|length }}</td>
+                    <td class="events">{{ myproject.eventIdentifiers|length }}</td>
+                    <td class="events">{{ myproject.eventCount|number_format(0, ',', '.') }}</td>
+                    <td class="events">{{ myproject.failureCount|number_format(0, ',', '.') }}</td>
+                    <td class="events" style="width: 70px">{{ myproject.failureRate|number_format(2, ',', '.') }}%</td>
+                    <td class="open">
+                        {% if myproject.openIncidentCount > 0 %}
+                            <div class="counter warning" style="float: none; font-size: 14px">{{ myproject.openIncidentCount }}</div>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

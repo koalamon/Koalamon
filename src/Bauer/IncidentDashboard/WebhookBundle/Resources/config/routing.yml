@@ -1,0 +1,7 @@
+bauer_incident_dashboard_webhook_standard:
+    path:     /webhook/
+    defaults: { _controller: BauerIncidentDashboardWebhookBundle:Default:index}
+
+bauer_incident_dashboard_webhook_format:
+    path:     /webhook/{format}/
+    defaults: { _controller: BauerIncidentDashboardWebhookBundle:Default:format }

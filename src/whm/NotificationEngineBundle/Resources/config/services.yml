@@ -1,0 +1,4 @@
+services:
+#    whm_notification_engine.example:
+#        class: whm\NotificationEngineBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

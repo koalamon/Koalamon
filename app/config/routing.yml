@@ -1,0 +1,54 @@
+koalamon_archive:
+    resource: "@KoalamonArchiveBundle/Resources/config/routing.yml"
+    prefix:   /
+
+whm_notification_engine:
+    resource: "@whmNotificationEngineBundle/Resources/config/routing.yml"
+    prefix:   /
+
+koalamon_default:
+    resource: "@KoalamonDefaultBundle/Resources/config/routing.yml"
+    prefix:   /
+
+koalamon_rest:
+    resource: "@KoalamonRestBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bauer_incident_dashboard_stat:
+    resource: "@BauerIncidentDashboardStatBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bauer_incident_dashboard_webhook:
+    resource: "@BauerIncidentDashboardWebhookBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bauer_incident_dashboard_core:
+    resource: "@BauerIncidentDashboardCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# HWIOAuthBundle
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /secure_area/connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /secure_area/connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /secure_area/connect
+
+hwi_facebook_login:
+    path: /secure_area/login/check-facebook
+
+hwi_github_login:
+    path: /secure_area/login/check-github
+
+# FOSUserBundle
+fos_user:
+    prefix:   /secure_area/
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

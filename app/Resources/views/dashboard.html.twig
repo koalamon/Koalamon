@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <style>
+        .row {
+            width: 1200px;
+
+        }
+        .box-element{
+            width: 1200px;
+        }
+
+        .optionsmenu {
+            display: none;
+        }
+
+
+        .message {
+            width: 1000px;
+        }
+    </style>
+
+    <div class="content-left">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div style="clear:both"></div>
+{% endblock %}

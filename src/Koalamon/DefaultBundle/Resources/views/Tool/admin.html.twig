@@ -1,0 +1,96 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+    <div class="box-element">
+        <div class="box-element-header">Tools</div>
+        <div class="box-element-content">
+            <table>
+                <thead>
+                <tr style="vertical-align: top">
+                    <td>Active</td>
+                    <td>Identifier</td>
+                    <td>Name</td>
+                    <td>Description</td>
+                    <td>Interval</td>
+                    <td>System<br/>specific</td>
+                    <td>Connected<br/>Events</td>
+                </thead>
+                {% for tool in project.tools(false) %}
+                    <tr style="line-height: 25px">
+                        <form style="margin-top: 0px;" method="post" action="{{ path("koalamon_default_project_tool_store", {"project": project.identifier}) }}"
+                              name="tool_form_{{ tool.id }}">
+                            <input type="hidden" name="tool[id]" value="{{ tool.id }}">
+                            <td>
+                                <input type="checkbox" {% if tool.active %}checked="checked"{% endif %} name="tool[active]">
+                            </td>
+                            <td>
+                                {% if not tool.hasEventIdentifiers %}
+                                    <input type="text" style="width: 100px" value="{{ tool.identifier }}" name="tool[identifier]">
+                                {% else %}
+                                    <input type="hidden" style="width: 100px" value="{{ tool.identifier }}" name="tool[identifier]">
+                                    {{ tool.identifier }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                <input type="text" style="width: 150px" value="{{ tool.name }}" name="tool[name]">
+                            </td>
+                            <td>
+                                <input type="text" style="width: 510px" value="{{ tool.description }}" name="tool[description]">
+                            </td>
+                            <td>
+                                <input type="text" style="width: 20px" value="{{ tool.interval }}" name="tool[interval]">
+                            </td>
+                            <td>
+                                <input type="checkbox" {% if tool.systemSpecific %}checked="checked"{% endif %}" name="tool[systemSpecific]">
+                            </td>
+                            <td>
+                                {{ tool.eventIdentifiers | length }}
+                            </td>
+                        </form>
+                        <td style="width:200px">
+                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.tool_form_{{ tool.id }}.submit()">store</div>
+
+                            {% if not tool.hasEventIdentifiers %}
+                                <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.tool_delete_form_{{ tool.id }}.submit()">delete</div>
+                                <form name="tool_delete_form_{{ tool.id }}" method="post" action="{{ path("koalamon_default_project_tool_delete", {"project": project.identifier}) }}">
+                                    <input type="hidden" value="{{ tool.id }}" name="id">
+                                </form>
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr style="line-height: 25px">
+                    <form style="margin-top: 0px;" method="post" action="{{ path("koalamon_default_project_tool_store", {"project": project.identifier}) }}"
+                          name="tool_form_new">
+                        <td>
+                            <input type="checkbox" name="tool[active]">
+                        </td>
+                        <td>
+
+                            <input type="text" style="width: 100px" value="" name="tool[identifier]">
+
+                        </td>
+                        <td>
+                            <input type="text" style="width: 150px" name="tool[name]">
+                        </td>
+                        <td>
+                            <input type="text" style="width: 510px" name="tool[description]">
+                        </td>
+                        <td>
+                            <input type="text" style="width: 20px" name="tool[interval]">
+                        </td>
+                        <td>
+                            <input type="checkbox" name="tool[notify]">
+                        </td>
+                        <td></td>
+                        <td style="width:200px">
+                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.tool_form_new.submit()">store</div>
+                    </form>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}
