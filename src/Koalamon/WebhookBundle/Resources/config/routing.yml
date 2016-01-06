@@ -1,0 +1,7 @@
+koalamon_webhook_standard:
+    path:     /webhook/
+    defaults: { _controller: KoalamonWebhookBundle:Default:index}
+
+koalamon_webhook_format:
+    path:     /webhook/{format}/
+    defaults: { _controller: KoalamonWebhookBundle:Default:format }

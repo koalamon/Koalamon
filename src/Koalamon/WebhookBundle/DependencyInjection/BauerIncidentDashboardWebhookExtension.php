@@ -1,6 +1,6 @@
 <?php
 
-namespace Bauer\IncidentDashboard\WebhookBundle\DependencyInjection;
+namespace Koalamon\WebhookBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

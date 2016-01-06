@@ -1,21 +1,19 @@
 <?php
 
-namespace Bauer\IncidentDashboard\WebhookBundle\Controller;
+namespace Koalamon\WebhookBundle\Controller;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Event;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\EventIdentifier;
-use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
-use Bauer\IncidentDashboard\CoreBundle\Entity\Tool;
 use Bauer\IncidentDashboard\CoreBundle\Util\ProjectHelper;
-use Bauer\IncidentDashboard\WebhookBundle\Formats\AppDynamicsFormat;
-use Bauer\IncidentDashboard\WebhookBundle\Formats\DefaultFormat;
-use Bauer\IncidentDashboard\WebhookBundle\Formats\FormatHandler;
-use Bauer\IncidentDashboard\WebhookBundle\Formats\JenkinsFormat;
-use Bauer\IncidentDashboard\WebhookBundle\Formats\JiraFormat;
-use Bauer\IncidentDashboard\WebhookBundle\Formats\MonitisFormat;
-use Bauer\IncidentDashboard\WebhookBundle\Formats\MonitorUsFormat;
-use Bauer\IncidentDashboard\WebhookBundle\Formats\NewRelicFormat;
+use Koalamon\WebhookBundle\Formats\AppDynamicsFormat;
+use Koalamon\WebhookBundle\Formats\DefaultFormat;
+use Koalamon\WebhookBundle\Formats\FormatHandler;
+use Koalamon\WebhookBundle\Formats\JenkinsFormat;
+use Koalamon\WebhookBundle\Formats\JiraFormat;
+use Koalamon\WebhookBundle\Formats\MonitisFormat;
+use Koalamon\WebhookBundle\Formats\MonitorUsFormat;
+use Koalamon\WebhookBundle\Formats\NewRelicFormat;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bauer\IncidentDashboard\WebhookBundle\Formats;
+namespace Koalamon\WebhookBundle\Formats;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\RawEvent;
 use Symfony\Component\HttpFoundation\Request;
