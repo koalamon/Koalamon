@@ -1,6 +1,6 @@
 <?php
 
-namespace Koalamon\DefaultBundle\Entity;
+namespace Koalamon\InformationBundle\Entity;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
 use Doctrine\ORM\EntityRepository;

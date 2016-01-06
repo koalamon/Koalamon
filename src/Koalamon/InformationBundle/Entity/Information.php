@@ -1,15 +1,16 @@
 <?php
 
-namespace Koalamon\DefaultBundle\Entity;
+namespace Koalamon\InformationBundle\Entity;
 
 use Bauer\IncidentDashboard\CoreBundle\Controller\ProjectAwareController;
+use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Notification
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Koalamon\DefaultBundle\Entity\InformationRepository")
+ * @ORM\Entity(repositoryClass="Koalamon\InformationBundle\Entity\InformationRepository")
  */
 class Information
 {
@@ -26,6 +27,8 @@ class Information
 
 
     /**
+     * @var Project
+     *
      * @ORM\ManyToOne(targetEntity="Bauer\IncidentDashboard\CoreBundle\Entity\Project", inversedBy="informations")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      **/
@@ -95,6 +98,22 @@ class Information
     public function setEndDate($endDate)
     {
         $this->endDate = $endDate;
+    }
+
+    /**
+     * @return Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param Project $project
+     */
+    public function setProject(Project $project)
+    {
+        $this->project = $project;
     }
 }
 

@@ -1,0 +1,3 @@
+koalamon_information_webhook:
+    path:     /api/information/
+    defaults: { _controller: KoalamonInformationBundle:Webhook:add }

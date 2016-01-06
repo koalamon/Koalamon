@@ -1,3 +1,7 @@
+koalamon_information:
+    resource: "@KoalamonInformationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 koalamon_archive:
     resource: "@KoalamonArchiveBundle/Resources/config/routing.yml"
     prefix:   /
