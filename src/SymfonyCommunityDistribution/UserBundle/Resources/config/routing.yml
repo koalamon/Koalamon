@@ -1,3 +1,0 @@
-symfony_community_distribution_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: SymfonyCommunityDistributionUserBundle:Default:index }
