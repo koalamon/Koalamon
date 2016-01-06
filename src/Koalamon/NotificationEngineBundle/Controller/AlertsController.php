@@ -1,13 +1,12 @@
 <?php
 
-namespace whm\NotificationEngineBundle\Controller;
+namespace Koalamon\NotificationEngineBundle\Controller;
 
 use Bauer\IncidentDashboard\CoreBundle\Controller\ProjectAwareController;
 use Bauer\IncidentDashboard\CoreBundle\Entity\Tool;
 use Bauer\IncidentDashboard\CoreBundle\Entity\UserRole;
 use Symfony\Component\HttpFoundation\Request;
-use whm\NotificationEngineBundle\Entity\NotificationConfiguration;
-use whm\NotificationEngineBundle\Sender\SlackSender;
+use Koalamon\NotificationEngineBundle\Entity\NotificationConfiguration;
 
 class AlertsController extends ProjectAwareController
 {
@@ -15,10 +14,10 @@ class AlertsController extends ProjectAwareController
     {
         $this->assertUserRights(UserRole::ROLE_ADMIN);
 
-        $configs = $this->getDoctrine()->getRepository('whmNotificationEngineBundle:NotificationConfiguration')
+        $configs = $this->getDoctrine()->getRepository('KoalamonNotificationEngineBundle:NotificationConfiguration')
             ->findBy(array('project' => $this->getProject()), ["name" => "ASC"]);
 
-        return $this->render('whmNotificationEngineBundle:Alerts:index.html.twig', array('configs' => $configs));
+        return $this->render('KoalamonNotificationEngineBundle:Alerts:index.html.twig', array('configs' => $configs));
     }
 
     public function editAction(NotificationConfiguration $notificationConfiguration)
@@ -28,7 +27,7 @@ class AlertsController extends ProjectAwareController
         $tools = $this->getDoctrine()->getRepository('BauerIncidentDashboardCoreBundle:Tool')
             ->findBy(array('project' => $this->getProject(), 'active' => true), ["name" => "ASC"]);
 
-        return $this->render('whmNotificationEngineBundle:Alerts:edit.html.twig', array('config' => $notificationConfiguration, 'tools' => $tools));
+        return $this->render('KoalamonNotificationEngineBundle:Alerts:edit.html.twig', array('config' => $notificationConfiguration, 'tools' => $tools));
     }
 
     public function storeAction(NotificationConfiguration $notificationConfiguration, Request $request)
@@ -57,6 +56,6 @@ class AlertsController extends ProjectAwareController
         $em->persist($notificationConfiguration);
         $em->flush();
 
-        return $this->redirectToRoute('whm_notification_engine_alerts_home', ['project' => $this->getProject()->getIdentifier()]);
+        return $this->redirectToRoute('koalamon_notification_engine_alerts_home', ['project' => $this->getProject()->getIdentifier()]);
     }
 }

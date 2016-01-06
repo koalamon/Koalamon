@@ -19,7 +19,7 @@
         <div class="box-element-header">Create new Notification Channel</div>
         <div class="box-element-content">
             <div id="form-sender-new">
-                <form method="post" action="{{ path('whm_notification_engine_store', {'project': project.identifier}) }}">
+                <form method="post" action="{{ path('koalamon_notification_engine_store', {'project': project.identifier}) }}">
                     <input type="hidden" name="configurationId" value="{{ config.id }}">
                     <input type="hidden" name="senderIdentifier" value="{{ config.senderType }}">
 

@@ -29,7 +29,7 @@ class AppKernel extends Kernel
             new Koalamon\DefaultBundle\KoalamonDefaultBundle(),
             new \Koalamon\ConsoleBundle\KoalamonConsoleBundle(),
             new Koalamon\RestBundle\KoalamonRestBundle(),
-            new whm\NotificationEngineBundle\whmNotificationEngineBundle(),
+            new Koalamon\NotificationEngineBundle\KoalamonNotificationEngineBundle(),
             new Koalamon\ArchiveBundle\KoalamonArchiveBundle(),
         );
 

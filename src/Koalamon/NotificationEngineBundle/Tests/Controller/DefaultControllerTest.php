@@ -1,6 +1,6 @@
 <?php
 
-namespace whm\NotificationEngineBundle\Tests\Controller;
+namespace Koalamon\NotificationEngineBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

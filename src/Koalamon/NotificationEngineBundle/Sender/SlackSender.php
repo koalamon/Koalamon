@@ -1,6 +1,6 @@
 <?php
 
-namespace whm\NotificationEngineBundle\Sender;
+namespace Koalamon\NotificationEngineBundle\Sender;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Event;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
@@ -21,7 +21,7 @@ class SlackSender implements Sender
     {
         return [
             new Option('WebhookURL *', 'webhookUrl', 'Slack webbhook url', 'text', true),
-            new Option('Username', 'username', 'The Username koalamon posts from', 'text'),
+            new Option('Username', 'username', 'The Username Koalamon posts from', 'text'),
             new Option('Icon', 'icon', 'The user icon', 'text')
         ];
     }
@@ -45,7 +45,7 @@ class SlackSender implements Sender
         if (array_key_exists('username', $initOptions)) {
             $this->settings["username"] = $initOptions["username"];
         } else {
-            $this->settings["username"] = 'www.koalamon.com';
+            $this->settings["username"] = 'www.Koalamon.com';
         }
 
         if (array_key_exists('link_names', $initOptions)) {
@@ -57,7 +57,7 @@ class SlackSender implements Sender
         if (array_key_exists('icon', $initOptions)) {
             $this->settings["icon"] = $initOptions["icon"];
         } else {
-            $this->settings["icon"] = 'http://www.koalamon.com/images/logo_slack.png';
+            $this->settings["icon"] = 'http://www.Koalamon.com/images/logo_slack.png';
         }
     }
 
@@ -70,7 +70,7 @@ class SlackSender implements Sender
     {
         $client = new \Maknz\Slack\Client($this->webhookURL, $this->settings);
 
-        $gotoUrl = "<" . $this->router->generate("bauer_incident_dashboard_core_homepage", array('project' => $event->getEventIdentifier()->getProject()->getIdentifier()), true) . "|Go to www.koalamon.com>";
+        $gotoUrl = "<" . $this->router->generate("bauer_incident_dashboard_core_homepage", array('project' => $event->getEventIdentifier()->getProject()->getIdentifier()), true) . "|Go to www.Koalamon.com>";
 
         if ($event->hasUrl()) {
             $gotoUrl .= "\n<" . $event->getUrl() . "|Go to " . $event->getEventIdentifier()->getTool()->getName() . ">";

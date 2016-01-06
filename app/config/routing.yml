@@ -2,8 +2,8 @@ koalamon_archive:
     resource: "@KoalamonArchiveBundle/Resources/config/routing.yml"
     prefix:   /
 
-whm_notification_engine:
-    resource: "@whmNotificationEngineBundle/Resources/config/routing.yml"
+koalamon_notification_engine:
+    resource: "@KoalamonNotificationEngineBundle/Resources/config/routing.yml"
     prefix:   /
 
 koalamon_default:

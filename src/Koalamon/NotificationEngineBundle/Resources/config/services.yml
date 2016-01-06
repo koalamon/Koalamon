@@ -1,0 +1,4 @@
+services:
+#    Koalamon_notification_engine.example:
+#        class: Koalamon\NotificationEngineBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

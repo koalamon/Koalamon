@@ -14,9 +14,9 @@ use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
 use Bauer\IncidentDashboard\CoreBundle\Entity\Tool;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use whm\NotificationEngineBundle\Entity\NotificationConfiguration;
-use whm\NotificationEngineBundle\Sender\SenderFactory;
-use whm\NotificationEngineBundle\Sender\SlackSender;
+use Koalamon\NotificationEngineBundle\Entity\NotificationConfiguration;
+use Koalamon\NotificationEngineBundle\Sender\SenderFactory;
+use Koalamon\NotificationEngineBundle\Sender\SlackSender;
 
 /**
  * Class ProjectHelper
@@ -102,7 +102,7 @@ class ProjectHelper
 
     static private function notify(Router $router, EntityManager $doctrineManager, Event $event)
     {
-        $configs = $doctrineManager->getRepository('whmNotificationEngineBundle:NotificationConfiguration')
+        $configs = $doctrineManager->getRepository('KoalamonNotificationEngineBundle:NotificationConfiguration')
             ->findBy(['project' => $event->getEventIdentifier()->getProject()]);
 
         /** @var NotificationConfiguration[] $configs */

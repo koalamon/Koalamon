@@ -1,6 +1,6 @@
 <?php
 
-namespace whm\NotificationEngineBundle\Entity;
+namespace Koalamon\NotificationEngineBundle\Entity;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
 use Bauer\IncidentDashboard\CoreBundle\Entity\Tool;
@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Message
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="whm\NotificationEngineBundle\Entity\NotificationConfigurationRepository")
+ * @ORM\Entity(repositoryClass="Koalamon\NotificationEngineBundle\Entity\NotificationConfigurationRepository")
  */
 class NotificationConfiguration
 {

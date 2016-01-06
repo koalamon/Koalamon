@@ -4,7 +4,7 @@
 
     <h2>Connected Tools</h2>
 
-    <form method="post" action="{{ path('whm_notification_engine_alerts_store', {'project': project.identifier, 'notificationConfiguration': config.id}) }}">
+    <form method="post" action="{{ path('koalamon_notification_engine_alerts_store', {'project': project.identifier, 'notificationConfiguration': config.id}) }}">
         <div>
             <input type="radio" value="true" {% if config.notifyAll %}checked="checked"{% endif %} name="notify_all">Notify all
             <p style="margin-left: 30px">If "notify all" is selected the given Notification Channel will alert all failure events ne matter what tool.</p>

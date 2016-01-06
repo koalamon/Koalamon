@@ -1,6 +1,6 @@
 <?php
 
-namespace whm\NotificationEngineBundle\Entity;
+namespace Koalamon\NotificationEngineBundle\Entity;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
 use Bauer\IncidentDashboard\CoreBundle\Entity\Tool;

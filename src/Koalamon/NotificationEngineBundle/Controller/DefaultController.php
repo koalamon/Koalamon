@@ -1,12 +1,12 @@
 <?php
 
-namespace whm\NotificationEngineBundle\Controller;
+namespace Koalamon\NotificationEngineBundle\Controller;
 
 use Bauer\IncidentDashboard\CoreBundle\Controller\ProjectAwareController;
 use Bauer\IncidentDashboard\CoreBundle\Entity\UserRole;
 use Symfony\Component\HttpFoundation\Request;
-use whm\NotificationEngineBundle\Entity\NotificationConfiguration;
-use whm\NotificationEngineBundle\Sender\SlackSender;
+use Koalamon\NotificationEngineBundle\Entity\NotificationConfiguration;
+use Koalamon\NotificationEngineBundle\Sender\SlackSender;
 
 class DefaultController extends ProjectAwareController
 {
@@ -23,10 +23,10 @@ class DefaultController extends ProjectAwareController
 
         $senders = $this->getSenders();
 
-        $configs = $this->getDoctrine()->getRepository('whmNotificationEngineBundle:NotificationConfiguration')
+        $configs = $this->getDoctrine()->getRepository('KoalamonNotificationEngineBundle:NotificationConfiguration')
             ->findBy(array('project' => $this->getProject()));
 
-        return $this->render('whmNotificationEngineBundle:Default:index.html.twig', array('senders' => $senders, 'configs' => $configs));
+        return $this->render('KoalamonNotificationEngineBundle:Default:index.html.twig', array('senders' => $senders, 'configs' => $configs));
     }
 
     public function deleteAction(NotificationConfiguration $notificationConfiguration)
@@ -38,7 +38,7 @@ class DefaultController extends ProjectAwareController
         $em->remove($notificationConfiguration);
         $em->flush();
 
-        return $this->redirectToRoute('whm_notification_engine_home', ['project' => $this->getProject()->getIdentifier()]);
+        return $this->redirectToRoute('koalamon_notification_engine_home', ['project' => $this->getProject()->getIdentifier()]);
     }
 
     public function createAction($senderIdentifier)
@@ -51,7 +51,7 @@ class DefaultController extends ProjectAwareController
         $config = new NotificationConfiguration();
         $config->setSenderType($senderIdentifier);
 
-        return $this->render('whmNotificationEngineBundle:Default:create.html.twig', array('sender' => $sender, 'config' => $config));
+        return $this->render('KoalamonNotificationEngineBundle:Default:create.html.twig', array('sender' => $sender, 'config' => $config));
     }
 
     public function editAction(NotificationConfiguration $notificationConfiguration)
@@ -61,7 +61,7 @@ class DefaultController extends ProjectAwareController
         $senders = $this->getSenders();
         $sender = $senders[$notificationConfiguration->getSenderType()]['sender'];
 
-        return $this->render('whmNotificationEngineBundle:Default:create.html.twig', array('sender' => $sender, 'config' => $notificationConfiguration));
+        return $this->render('KoalamonNotificationEngineBundle:Default:create.html.twig', array('sender' => $sender, 'config' => $notificationConfiguration));
     }
 
     public function storeAction(Request $request)
@@ -71,7 +71,7 @@ class DefaultController extends ProjectAwareController
         $em = $this->getDoctrine()->getManager();
 
         if($request->get('configurationId') > 0) {
-            $configuration = $this->getDoctrine()->getRepository('whmNotificationEngineBundle:NotificationConfiguration')
+            $configuration = $this->getDoctrine()->getRepository('KoalamonNotificationEngineBundle:NotificationConfiguration')
                 ->find($request->get('configurationId'));
         }else{
             $configuration = new NotificationConfiguration();
@@ -86,6 +86,6 @@ class DefaultController extends ProjectAwareController
         $em->persist($configuration);
         $em->flush();
 
-        return $this->redirectToRoute('whm_notification_engine_home', ['project' => $this->getProject()->getIdentifier()]);
+        return $this->redirectToRoute('koalamon_notification_engine_home', ['project' => $this->getProject()->getIdentifier()]);
     }
 }

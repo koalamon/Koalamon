@@ -1,6 +1,6 @@
 <?php
 
-namespace whm\NotificationEngineBundle\Sender;
+namespace Koalamon\NotificationEngineBundle\Sender;
 
 class Option
 {

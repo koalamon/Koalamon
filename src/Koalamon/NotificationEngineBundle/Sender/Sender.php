@@ -1,6 +1,6 @@
 <?php
 
-namespace whm\NotificationEngineBundle\Sender;
+namespace Koalamon\NotificationEngineBundle\Sender;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Event;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;

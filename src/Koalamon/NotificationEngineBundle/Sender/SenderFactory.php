@@ -6,7 +6,7 @@
  * Time: 13:56
  */
 
-namespace whm\NotificationEngineBundle\Sender;
+namespace Koalamon\NotificationEngineBundle\Sender;
 
 
 class SenderFactory

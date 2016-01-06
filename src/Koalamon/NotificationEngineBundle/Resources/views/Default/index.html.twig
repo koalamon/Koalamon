@@ -16,8 +16,8 @@
                 <div style="width: 400px; float: left">{{ config.name }}</div>
                 <div style="width: 200px; float: left">{{ config.senderType }}</div>
                 <div>
-                    <a href="{{ path('whm_notification_engine_edit', {'project': project.identifier, 'notificationConfiguration': config.id}) }}">edit</a> |
-                    <a href="{{ path('whm_notification_engine_delete', {'project': project.identifier, 'notificationConfiguration': config.id}) }}">delete</a></div>
+                    <a href="{{ path('koalamon_notification_engine_edit', {'project': project.identifier, 'notificationConfiguration': config.id}) }}">edit</a> |
+                    <a href="{{ path('koalamon_notification_engine_delete', {'project': project.identifier, 'notificationConfiguration': config.id}) }}">delete</a></div>
             </div>
         {% endfor %}
     </div>
@@ -26,7 +26,7 @@
 
     <ul>
         {% for senderIndentifier, sender in senders %}
-            <li><a href="{{ path('whm_notification_engine_create', {'project': project.identifier, 'senderIdentifier': senderIndentifier}) }}"> {{ sender.name }}</a></li>
+            <li><a href="{{ path('koalamon_notification_engine_create', {'project': project.identifier, 'senderIdentifier': senderIndentifier}) }}"> {{ sender.name }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

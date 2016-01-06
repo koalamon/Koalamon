@@ -20,7 +20,7 @@
             <tr>
                 <td style="min-width: 400px">{{ config.name }}</td>
                 <td>{% if config.notifyAll %}<strong>all</strong>{% else %}{{ config.connectedTools | length }}{% endif %}</td>
-                <td><a href="{{ path('whm_notification_engine_alerts_edit', {'project': project.identifier, 'notificationConfiguration': config.id }) }}">edit tools</a></td>
+                <td><a href="{{ path('koalamon_notification_engine_alerts_edit', {'project': project.identifier, 'notificationConfiguration': config.id }) }}">edit tools</a></td>
             </tr>
         {% endfor %}
     </table>
