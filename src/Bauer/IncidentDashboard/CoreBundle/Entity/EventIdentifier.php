@@ -259,7 +259,6 @@ class EventIdentifier
         $failures = $this->getFailureCount();
         $fullTimeToRecover = $failures * $this->getMeanTimeToRecover() + $timeToRecover;
         $this->setMeanTimeToRecover(($fullTimeToRecover / ($failures + 1)) + 1);
-
         $this->incFailureCount();
     }
 }

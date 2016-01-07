@@ -405,6 +405,15 @@ class Project implements \JsonSerializable
         return $count;
     }
 
+    public function getFailureCount()
+    {
+        $count = 0;
+        foreach ($this->getEventIdentifiers() as $identifier) {
+            $count += $identifier->getFailureCount();
+        }
+        return $count;
+    }
+
     /**
      * @return integer
      */
