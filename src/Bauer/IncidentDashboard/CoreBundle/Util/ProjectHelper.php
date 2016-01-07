@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nils.langner
- * Date: 07.12.15
- * Time: 14:03
- */
 
 namespace Bauer\IncidentDashboard\CoreBundle\Util;
-
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Event;
 use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
@@ -48,7 +41,11 @@ class ProjectHelper
                     $project->decOpenIncidentCount();
                 }
 
-                $occurrenceLastEvent = $event->getEventIdentifier()->getLastEvent()->getLastStatusChange();
+                if (is_null($event->getEventIdentifier()->getLastEvent())) {
+                    $occurrenceLastEvent = $event->getCreated();
+                } else {
+                    $occurrenceLastEvent = $event->getEventIdentifier()->getLastEvent()->getLastStatusChange();
+                }
                 $occurrenceCurrentEvent = $event->getCreated();
 
                 $timeToRecover = abs(($occurrenceCurrentEvent->getTimestamp() - $occurrenceLastEvent->getTimestamp()) / 60);
