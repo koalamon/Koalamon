@@ -63,7 +63,7 @@ class Event implements \JsonSerializable
     /**
      * @var integer
      *
-     * @ORM\Column(name="value", type="integer", nullable=true)
+     * @ORM\Column(name="value", type="float", nullable=true)
      */
     private $value;
 
