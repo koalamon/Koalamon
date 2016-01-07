@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="identifier">
-        <a href="{{ path("bauer_incident_dashboard_core_systems", {"project": "bauer"} ) }}#{{ event.system }}">{{ event.system }}</a>
+        <a href="{{ path("bauer_incident_dashboard_core_systems", {"project": project.identifier} ) }}#{{ event.system }}">{{ event.system }}</a>
         <!--span class="id_code">{{ event.eventIdentifier.identifier }}</span-->
         {#% if event.type %}
             <span class="tipso desktop" data-tipso-title="{{ event.type }}"

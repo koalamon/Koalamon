@@ -22,14 +22,15 @@ class AppKernel extends Kernel
 
             // Custom Bundles
             new Bauer\IncidentDashboard\CoreBundle\BauerIncidentDashboardCoreBundle(),
-            new Bauer\IncidentDashboard\WebhookBundle\BauerIncidentDashboardWebhookBundle(),
             new Bauer\IncidentDashboard\StatBundle\BauerIncidentDashboardStatBundle(),
 
             new Koalamon\DefaultBundle\KoalamonDefaultBundle(),
-            new \Koalamon\ConsoleBundle\KoalamonConsoleBundle(),
+            new Koalamon\WebhookBundle\KoalamonWebhookBundle(),
+            new Koalamon\ConsoleBundle\KoalamonConsoleBundle(),
             new Koalamon\RestBundle\KoalamonRestBundle(),
-            new whm\NotificationEngineBundle\whmNotificationEngineBundle(),
+            new Koalamon\NotificationEngineBundle\KoalamonNotificationEngineBundle(),
             new Koalamon\ArchiveBundle\KoalamonArchiveBundle(),
+            new Koalamon\InformationBundle\KoalamonInformationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

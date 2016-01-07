@@ -1,0 +1,56 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+    <style>
+        #form-sender-new {
+            width: 638px;
+        }
+
+        #form-sender-new .option {
+            clear: both;
+        }
+
+        #form-sender-new .option .info {
+            font-size: 12px;
+        }
+    </style>
+
+    <div class="box-element first">
+        <div class="box-element-header">Create new Notification Channel</div>
+        <div class="box-element-content">
+            <div id="form-sender-new">
+                <form method="post" action="{{ path('koalamon_notification_engine_store', {'project': project.identifier}) }}">
+                    <input type="hidden" name="configurationId" value="{{ config.id }}">
+                    <input type="hidden" name="senderIdentifier" value="{{ config.senderType }}">
+
+                    <div class="option">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" value="{{ config.name }}" required>
+                    </div>
+
+                    {% for option in sender.options %}
+
+                        {% if attribute(config.options, option.identifier) is defined %}
+                            {% set currentValue =  attribute(config.options, option.identifier) %}
+                        {% else %}
+                            {% set currentValue = '' %}
+                        {% endif %}
+
+                        <div class="option">
+                            {% if option.type == 'text' %}
+                                <label for="options_{{ option.identifier }}">{{ option.label }}</label>
+                                <input type="text" name="options[{{ option.identifier }}]" id="options_{{ option.identifier }}" value="{{ currentValue }}" {% if option.mandatory %}required{% endif %}>
+                                <div class="info">  {{ option.description }}</div>
+                            {% endif %}
+                        </div>
+
+                    {% endfor %}
+
+                    <div class="option">
+                        <input type="submit" value="Store">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

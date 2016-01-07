@@ -10,7 +10,7 @@
 
     {% if project is defined %}
         <div id="informations">
-            {{ render(controller('KoalamonDefaultBundle:Information:current', { 'project': project })) }}
+            {{ render(controller('KoalamonInformationBundle:Default:current', { 'project': project })) }}
         </div>
     {% endif %}
 

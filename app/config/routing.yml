@@ -1,9 +1,13 @@
+koalamon_information:
+    resource: "@KoalamonInformationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 koalamon_archive:
     resource: "@KoalamonArchiveBundle/Resources/config/routing.yml"
     prefix:   /
 
-whm_notification_engine:
-    resource: "@whmNotificationEngineBundle/Resources/config/routing.yml"
+koalamon_notification_engine:
+    resource: "@KoalamonNotificationEngineBundle/Resources/config/routing.yml"
     prefix:   /
 
 koalamon_default:
@@ -18,8 +22,8 @@ bauer_incident_dashboard_stat:
     resource: "@BauerIncidentDashboardStatBundle/Resources/config/routing.yml"
     prefix:   /
 
-bauer_incident_dashboard_webhook:
-    resource: "@BauerIncidentDashboardWebhookBundle/Resources/config/routing.yml"
+koalamon_webhook:
+    resource: "@KoalamonWebhookBundle/Resources/config/routing.yml"
     prefix:   /
 
 bauer_incident_dashboard_core:
