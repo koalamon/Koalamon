@@ -48,7 +48,21 @@ class EventIdentifier
      *
      * @ORM\Column(type="integer")
      */
+    private $failedEventCount = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer")
+     */
     private $failureCount = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $meanTimeToRecover = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity="Tool", inversedBy="eventIdentifier")
@@ -168,11 +182,6 @@ class EventIdentifier
         $this->eventCount++;
     }
 
-    public function incFailureCount()
-    {
-        $this->failureCount++;
-    }
-
     /**
      * @return int
      */
@@ -184,9 +193,17 @@ class EventIdentifier
     /**
      * @return int
      */
-    public function getFailureCount()
+    public function getFailedEventCount()
     {
-        return $this->failureCount;
+        return $this->failedEventCount;
+    }
+
+    /**
+     * @param int $failedEventCount
+     */
+    public function incFailedEventCount()
+    {
+        ++$this->failedEventCount;
     }
 
     /**
@@ -204,5 +221,45 @@ class EventIdentifier
     {
         $this->tool = $tool;
     }
-}
 
+    /**
+     * @return int
+     */
+    public function getFailureCount()
+    {
+        return $this->failureCount;
+    }
+
+    /**
+     * @param int $failureCount
+     */
+    private function incFailureCount()
+    {
+        ++$this->failureCount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMeanTimeToRecover()
+    {
+        return $this->meanTimeToRecover;
+    }
+
+    private function setMeanTimeToRecover($meanTimeToRecover)
+    {
+        $this->meanTimeToRecover = $meanTimeToRecover;
+    }
+
+    /**
+     * @param int $meanTimeToRecover
+     */
+    public function addNewFailure($timeToRecover)
+    {
+        $failures = $this->getFailureCount();
+        $fullTimeToRecover = $failures * $this->getMeanTimeToRecover() + $timeToRecover;
+        $this->setMeanTimeToRecover(($fullTimeToRecover / ($failures + 1)) + 1);
+
+        $this->incFailureCount();
+    }
+}

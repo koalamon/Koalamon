@@ -395,11 +395,11 @@ class Project implements \JsonSerializable
     /**
      * @return integer
      */
-    public function getFailureCount()
+    public function getFailedEventCount()
     {
         $count = 0;
         foreach ($this->getEventIdentifiers() as $identifer) {
-            $count += $identifer->getFailureCount();
+            $count += $identifer->getFailedEventCount();
         }
 
         return $count;
@@ -415,7 +415,7 @@ class Project implements \JsonSerializable
         if ($eventCount == 0) {
             return 0;
         }
-        return $this->getFailureCount() / $eventCount * 100;
+        return $this->getFailedEventCount() / $eventCount * 100;
     }
 }
 
