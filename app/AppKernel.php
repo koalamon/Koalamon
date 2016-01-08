@@ -28,7 +28,7 @@ class AppKernel extends Kernel
             new Koalamon\WebhookBundle\KoalamonWebhookBundle(),
             new Koalamon\ConsoleBundle\KoalamonConsoleBundle(),
             new Koalamon\RestBundle\KoalamonRestBundle(),
-            new Koalamon\NotificationEngineBundle\KoalamonNotificationEngineBundle(),
+            new Koalamon\NotificationBundle\KoalamonNotificationBundle(),
             new Koalamon\ArchiveBundle\KoalamonArchiveBundle(),
             new Koalamon\InformationBundle\KoalamonInformationBundle(),
         );

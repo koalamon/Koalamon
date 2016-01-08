@@ -32,11 +32,11 @@
     <li class="tab {% if app.request.get('_route') == 'koalamon_default_tool_admin' %}active{% endif %}">
         <a href="{{ path('koalamon_default_tool_admin', {'project': project.identifier }) }}">Tools</a>
     </li>
-    <li class="tab {% if app.request.get('_route') == 'koalamon_notification_engine_home' %}active{% endif %}">
-        <a href="{{ path('koalamon_notification_engine_home', {'project': project.identifier }) }}">Notification Channels</a>
+    <li class="tab {% if app.request.get('_route') == 'koalamon_notification_home' %}active{% endif %}">
+        <a href="{{ path('koalamon_notification_home', {'project': project.identifier }) }}">Notification Channels</a>
     </li>
-    <li class="tab {% if app.request.get('_route') == 'koalamon_notification_engine_alerts_home' %}active{% endif %}">
-        <a href="{{ path('koalamon_notification_engine_alerts_home', {'project': project.identifier }) }}">Alerts</a>
+    <li class="tab {% if app.request.get('_route') == 'koalamon_notification_alerts_home' %}active{% endif %}">
+        <a href="{{ path('koalamon_notification_alerts_home', {'project': project.identifier }) }}">Alerts</a>
     </li>
     {#
     <li class="tab">
