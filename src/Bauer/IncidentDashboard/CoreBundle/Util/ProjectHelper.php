@@ -8,8 +8,6 @@ use Bauer\IncidentDashboard\CoreBundle\Entity\Tool;
 use Bauer\IncidentDashboard\CoreBundle\EventListener\NewEventEvent;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Koalamon\NotificationBundle\Entity\NotificationConfiguration;
-use Koalamon\NotificationBundle\Sender\SenderFactory;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**

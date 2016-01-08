@@ -7,6 +7,7 @@ use Bauer\IncidentDashboard\CoreBundle\Entity\UserRole;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -70,7 +71,7 @@ class ProjectAwareController extends Controller
             }
         }
 
-        if(is_null($this->getUser())) {
+        if (is_null($this->getUser())) {
             throw new AccessDeniedException('You are not allowed to call this action');
         }
 
@@ -99,5 +100,12 @@ class ProjectAwareController extends Controller
         return parent::redirectToRoute($route, $parameters, $status);
     }
 
+    public function generateUrl($route, $parameters = array(), $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
+    {
+        if (!array_key_exists('project', $parameters)) {
+            $parameters['project'] = $this->project->getIdentifier();
+        }
 
+        return parent::generateUrl($route, $parameters, $referenceType);
+    }
 }

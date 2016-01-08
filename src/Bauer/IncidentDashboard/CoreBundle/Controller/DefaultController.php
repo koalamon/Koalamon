@@ -23,7 +23,7 @@ class DefaultController extends ProjectAwareController
 
         $closeEvent->setMessage('Manually closed by ' . $this->getUser()->getUsername() . '.');
 
-        ProjectHelper::addEvent($this->get("Router"), $this->getDoctrine()->getEntityManager(), $closeEvent);
+        ProjectHelper::addEvent($this->get("Router"), $this->getDoctrine()->getEntityManager(), $closeEvent, $this->get('event_dispatcher'));
 
         return $this->redirect($this->generateUrl("bauer_incident_dashboard_core_homepage", array("project" => $event->getEventIdentifier()->getProject()->getIdentifier())));
     }

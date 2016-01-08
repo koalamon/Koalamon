@@ -57,14 +57,6 @@ class Project implements \JsonSerializable
      */
     private $apiKey;
 
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="notification_slack", type="string", length=255, nullable=true)
-     */
-    private $slackWebhook;
-
     /**
      * @var string
      *
