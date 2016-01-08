@@ -54,6 +54,11 @@ koalamon_default_project_system_delete:
     path:     /p/{project}/system/delete/
     defaults: { _controller: KoalamonDefaultBundle:Project:deleteSystem }
 
+# project
+koalamon_default_project_admin_store:
+    path:     /p/{project}/admin/project/store
+    defaults: { _controller: KoalamonDefaultBundle:Project:storeOptions }
+
 # tools
 koalamon_default_tool_admin:
     path:     /p/{project}/admin/tools/

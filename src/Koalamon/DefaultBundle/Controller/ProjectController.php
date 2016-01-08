@@ -18,7 +18,30 @@ class ProjectController extends ProjectAwareController
         return $this->render('KoalamonDefaultBundle:Project:admin.html.twig', array('roles' => UserRole::getRoles()));
     }
 
-    
+    /**
+     * @param Request $request
+     */
+    public function storeOptionsAction(Request $request)
+    {
+        $this->assertUserRights(UserRole::ROLE_OWNER);
+
+        $project = $this->getProject();
+
+        $options = $request->get('options');
+        if ($options['isPublic'] == 'on') {
+            $project->setPublic(true);
+        } else {
+            $project->setPublic(false);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($project);
+        $em->flush();
+
+        return $this->redirectToRoute('koalamon_default_project_admin');
+    }
+
+
     public function createAction(Request $request)
     {
         $project = new Project();
@@ -57,7 +80,7 @@ class ProjectController extends ProjectAwareController
             $em->persist($userRole);
             $em->flush();
 
-            return $this->redirectToRoute('bauer_incident_dashboard_core_homepage', array('project' => $project->getIdentifier()));
+            return $this->redirectToRoute('bauer_incident_dashboard_core_homepage');
         }
 
         return $this->render('KoalamonDefaultBundle:Project:create.html.twig', array('form' => $form->createView()));
@@ -90,7 +113,7 @@ class ProjectController extends ProjectAwareController
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('koalamon_default_project_admin', array("project" => $this->getProject()->getIdentifier())));
+        return $this->redirectToRoute('koalamon_default_project_admin');
     }
 
 
@@ -134,7 +157,7 @@ class ProjectController extends ProjectAwareController
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('koalamon_default_project_admin', array("project" => $this->getProject()->getIdentifier())));
+        return $this->redirectToRoute('koalamon_default_project_admin');
     }
 
 
@@ -155,7 +178,7 @@ class ProjectController extends ProjectAwareController
         $em->flush();
 
         $this->addFlash('success', 'Translation successfully deleted.');
-        return $this->redirect($this->generateUrl('koalamon_default_project_admin', array("project" => $this->getProject()->getIdentifier())));
+        return $this->redirectToRoute('koalamon_default_project_admin');
     }
 
 
@@ -208,7 +231,7 @@ class ProjectController extends ProjectAwareController
         $em->flush();
 
         $this->addFlash('success', 'Translation "' . $translationObject->getIdentifier() . '" successfully saved.');
-        return $this->redirect($this->generateUrl('koalamon_default_project_admin', array("project" => $this->getProject()->getIdentifier())));
+        return $this->redirectToRoute('koalamon_default_project_admin');
     }
 
     /**
@@ -261,7 +284,7 @@ class ProjectController extends ProjectAwareController
         $em->flush();
 
         $this->addFlash('success', 'System "' . $systemObject->getName() . '" successfully saved.');
-        return $this->redirect($this->generateUrl('koalamon_default_project_admin', array("project" => $this->getProject()->getIdentifier())));
+        return $this->redirectToRoute('koalamon_default_project_admin');
     }
 
 
@@ -282,7 +305,7 @@ class ProjectController extends ProjectAwareController
         $em->flush();
 
         $this->addFlash('success', 'System "' . $systemObject->getName() . '" deleted.');
-        return $this->redirect($this->generateUrl('koalamon_default_project_admin', array("project" => $this->getProject()->getIdentifier())));
+        return $this->redirectToRoute('koalamon_default_project_admin');
     }
 
 }

@@ -3,9 +3,11 @@
 namespace Bauer\IncidentDashboard\CoreBundle\Controller;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
+use Bauer\IncidentDashboard\CoreBundle\Entity\UserRole;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProjectAwareController extends Controller
@@ -60,6 +62,18 @@ class ProjectAwareController extends Controller
             throw new AccessDeniedException('You are not allowed to call this action');
         }
 
+        if (is_null($this->getUser()) && $role >= UserRole::ROLE_WATCHER) {
+            if ($this->getProject()->isPublic()) {
+                return;
+            } else {
+                throw new AccessDeniedException('You are not allowed to call this action');
+            }
+        }
+
+        if(is_null($this->getUser())) {
+            throw new AccessDeniedException('You are not allowed to call this action');
+        }
+
         $userRole = $this->getUser()->getUserRole($this->getProject());
 
         if ($role < $userRole->getRole()) {
@@ -75,4 +89,15 @@ class ProjectAwareController extends Controller
 
         return parent::render($view, $parameters, $response);
     }
+
+    protected function redirectToRoute($route, array $parameters = array(), $status = 302)
+    {
+        if (!array_key_exists('project', $parameters)) {
+            $parameters['project'] = $this->project->getIdentifier();
+        }
+
+        return parent::redirectToRoute($route, $parameters, $status);
+    }
+
+
 }

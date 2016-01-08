@@ -82,6 +82,13 @@ class Project implements \JsonSerializable
     /**
      * @var string
      *
+     * @ORM\Column(name="public", type="boolean", nullable=true)
+     */
+    private $public = false;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="eventCount", type="integer", nullable=true)
      */
     private $eventCount = 0;
@@ -425,6 +432,22 @@ class Project implements \JsonSerializable
             return 0;
         }
         return $this->getFailedEventCount() / $eventCount * 100;
+    }
+
+    /**
+     * @return string
+     */
+    public function isPublic()
+    {
+        return $this->public;
+    }
+
+    /**
+     * @param string $public
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
     }
 }
 
