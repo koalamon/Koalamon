@@ -5,6 +5,7 @@ namespace Koalamon\WebhookBundle\Controller;
 use Bauer\IncidentDashboard\CoreBundle\Entity\Event;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\EventIdentifier;
+use Bauer\IncidentDashboard\CoreBundle\EventListener\NewEventEvent;
 use Bauer\IncidentDashboard\CoreBundle\Util\ProjectHelper;
 use Koalamon\WebhookBundle\Formats\AppDynamicsFormat;
 use Koalamon\WebhookBundle\Formats\DefaultFormat;
@@ -82,7 +83,11 @@ class DefaultController extends Controller
 
         $translatedEvent = $this->translate($event);
 
-        ProjectHelper::addEvent($this->get("Router"), $em, $translatedEvent);
+        ProjectHelper::addEvent($this->get("Router"), $em, $translatedEvent, $this->get('event_dispatcher'));
+
+        /* $eventDispatcher = $this->get('event_dispatcher');
+         $dispatcherEvent = new NewEventEvent($translatedEvent);
+         $eventDispatcher->dispatch('koalamon.event.create', $dispatcherEvent);*/
 
         return $this->getJsonRespone(self::STATUS_SUCCESS);
     }

@@ -8,3 +8,9 @@ services:
         class: Twig_Extensions_Extension_Date
         tags:
             - { name: twig.extension }
+
+    koalamonnotification.eventCreationListener:
+        class: Koalamon\NotificationBundle\EventListener\EventListener
+        arguments: [ @service_container ]
+        tags:
+            - { name: 'kernel.event_listener', event: 'koalamon.event.create', method: onEventCreate }
