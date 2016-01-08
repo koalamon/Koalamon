@@ -12,11 +12,14 @@ class NewEventEvent extends Event
     /**
      * NewEventEvent constructor.
      */
-    public function __construct(\Bauer\IncidentDashboard\CoreBundle\Entity\Event $event,
-                                \Bauer\IncidentDashboard\CoreBundle\Entity\Event $lastEvent)
+    public function __construct(\Bauer\IncidentDashboard\CoreBundle\Entity\Event $event)
     {
         $this->event = $event;
-        $this->lastEvent = $lastEvent;
+    }
+
+    public function setLastEvent(\Bauer\IncidentDashboard\CoreBundle\Entity\Event $event)
+    {
+        $this->lastEvent = $event;
     }
 
     public function getEvent()
@@ -30,5 +33,10 @@ class NewEventEvent extends Event
     public function getLastEvent()
     {
         return $this->lastEvent;
+    }
+
+    public function hasLastEvent()
+    {
+        return !is_null($this->lastEvent);
     }
 }

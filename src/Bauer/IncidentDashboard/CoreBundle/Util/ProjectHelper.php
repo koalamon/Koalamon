@@ -67,7 +67,10 @@ class ProjectHelper
 
         self::storeData($doctrineManager, $event, $project);
 
-        $dispatcherEvent = new NewEventEvent($event, $lastEvent);
+        $dispatcherEvent = new NewEventEvent($event);
+        if ($lastEvent) {
+            $dispatcherEvent->setLastEvent($lastEvent);
+        }
         $eventDispatcher->dispatch('koalamon.event.create', $dispatcherEvent);
     }
 
