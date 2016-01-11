@@ -41,7 +41,6 @@ class ProjectController extends ProjectAwareController
         return $this->redirectToRoute('koalamon_default_project_admin');
     }
 
-
     public function createAction(Request $request)
     {
         $project = new Project();
@@ -80,7 +79,7 @@ class ProjectController extends ProjectAwareController
             $em->persist($userRole);
             $em->flush();
 
-            return $this->redirectToRoute('bauer_incident_dashboard_core_homepage');
+            return $this->redirectToRoute('bauer_incident_dashboard_core_homepage', ['project' => $project->getIdentifier()]);
         }
 
         return $this->render('KoalamonDefaultBundle:Project:create.html.twig', array('form' => $form->createView()));

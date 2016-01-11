@@ -207,7 +207,7 @@ class EventIdentifier
     }
 
     /**
-     * @return mixed
+     * @return Tool
      */
     public function getTool()
     {
@@ -215,7 +215,7 @@ class EventIdentifier
     }
 
     /**
-     * @param mixed $tool
+     * @param Tool $tool
      */
     public function setTool($tool)
     {

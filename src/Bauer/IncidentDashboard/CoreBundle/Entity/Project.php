@@ -197,7 +197,13 @@ class Project implements \JsonSerializable
      */
     public function getUserRoles()
     {
-        return $this->userRoles;
+        $sortedRoles = $this->userRoles->toArray();
+
+        usort($sortedRoles, function (UserRole $a, UserRole $b) {
+            return ($a->getUser()->getUsername() < $b->getUser()->getUsername()) ? -1 : 1;
+        });
+
+        return $sortedRoles;
     }
 
     public function getUserRole(User $user)
