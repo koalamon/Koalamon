@@ -30,13 +30,6 @@ koalamon_default_project_admin:
     path:     /p/{project}/admin/
     defaults: { _controller: KoalamonDefaultBundle:Project:admin }
 
-koalamon_default_project_collaborator_add:
-    path:     /p/{project}/collaborator/add/
-    defaults: { _controller: KoalamonDefaultBundle:Project:addCollaborator }
-
-koalamon_default_project_collaborator_remove:
-    path:     /p/{project}/collaborator/remove/
-    defaults: { _controller: KoalamonDefaultBundle:Project:removeCollaborator }
 
 koalamon_default_project_translation_store:
     path:     /p/{project}/translation/store/
@@ -71,3 +64,16 @@ koalamon_default_project_tool_store:
 koalamon_default_project_tool_delete:
     path:     /p/{project}/admin/tools/delete/
     defaults: { _controller: KoalamonDefaultBundle:Tool:delete }
+
+# user
+koalamon_default_user_admin:
+    path:     /p/{project}/admin/user/
+    defaults: { _controller: KoalamonDefaultBundle:User:admin }
+
+koalamon_default_user_admin_collaborator_add:
+    path:     /p/{project}/admin/user/collaborator/add/
+    defaults: { _controller: KoalamonDefaultBundle:User:addCollaborator }
+
+koalamon_default_user_admin_collaborator_remove:
+    path:     /p/{project}/admin/user/collaborator/remove/
+    defaults: { _controller: KoalamonDefaultBundle:User:removeCollaborator }

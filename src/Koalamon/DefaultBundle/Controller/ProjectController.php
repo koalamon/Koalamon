@@ -86,78 +86,7 @@ class ProjectController extends ProjectAwareController
     }
 
 
-    public function removeCollaboratorAction(Request $request)
-    {
-        $this->assertUserRights(UserRole::ROLE_ADMIN);
 
-        $userId = $request->get("userId");
-
-        $user = $this->getDoctrine()
-            ->getRepository('BauerIncidentDashboardCoreBundle:User')
-            ->find($userId);
-
-        $currentUserRole = $this->getUser()->getUserRole($this->getProject());
-
-        if (!is_null($user) && $currentUserRole->getRole() < $user->getUserRole($this->getProject())->getRole()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $userRoles = $this->getDoctrine()
-                ->getRepository('BauerIncidentDashboardCoreBundle:UserRole')
-                ->findBy(array("project" => $this->getProject(), 'user' => $user));
-
-            foreach ($userRoles as $userRole) {
-                $em->remove($userRole);
-            }
-
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('koalamon_default_project_admin');
-    }
-
-
-    public function addCollaboratorAction(Request $request)
-    {
-        $this->assertUserRights(UserRole::ROLE_ADMIN);
-
-        $userId = $request->get("userId");
-        $role = $request->get("role");
-
-        $user = $this->getDoctrine()
-            ->getRepository('BauerIncidentDashboardCoreBundle:User')
-            ->find($userId);
-
-        $currentUserRole = $this->getUser()->getUserRole($this->getProject());
-
-        if ($currentUserRole->getRole() >= $role) {
-            throw new AccessDeniedException('You are not allowed to call this action');
-        }
-
-        if ($currentUserRole->getRole() >= $user->getUserRole($this->getProject())->getRole()) {
-            throw new AccessDeniedException('You are not allowed to call this action');
-        }
-
-        if (!is_null($user)) {
-            $em = $this->getDoctrine()->getManager();
-
-            // only one role allowed
-            $userRoles = $this->getDoctrine()
-                ->getRepository('BauerIncidentDashboardCoreBundle:UserRole')
-                ->findBy(array("project" => $this->getProject(), 'user' => $user));
-
-            foreach ($userRoles as $userRole) {
-                $em->remove($userRole);
-            }
-
-            $em->flush();
-
-            $userRole = new UserRole($user, $this->getProject(), $role);
-            $em->persist($userRole);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('koalamon_default_project_admin');
-    }
 
 
     /**

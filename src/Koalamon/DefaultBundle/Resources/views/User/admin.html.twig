@@ -1,0 +1,57 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+    <div class="box-element">
+        <div class="box-element-header">
+            Users
+        </div>
+        <div class="box-element-content">
+            <ul style="list-style: none; font-size: 12px; padding-left: 10px; margin-bottom: 20px">
+                {% for userRole in project.userRoles %}
+                    <li>
+                        <div style="width: 200px; float: left">{{ userRole.user.username }}</div>
+                        <div style="width: 200px; float: left">{{ userRole.roleName }}</div>
+                        <div class="options">
+                            <form name="collaborator_remove_form_{{ userRole.user.id }}" action="{{ path("koalamon_default_user_admin_collaborator_remove", {"project": project.identifier}) }}"
+                                  method="post">
+                                <input type="hidden" value="{{ userRole.user.id }}" name="userId">
+                                {% if userRole.role != constant('Bauer\\IncidentDashboard\\CoreBundle\\Entity\\UserRole::ROLE_OWNER') and app.user != userRole.user %}
+                                <a href="" onclick="document.collaborator_remove_form_{{ userRole.user.id }}.submit(); return false;">
+                                        remove user</a>{% else %}<strong>Project Owner</strong>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div style="clear: both"></div>
+
+            <form method="post" name="collaborator_form" action="{{ path("koalamon_default_user_admin_collaborator_add", { "project": project.identifier }) }}">
+                <input id="collaborator" style="float: left; padding: 4px; width: 180px" type="text"/>
+                <input type="hidden" name="userId" id="userId">
+                <select name="role" style="margin-left: 10px; float: left; width: 180px; margin-top: 3px">
+                    {% for key, roleName in roles %}
+                        {% if key > app.user.getUserRole(project).role %}
+                            <option value="{{ key }}">
+                                {{ roleName }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+                <div onClick="document.collaborator_form.submit();" class="button" style="width: 50px; margin-left: 409px; margin-top: 0">add user</div>
+            </form>
+
+            <script>
+                $('#collaborator').autocomplete({
+                    serviceUrl: '{{ path("koalamon_rest_user_startswith") }}',
+                    onSelect: function (suggestion) {
+                        $('#userId').val(suggestion.data);
+                        console.log($('#userId').val());
+                    }
+                });
+            </script>
+        </div>
+    </div>
+
+{% endblock %}

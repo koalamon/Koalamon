@@ -18,8 +18,12 @@ class AdminController extends ProjectAwareController
         $menu->addElement(new Element($this->generateUrl('koalamon_default_project_admin', ['project' => $project->getIdentifier()]),
             'Project', 'menu_admin_project'));
 
+        $menu->addElement(new Element($this->generateUrl('koalamon_default_user_admin', ['project' => $project->getIdentifier()]),
+            'Collaborators', 'menu_admin_user'));
+
         $menu->addElement(new Element($this->generateUrl('koalamon_default_tool_admin', ['project' => $project->getIdentifier()]),
-            'Tools', 'menu_toolsn_project'));
+            'Tools', 'menu_admin_tools'));
+
 
         $dispatcher = $this->get('event_dispatcher');
         /** @var EventDispatcher $dispatcher */
