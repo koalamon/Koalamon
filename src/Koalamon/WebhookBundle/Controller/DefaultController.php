@@ -41,7 +41,10 @@ class DefaultController extends Controller
 
         $content = "queryString: " . $request->getQueryString() . "\n payload: " . $payload;
 
-        file_put_contents("/tmp/koalamon/webhook_" . $formatName . ".log", json_encode($content));
+        $debugDir = "/tmp/koalamon/";
+        if (is_dir($debugDir)) {
+            file_put_contents($debugDir . "webhook_" . $formatName . ".log", json_encode($content));
+        }
 
         $project = $this->getProject($request->get("api_key"));
 
@@ -84,10 +87,6 @@ class DefaultController extends Controller
         $translatedEvent = $this->translate($event);
 
         ProjectHelper::addEvent($this->get("Router"), $em, $translatedEvent, $this->get('event_dispatcher'));
-
-        /* $eventDispatcher = $this->get('event_dispatcher');
-         $dispatcherEvent = new NewEventEvent($translatedEvent);
-         $eventDispatcher->dispatch('koalamon.event.create', $dispatcherEvent);*/
 
         return $this->getJsonRespone(self::STATUS_SUCCESS);
     }

@@ -25,7 +25,7 @@ class System implements \JsonSerializable
     /**
      * @var string
      *
-     * @ORM\Column(name="identifier", type="string", length=255)
+     * @ORM\Column(name="identifier", type="string", length=255, nullable=true)
      */
     private $identifier;
 
@@ -63,6 +63,17 @@ class System implements \JsonSerializable
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      **/
     private $project;
+
+    /**
+     * @ORM\OneToMany(targetEntity="System", mappedBy="parent")
+     */
+    private $children;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="System", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    private $parent;
 
     /**
      * @return int
@@ -120,7 +131,6 @@ class System implements \JsonSerializable
         return $this->project;
     }
 
-
     /**
      * @param string $url
      */
@@ -152,6 +162,7 @@ class System implements \JsonSerializable
     {
         $this->url = $url;
     }
+
     /**
      * @param string $description
      */
@@ -168,14 +179,53 @@ class System implements \JsonSerializable
         $this->project = $project;
     }
 
+    /**
+     * @return System[]
+     */
+    public function getSubsystems()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param mixed $children
+     */
+    public function addSubsystem(System $child)
+    {
+        $this->children[] = $child;
+    }
+
+    /**
+     * @return System
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param System $parent
+     */
+    public function setParent(System $parent)
+    {
+        $this->parent = $parent;
+    }
+
     function jsonSerialize()
     {
+        $subSystems = array();
+
+        foreach ($this->children as $subSystem) {
+            $subSystems[$subSystem->getId()] = $subSystem->jsonSerialize();
+        }
+
         return [
             'identifier' => $this->getIdentifier(),
             'name' => $this->getName(),
             'url' => $this->getUrl(),
             'project' => $this->getProject()->getIdentifier(),
-            'image' => $this->getImage()
+            'image' => $this->getImage(),
+            'subSystems' => $subSystems
         ];
     }
 }

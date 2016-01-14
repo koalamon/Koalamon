@@ -74,7 +74,9 @@ class DefaultController extends ProjectAwareController
     {
         $this->assertUserRights(UserRole::ROLE_WATCHER);
 
-        $systems = $this->getProject()->getSystems();
+        $systems = $this->getDoctrine()
+            ->getRepository('BauerIncidentDashboardCoreBundle:System')
+            ->findBy(['project' => $this->getProject(), 'parent' => null]);
 
         $tools = $this->getProject()->getTools();
 

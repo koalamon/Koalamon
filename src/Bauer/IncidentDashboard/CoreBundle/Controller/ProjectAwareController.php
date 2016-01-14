@@ -8,11 +8,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProjectAwareController extends Controller
 {
+    /**
+     * @var Project
+     */
     private $project;
 
     const ACCESS_OWNER = "owner";
@@ -108,4 +110,12 @@ class ProjectAwareController extends Controller
 
         return parent::generateUrl($route, $parameters, $referenceType);
     }
+
+    protected function assertApiKey($apiKey)
+    {
+        if ($this->project->getApiKey() != $apiKey) {
+            throw new AccessDeniedHttpException('You are not allowed to fetch these informations.');
+        }
+    }
+
 }

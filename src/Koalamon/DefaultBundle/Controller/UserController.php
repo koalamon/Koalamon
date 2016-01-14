@@ -10,8 +10,9 @@ class UserController extends ProjectAwareController
 {
     public function indexAction()
     {
-        $this->assertUserRights(UserRole::ROLE_COLLABORATOR);
-
+        if ($this->getUser() == null) {
+            throw new AccessDeniedException('You are not allowed to call this action');
+        }
         return $this->render('KoalamonDefaultBundle:User:index.html.twig');
     }
 

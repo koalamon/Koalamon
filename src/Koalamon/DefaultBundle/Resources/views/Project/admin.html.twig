@@ -76,50 +76,7 @@
         </div>
     </div>
 
-    <div class="box-element">
-        <div class="box-element-header">Systems</div>
-        <div class="box-element-content">
-            <table>
-                <thead>
-                <td>Identifier</td>
-                <td>URL</td>
-                <td>Name</td>
-                <td>Description</td>
-                </thead>
-                {% for system in project.systems %}
-                    <tr style="line-height: 25px">
-                        <form style="margin-top: 0px;" method="post" action="{{ path("koalamon_default_project_system_store", {"project": project.identifier}) }}" name="system_form_{{ system.id }}">
-                            <td><input type="hidden" name="system[id]" value="{{ system.id }}"><input name="system[identifier]" value="{{ system.identifier }}" required/></td>
-                            <td><input type="url" name="system[url]" value="{{ system.url }}" required/></td>
-                            <td><input name="system[name]" value="{{ system.name }}"/></td>
-                            <td><input name="system[description]" style="width: 300px; margin-right: 25px" value="{{ system.description }}"/></td>
-                        </form>
-                        <form style="margin-top: 0px;" method="post" action="{{ path("koalamon_default_project_system_delete", {"project": project.identifier}) }}"
-                              name="system_delete_form_{{ system.id }}">
-                            <input type="hidden" value="{{ system.id }}" name="system_id">
-                        </form>
-                        <td>
-                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.system_form_{{ system.id }}.submit()">store</div>
-                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.system_delete_form_{{ system.id }}.submit()">delete</div>
-                            </form>
-                        </td>
-                    </tr>
 
-                {% endfor %}
-                <tr>
-                    <form method="post" action="{{ path("koalamon_default_project_system_store", {"project": project.identifier}) }}" name="system_form_new">
-                        <td><input name="system[identifier]" placeholder="Identifier" required/></td>
-                        <td><input type="url" name="system[url]" placeholder="URL" required/></td>
-                        <td><input name="system[name]" placeholder="Name"/></td>
-                        <td><input style="width: 300px; margin-right: 25px" name="system[description]" placeholder="Description"/></td>
-                        <td>
-                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.system_form_new.submit()">store</div>
-                        </td>
-                    </form>
-                </tr>
-            </table>
-        </div>
-    </div>
 
     <div class="box-element">
         <div class="box-element-header">Api Key</div>

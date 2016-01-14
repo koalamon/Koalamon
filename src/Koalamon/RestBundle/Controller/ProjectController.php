@@ -9,22 +9,18 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class ProjectController extends ProjectAwareController
 {
-    private function assertApiKey($apiKey)
-    {
-        $project = $this->getProject();
-        if ($project->getApiKey() != $apiKey) {
-            throw new AccessDeniedHttpException('You are not allowed to fetch these informations.');
-        }
-    }
 
     public function systemsAction(Request $request)
     {
         $this->assertApiKey($request->get("api_key"));
-        $project = $this->getProject();
+
+        $projectSystems = $this->getDoctrine()
+            ->getRepository('BauerIncidentDashboardCoreBundle:System')
+            ->findBy(['project' => $this->getProject(), 'parent' => null]);
 
         $systems = array();
-        foreach ($project->getSystems() as $system) {
-            $systems[] = $system;
+        foreach ($projectSystems as $system) {
+            $systems[$system->getId()] = $system;
         }
 
         return new JsonResponse($systems);

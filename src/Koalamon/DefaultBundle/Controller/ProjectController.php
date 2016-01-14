@@ -85,10 +85,6 @@ class ProjectController extends ProjectAwareController
         return $this->render('KoalamonDefaultBundle:Project:create.html.twig', array('form' => $form->createView()));
     }
 
-
-
-
-
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -162,78 +158,5 @@ class ProjectController extends ProjectAwareController
         return $this->redirectToRoute('koalamon_default_project_admin');
     }
 
-    /**
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function storeSystemAction(Request $request)
-    {
-        $this->assertUserRights(UserRole::ROLE_ADMIN);
-        $system = $request->get('system');
-
-        if (array_key_exists("id", $system)) {
-            $systemObject = $this->getDoctrine()
-                ->getRepository('BauerIncidentDashboardCoreBundle:System')
-                ->find($system["id"]);
-
-        } else {
-            $systemObject = new System();
-            $systemObject->setProject($this->getProject());
-        }
-
-        if ($system["identifier"] != "") {
-            $systemObject->setIdentifier($system["identifier"]);
-        } else {
-            $this->addFlash('notice', 'The parameter "identifier" is required');
-            return $this->redirect($this->generateUrl('koalamon_default_project_admin', array("project" => $this->getProject()->getIdentifier())));
-        }
-
-        if ($system["url"] != "" && !filter_var($system['url'], FILTER_VALIDATE_URL) === false) {
-            $systemObject->setUrl($system["url"]);
-        } else {
-            $this->addFlash('notice', 'The parameter "URL" requires a valid URL');
-            return $this->redirect($this->generateUrl('koalamon_default_project_admin', array("project" => $this->getProject()->getIdentifier())));
-        }
-
-        if ($system["name"] != "") {
-            $systemObject->setName($system["name"]);
-        } else {
-            $systemObject->setName($system['url']);
-        }
-
-        if ($system["description"] != "") {
-            $systemObject->setDescription($system["description"]);
-        } else {
-            $systemObject->setDescription(null);
-        }
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($systemObject);
-        $em->flush();
-
-        $this->addFlash('success', 'System "' . $systemObject->getName() . '" successfully saved.');
-        return $this->redirectToRoute('koalamon_default_project_admin');
-    }
-
-
-    /**
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function deleteSystemAction(Request $request)
-    {
-        $this->assertUserRights(UserRole::ROLE_ADMIN);
-
-        $systemObject = $this->getDoctrine()
-            ->getRepository('BauerIncidentDashboardCoreBundle:System')
-            ->find($request->get("system_id"));
-
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($systemObject);
-        $em->flush();
-
-        $this->addFlash('success', 'System "' . $systemObject->getName() . '" deleted.');
-        return $this->redirectToRoute('koalamon_default_project_admin');
-    }
 
 }

@@ -39,13 +39,6 @@ koalamon_default_project_translation_delete:
     path:     /p/{project}/translation/delete/
     defaults: { _controller: KoalamonDefaultBundle:Project:deleteTranslation }
 
-koalamon_default_project_system_store:
-    path:     /p/{project}/system/store/
-    defaults: { _controller: KoalamonDefaultBundle:Project:storeSystem }
-
-koalamon_default_project_system_delete:
-    path:     /p/{project}/system/delete/
-    defaults: { _controller: KoalamonDefaultBundle:Project:deleteSystem }
 
 # project
 koalamon_default_project_admin_store:
@@ -65,7 +58,7 @@ koalamon_default_project_tool_delete:
     path:     /p/{project}/admin/tools/delete/
     defaults: { _controller: KoalamonDefaultBundle:Tool:delete }
 
-# user
+# collaborators
 koalamon_default_user_admin:
     path:     /p/{project}/admin/user/
     defaults: { _controller: KoalamonDefaultBundle:User:admin }
@@ -77,3 +70,20 @@ koalamon_default_user_admin_collaborator_add:
 koalamon_default_user_admin_collaborator_remove:
     path:     /p/{project}/admin/user/collaborator/remove/
     defaults: { _controller: KoalamonDefaultBundle:User:removeCollaborator }
+
+#systems
+koalamon_default_system_admin:
+    path:     /p/{project}/admin/systems/
+    defaults: { _controller: KoalamonDefaultBundle:System:admin }
+
+koalamon_default_admin_system_store:
+    path:     /p/{project}/admin/system/store/
+    defaults: { _controller: KoalamonDefaultBundle:System:storeSystem }
+
+koalamon_default_admin_subsystem_store:
+    path:     /p/{project}/admin/subsystem/store/
+    defaults: { _controller: KoalamonDefaultBundle:System:storeSubSystem }
+
+koalamon_default_admin_system_delete:
+    path:     /p/{project}/admin/system/delete/
+    defaults: { _controller: KoalamonDefaultBundle:System:deleteSystem }

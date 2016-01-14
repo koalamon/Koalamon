@@ -70,8 +70,8 @@ class CheckToolIntervalCommand extends ContainerAwareCommand
                     $newEvent->setMessage("");
                 }
 
-                ProjectHelper::addEvent($this->getContainer()->get("Router"), $em, $newEvent);
-
+                $dispatcher = $this->getContainer()->get('event_dispatcher');
+                ProjectHelper::addEvent($this->getContainer()->get("Router"), $em, $newEvent, $dispatcher);
             }
         }
     }
