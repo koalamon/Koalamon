@@ -11,20 +11,20 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class AdminController extends ProjectAwareController
 {
-    public function renderMenuAction(Project $project)
+    public function renderMenuAction(Project $project, $currentUri)
     {
         $menu = new Menu();
 
-        $menu->addElement(new Element($this->generateUrl('koalamon_default_project_admin', ['project' => $project->getIdentifier()]),
+        $menu->addElement(new Element($this->generateUrl('koalamon_default_project_admin', ['project' => $project->getIdentifier()], true),
             'Project', 'menu_admin_project'));
 
-        $menu->addElement(new Element($this->generateUrl('koalamon_default_user_admin', ['project' => $project->getIdentifier()]),
+        $menu->addElement(new Element($this->generateUrl('koalamon_default_user_admin', ['project' => $project->getIdentifier()], true),
             'Collaborators', 'menu_admin_user'));
 
-        $menu->addElement(new Element($this->generateUrl('koalamon_default_system_admin', ['project' => $project->getIdentifier()]),
+        $menu->addElement(new Element($this->generateUrl('koalamon_default_system_admin', ['project' => $project->getIdentifier()], true),
             'Systems', 'menu_admin_systems'));
 
-        $menu->addElement(new Element($this->generateUrl('koalamon_default_tool_admin', ['project' => $project->getIdentifier()]),
+        $menu->addElement(new Element($this->generateUrl('koalamon_default_tool_admin', ['project' => $project->getIdentifier()], true),
             'Tools', 'menu_admin_tools'));
 
         $dispatcher = $this->get('event_dispatcher');
@@ -32,6 +32,6 @@ class AdminController extends ProjectAwareController
 
         $dispatcher->dispatch('koalamon.admin.menu', new AdminMenuEvent($menu, $project));
 
-        return $this->render('KoalamonDefaultBundle:Admin:menu.html.twig', ['menu' => $menu]);
+        return $this->render('KoalamonDefaultBundle:Admin:menu.html.twig', ['menu' => $menu, 'currentUri' => $currentUri]);
     }
 }

@@ -18,8 +18,11 @@
         color: white;
     }
 
-    .menu-admin-element .active {
-        background-color: #7f8c8d;
+    .menu-admin-element.active {
+        background-color: #3498db;
+    }
+
+    .menu-admin-element.active a {
         color: white;
         font-weight: 200;
     }
@@ -27,7 +30,7 @@
 
 <ul id="menu-admin">
     {% for element in menu.elements %}
-        <li class="{{ element.identifier }} menu-admin-element {% if app.request.uri == element.url %}active{% endif %}">
+        <li class="{{ element.identifier }} menu-admin-element {% if currentUri == element.url %}active{% endif %}">
             <a href="{{ element.url }}">{{ element.name }}</a>
         </li>
     {% endfor %}

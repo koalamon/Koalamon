@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    {{ render(controller('KoalamonDefaultBundle:Admin:renderMenu', { 'project': project })) }}
+    {{ render(controller('KoalamonDefaultBundle:Admin:renderMenu', { 'project': project, 'currentUri': app.request.uri })) }}
 
     {% block admin %}
     {% endblock %}
