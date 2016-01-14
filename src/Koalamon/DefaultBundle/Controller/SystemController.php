@@ -49,7 +49,7 @@ class SystemController extends ProjectAwareController
             $systemObject->setParent($parent);
         }
 
-        if ($system["identifier"] != "") {
+        if (array_key_exists("identifier", $system) && $system["identifier"] != "") {
             $systemObject->setIdentifier($system["identifier"]);
         } else if (!array_key_exists("parent", $system)) {
             return $this->getJsonResponse('failure', 'The parameter "identifier" is required', (int)$system['elementId']);
