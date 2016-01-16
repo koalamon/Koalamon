@@ -10,11 +10,6 @@ class Menu
     private $elements = array();
 
     /**
-     * @var Element
-     */
-    private $selected;
-
-    /**
      * Menu constructor.
      */
     public function addElement(Element $element)
@@ -25,15 +20,5 @@ class Menu
     public function getElements()
     {
         return $this->elements;
-    }
-
-    public function setSelected(Element $element)
-    {
-        $this->selected = $element;
-    }
-
-    public function isSelected(Element $element)
-    {
-        return $element == $this->selected;
     }
 }

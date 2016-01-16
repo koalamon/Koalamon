@@ -1,0 +1,72 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <h1>KoalaPing</h1>
+
+    <style>
+        td {
+            padding-right: 40px;
+            font-size: 14px;
+        }
+
+        td {
+            line-height: 30px;
+        }
+    </style>
+
+    <script>
+        function koalaPingStore() {
+            var url = '{{ path('koalamon_integration_koala_ping_store', {'project': project.identifier}) }}';
+
+            $.post(url, $("#koalaping_admin_form").serialize(), function (data) {
+                if (data['status'] == 'failure') {
+                    toastr.warning(data['message']);
+                } else {
+                    toastr.success(data['message']);
+                    $('#id' + data['elementId']).val(data['id']);
+                    if (reload) {
+                        location.reload();
+                    }
+                }
+            });
+        }
+    </script>
+
+    <form id="koalaping_admin_form">
+        <input type="radio" name="status" value="all" {% if config.status == 'all' %}checked="checked{% endif %}"> Ping all Systems <br>
+        <input type="radio" name="status" value="selected" {% if config.status != 'all' %}checked="checked{% endif %}"> Ping selected Systems
+        <table>
+            <thead>
+            <tr>
+                <td>Name</td>
+                <td>Url</td>
+                <td>Description</td>
+            </tr>
+            </thead>
+            {% for system in systems %}
+                <tr>
+                    <td>
+                        <input type="checkbox" style="margin-right: 10px" name="systems[{{ system.id }}]" {% if system.id in koalaPings %}checked=checked{% endif %}>{{ system.name }}
+                    </td>
+                    <td>{{ system.url }}</td>
+                    <td>{{ system.description }}</td>
+                </tr>
+
+                {% for subsystem in system.subsystems %}
+                    <tr>
+                        <td><input type="checkbox" style="margin-left: 20px; margin-right: 10px" name="systems[{{ subsystem.id }}]"
+                                   {% if subsystem.id in koalaPings %}checked=checked{% endif %}>{{ subsystem.name }} </td>
+                        <td>{{ subsystem.url }}</td>
+                        <td>{{ subsystem.description }}</td>
+                    </tr>
+                {% endfor %}
+
+            {% endfor %}
+
+        </table>
+
+        <button onclick="koalaPingStore(); return false;">Store</button>
+    </form>
+
+{% endblock %}

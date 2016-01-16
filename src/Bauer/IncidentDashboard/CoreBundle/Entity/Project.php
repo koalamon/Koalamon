@@ -221,14 +221,6 @@ class Project implements \JsonSerializable
     }
 
     /**
-     * @return string
-     */
-    public function getSlackWebhook()
-    {
-        return $this->slackWebhook;
-    }
-
-    /**
      * @return Tool[]
      */
     public function getTools($onlyActive = true)
@@ -359,29 +351,11 @@ class Project implements \JsonSerializable
      */
     function jsonSerialize()
     {
-        $project = new \stdClass();
-        $project->name = $this->getName();
-        $project->description = $this->getDescription();
-        $project->identifier = $this->getIdentifier();
-        $project->owner = $this->getOwner()->getUsernameCanonical();
-        $project->slackWebhook = $this->getSlackWebhook();
-
-        $systems = [];
-        foreach ($this->getSystems() as $system) {
-            $systems[] = $system->getIdentifier();
-        }
-        if (0 < count($systems)) {
-            $project->systems = $systems;
-        }
-        $users = [];
-        foreach ($this->getUsers() as $user) {
-            $users[] = $user->getUsernameCanonical();
-        }
-        if (0 < count($users)) {
-            $project->users = $users;
-        }
-
-        return $project;
+        return [
+            "api_key" => $this->getApiKey(),
+            "name" => $this->getName(),
+            "identifier" => $this->getIdentifier()
+        ];
     }
 
     /**
@@ -447,5 +421,6 @@ class Project implements \JsonSerializable
     {
         $this->public = $public;
     }
+
 }
 

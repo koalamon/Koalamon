@@ -78,7 +78,6 @@
                     elementId: element
                 }
             }).done(function (data) {
-                console.log(data);
                 if (data['status'] == 'failure') {
                     toastr.warning(data['message']);
                 } else {

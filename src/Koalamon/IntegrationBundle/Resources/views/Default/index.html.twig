@@ -1,0 +1,13 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <h1>Integrations</h1>
+
+    <ul>
+    {% for integration in integrationContainer.integrations %}
+        <li><a href="{{ integration.url }}">{{ integration.name }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

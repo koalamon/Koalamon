@@ -8,3 +8,6 @@ services:
         class: Twig_Extensions_Extension_Date
         tags:
             - { name: twig.extension }
+
+    koalamon_menu_admin:
+        class: Koalamon\DefaultBundle\Menu\Menu

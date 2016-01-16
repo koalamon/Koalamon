@@ -1,3 +1,15 @@
+koalamon_integration_koala_ping:
+    resource: "@KoalamonIntegrationKoalaPingBundle/Resources/config/routing.yml"
+    prefix:   /
+
+koalamon_plugin:
+    resource: "@KoalamonPluginBundle/Resources/config/routing.yml"
+    prefix:   /
+
+koalamon_integration:
+    resource: "@KoalamonIntegrationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 koalamon_information:
     resource: "@KoalamonInformationBundle/Resources/config/routing.yml"
     prefix:   /

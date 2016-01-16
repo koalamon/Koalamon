@@ -1,0 +1,12 @@
+koalamon_integration_koala_ping_homepage:
+    path:     /p/{project}/integrations/koalaping/
+    defaults: { _controller: KoalamonIntegrationKoalaPingBundle:Default:index }
+
+
+koalamon_integration_koala_ping_store:
+    path:     /p/{project}/integrations/koalaping/store
+    defaults: { _controller: KoalamonIntegrationKoalaPingBundle:Default:store }
+
+koalamon_integration_koala_ping_rest:
+    path:     /p/integrations/koalaping/rest/
+    defaults: { _controller: KoalamonIntegrationKoalaPingBundle:Rest:Systems }

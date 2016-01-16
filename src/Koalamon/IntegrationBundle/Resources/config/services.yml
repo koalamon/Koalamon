@@ -1,0 +1,13 @@
+services:
+
+    koalamonintegration.initPlugin:
+        class: Koalamon\IntegrationBundle\EventListener\PluginListener
+        arguments: [ @service_container ]
+        tags:
+            - { name: 'kernel.event_listener', event: 'koalamon.plugin.init' }
+
+    koalamonintegration.adminMenu:
+        class: Koalamon\IntegrationBundle\EventListener\PluginListener
+        arguments: [ @service_container ]
+        tags:
+            - { name: 'kernel.event_listener', event: 'koalamon.plugin.admin.menu.init', method: onKoalamonPluginAdminMenuInit, priority: 10 }

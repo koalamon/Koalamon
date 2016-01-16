@@ -59,6 +59,8 @@ class System implements \JsonSerializable
     private $description;
 
     /**
+     * @var Project
+     *
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="systems")
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      **/
@@ -70,6 +72,8 @@ class System implements \JsonSerializable
     private $children;
 
     /**
+     * @var System
+     *
      * @ORM\ManyToOne(targetEntity="System", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
@@ -211,6 +215,9 @@ class System implements \JsonSerializable
         $this->parent = $parent;
     }
 
+    /**
+     * @return array
+     */
     function jsonSerialize()
     {
         $subSystems = array();
@@ -219,13 +226,24 @@ class System implements \JsonSerializable
             $subSystems[$subSystem->getId()] = $subSystem->jsonSerialize();
         }
 
+        if ($this->parent) {
+            $identifer = $this->parent->getIdentifier();
+            $parent = $this->parent->getId();
+        } else {
+            $identifer = $this->getIdentifier();
+            $parent = false;
+        }
+
         return [
-            'identifier' => $this->getIdentifier(),
+            'id' => $this->id,
+            'identifier' => $identifer,
             'name' => $this->getName(),
             'url' => $this->getUrl(),
+            'parent' => $parent,
             'project' => $this->getProject()->getIdentifier(),
             'image' => $this->getImage(),
-            'subSystems' => $subSystems
+            'subSystems' => $subSystems,
+            'project' => $this->project->jsonSerialize()
         ];
     }
 }

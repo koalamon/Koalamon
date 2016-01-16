@@ -30,7 +30,7 @@ class AdminController extends ProjectAwareController
         $dispatcher = $this->get('event_dispatcher');
         /** @var EventDispatcher $dispatcher */
 
-        $dispatcher->dispatch('koalamon.admin.menu', new AdminMenuEvent($menu, $project));
+        $dispatcher->dispatch('koalamon.plugin.admin.menu.init', new AdminMenuEvent($menu, $project));
 
         return $this->render('KoalamonDefaultBundle:Admin:menu.html.twig', ['menu' => $menu, 'currentUri' => $currentUri]);
     }

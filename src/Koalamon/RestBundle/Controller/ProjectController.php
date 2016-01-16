@@ -20,7 +20,7 @@ class ProjectController extends ProjectAwareController
 
         $systems = array();
         foreach ($projectSystems as $system) {
-            $systems[$system->getId()] = $system;
+            $systems[] = $system;
         }
 
         return new JsonResponse($systems);
