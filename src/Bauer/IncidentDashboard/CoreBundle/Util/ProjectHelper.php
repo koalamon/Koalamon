@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nils.langner
- * Date: 07.12.15
- * Time: 14:03
- */
 
 namespace Bauer\IncidentDashboard\CoreBundle\Util;
-
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Event;
 use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
@@ -37,21 +30,32 @@ class ProjectHelper
         $lastEvent = $doctrineManager
             ->getRepository('BauerIncidentDashboardCoreBundle:Event')
             ->findOneBy(array("eventIdentifier" => $event->getEventIdentifier()), array("created" => "DESC"));
+        /** @var Event $lastEvent */
 
         // is status change?
         if (is_null($lastEvent) || $lastEvent->getStatus() != $event->getStatus()) {
             $event->setIsStatusChange(true);
 
-            $project->setLastStatusChange(new \DateTime());
-            $event->setLastStatusChange($event->getCreated());
-
             if ($event->getStatus() == Event::STATUS_SUCCESS) {
                 if (!is_null($lastEvent) && !$event->getEventIdentifier()->isKnownIssue()) {
                     $project->decOpenIncidentCount();
                 }
+
+                if (is_null($event->getEventIdentifier()->getLastEvent())) {
+                    $occurrenceLastEvent = $event->getCreated();
+                } else {
+                    $occurrenceLastEvent = $event->getEventIdentifier()->getLastEvent()->getLastStatusChange();
+                }
+                $occurrenceCurrentEvent = $event->getCreated();
+
+                $timeToRecover = abs(($occurrenceCurrentEvent->getTimestamp() - $occurrenceLastEvent->getTimestamp()) / 60);
+                $event->getEventIdentifier()->addNewFailure($timeToRecover);
             } else {
                 $project->incOpenIncidentCount();
             }
+
+            $project->setLastStatusChange($event->getCreated());
+            $event->setLastStatusChange($event->getCreated());
         } else {
             $event->setLastStatusChange($lastEvent->getLastStatusChange());
         }
@@ -60,7 +64,7 @@ class ProjectHelper
 
         $event->getEventIdentifier()->incEventCount();
         if ($event->getStatus() == Event::STATUS_FAILURE) {
-            $event->getEventIdentifier()->incFailureCount();
+            $event->getEventIdentifier()->incFailedEventCount();
         }
 
         self::storeData($doctrineManager, $event, $project);

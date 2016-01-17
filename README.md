@@ -1,4 +1,4 @@
-www.koalamon.com
+Koalamon
 =====================
 
-Coming soon ...
+Koalamon is an open source incident management system. 

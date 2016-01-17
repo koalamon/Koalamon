@@ -41,13 +41,16 @@ class AlertsController extends ProjectAwareController
             $notificationConfiguration->setNotifyAll(false);
             $notificationConfiguration->clearConnectedTools();
 
-            foreach ($request->get('tools') as $toolId => $value) {
-                $tool = $this->getDoctrine()->getRepository('BauerIncidentDashboardCoreBundle:Tool')
-                    ->find((int)$toolId);
-                /** @var Tool $tool */
+            $tools = $request->get('tools');
+            if (!is_null($tools)) {
+                foreach ($tools as $toolId => $value) {
+                    $tool = $this->getDoctrine()->getRepository('BauerIncidentDashboardCoreBundle:Tool')
+                        ->find((int)$toolId);
+                    /** @var Tool $tool */
 
-                if ($tool->getProject() == $this->getProject()) {
-                    $notificationConfiguration->addConnectedTool($tool);
+                    if ($tool->getProject() == $this->getProject()) {
+                        $notificationConfiguration->addConnectedTool($tool);
+                    }
                 }
             }
         }

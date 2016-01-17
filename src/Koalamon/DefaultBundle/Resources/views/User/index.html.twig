@@ -62,6 +62,9 @@
                     Event<br>Types
                 </th>
                 <th class="events">
+                    Failure<br>Count
+                </th>
+                <th class="events">
                     Event<br>Count
                 </th>
                 <th class="events">
@@ -82,8 +85,9 @@
                     <td class="events">{{ myproject.systems|length }}</td>
                     <td class="events">{{ myproject.tools|length }}</td>
                     <td class="events">{{ myproject.eventIdentifiers|length }}</td>
-                    <td class="events">{{ myproject.eventCount|number_format(0, ',', '.') }}</td>
                     <td class="events">{{ myproject.failureCount|number_format(0, ',', '.') }}</td>
+                    <td class="events">{{ myproject.eventCount|number_format(0, ',', '.') }}</td>
+                    <td class="events">{{ myproject.failedEventCount|number_format(0, ',', '.') }}</td>
                     <td class="events" style="width: 70px">{{ myproject.failureRate|number_format(2, ',', '.') }}%</td>
                     <td class="open">
                         {% if myproject.openIncidentCount > 0 %}
