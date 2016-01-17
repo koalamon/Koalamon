@@ -54,7 +54,16 @@
         "symfony-web-dir": "web",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "database_url": "JAWSDB_URL",
+                "database_host": "DATABASE_HOST",
+                "database_port": "DATABASE_PORT",
+                "database_name": "MYSQL_DATABASE",
+                "database_user": "MYSQL_USER",
+                "database_password": "MYSQL_PASSWORD",
+                "secret": "SYMFONY_SECRET"
+            }
         }
     }
 }
