@@ -26,6 +26,7 @@ class DefaultController extends ProjectAwareController
             ->getRepository('KoalamonIntegrationKoalaPingBundle:KoalaPingSystem')
             ->findBy(['project' => $this->getProject()]);
 
+        $koalaPings = array();
         foreach ($koalamonPingSystems as $koalamonPingSystem) {
             $koalaPings[] = $koalamonPingSystem->getSystem()->getId();
         }

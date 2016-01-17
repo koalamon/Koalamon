@@ -34,6 +34,7 @@ class AppKernel extends Kernel
             new Koalamon\IntegrationBundle\KoalamonIntegrationBundle(),
             new Koalamon\PluginBundle\KoalamonPluginBundle(),
             new Koalamon\Integration\KoalaPingBundle\KoalamonIntegrationKoalaPingBundle(),
+            new Koalamon\Integration\WebhookBundle\KoalamonIntegrationWebhookBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
