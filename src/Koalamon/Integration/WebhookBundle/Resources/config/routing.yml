@@ -1,0 +1,3 @@
+koalamon_integration_webhook:
+    path:     /p/{project}/integration/{hookName}/
+    defaults: { _controller: KoalamonIntegrationWebhookBundle:Default:newRelic }

@@ -1,0 +1,7 @@
+services:
+
+    koalamonintegration.webhook.init:
+        class: Koalamon\Integration\WebhookBundle\EventListener\IntegrationListener
+        arguments: [ @service_container ]
+        tags:
+            - { name: 'kernel.event_listener', event: 'koalamon.integration.init', method: onInit }
