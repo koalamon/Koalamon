@@ -25,7 +25,7 @@ class IntegrationListener
         $integrationContainer = $event->getIntegrationContainer();
 
         $url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'newRelic']);
-        $integrationContainer->addIntegration(new Integration('NewRelic', '/images/integrations/newrelic.png', 'Tool for Pinging your systems', $url));
+        $integrationContainer->addIntegration(new Integration('NewRelic', '/images/integrations/newrelic.png', 'Software Analytics with real-time data to bring it all together.', $url));
 
         /*$url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'jira']);
         $integrationContainer->addIntegration(new Integration('Jira', '', 'Tool for Pinging your systems', $url));
