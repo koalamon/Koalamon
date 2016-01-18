@@ -19,6 +19,6 @@ class IntegrationListener
     {
         $integrationContainer = $event->getIntegrationContainer();
         $url = $this->router->generate('koalamon_integration_koala_ping_homepage', ['project' => $event->getProject()->getIdentifier()]);
-        $integrationContainer->addIntegration(new Integration('KoalaPing', '/images/integrations/koalaping.png', 'Tool for Pinging your systems', $url));
+        $integrationContainer->addIntegration(new Integration('KoalaPing', '/images/integrations/koalaping.png', 'Tool for Pinging your systems.', $url));
     }
 }
