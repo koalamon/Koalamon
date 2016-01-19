@@ -1,0 +1,51 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+    <div class="box-element">
+        <div class="box-element-header">Translations</div>
+        <div class="box-element-content">
+
+            <table>
+                <thead style="font-size: 12px">
+                <td>Pattern</td>
+                <td>System</td>
+                <td>Tool</td>
+                <td>Message</td>
+                </thead>
+                {% for translation in project.translations %}
+                    <tr style="line-height: 25px">
+                        <form style="margin-top: 0px;" method="post" action="{{ path("koalamon_default_admin_translation_store", {"project": project.identifier}) }}"
+                              name="translation_form_{{ translation.id }}">
+                            <td><input type="hidden" name="translation[id]" value="{{ translation.id }}"><input name="translation[identifier]" value="{{ translation.identifier }}" required/></td>
+                            <td><input name="translation[system]" value="{{ translation.system }}"/></td>
+                            <td><input name="translation[type]" value="{{ translation.type }}"/></td>
+                            <td><input name="translation[message]" style="width: 300px; margin-right: 25px" value="{{ translation.message }}"/></td>
+                        </form>
+                        <form style="margin-top: 0px;" method="post" action="{{ path("koalamon_default_admin_translation_delete", {"project": project.identifier}) }}"
+                              name="translation_delete_form_{{ translation.id }}">
+                            <input type="hidden" value="{{ translation.id }}" name="translation_id">
+                        </form>
+                        <td>
+                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.translation_form_{{ translation.id }}.submit()">store</div>
+                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.translation_delete_form_{{ translation.id }}.submit()">delete</div>
+                            </form>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                <tr>
+                    <form method="post" action="{{ path("koalamon_default_admin_translation_store", {"project": project.identifier}) }}" name="translation_form_new">
+                        <td><input name="translation[identifier]" required placeholder="Pattern"/></td>
+                        <td><input name="translation[system]" placeholder="System"/></td>
+                        <td><input name="translation[type]" placeholder="Tool"/></td>
+                        <td><input style="width: 300px; margin-right: 25px" name="translation[message]" placeholder="Message"/></td>
+                        <td>
+                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.translation_form_new.submit()">store</div>
+                        </td>
+                    </form>
+                </tr>
+            </table>
+            </form>
+        </div>
+    </div>
+{% endblock %}

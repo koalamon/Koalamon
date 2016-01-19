@@ -31,15 +31,6 @@ koalamon_default_project_admin:
     defaults: { _controller: KoalamonDefaultBundle:Project:admin }
 
 
-koalamon_default_project_translation_store:
-    path:     /p/{project}/translation/store/
-    defaults: { _controller: KoalamonDefaultBundle:Project:storeTranslation }
-
-koalamon_default_project_translation_delete:
-    path:     /p/{project}/translation/delete/
-    defaults: { _controller: KoalamonDefaultBundle:Project:deleteTranslation }
-
-
 # project
 koalamon_default_project_admin_store:
     path:     /p/{project}/admin/project/store
@@ -87,3 +78,16 @@ koalamon_default_admin_subsystem_store:
 koalamon_default_admin_system_delete:
     path:     /p/{project}/admin/system/delete/
     defaults: { _controller: KoalamonDefaultBundle:System:deleteSystem }
+
+#translation
+koalamon_default_admin_translation_home:
+    path:     /p/{project}/admin/translations/
+    defaults: { _controller: KoalamonDefaultBundle:Translation:admin }
+
+koalamon_default_admin_translation_store:
+    path:     /p/{project}/admin/translations/store/
+    defaults: { _controller: KoalamonDefaultBundle:Translation:store }
+
+koalamon_default_admin_translation_delete:
+    path:     /p/{project}/admin/translations/delete/
+    defaults: { _controller: KoalamonDefaultBundle:Translation:delete }
