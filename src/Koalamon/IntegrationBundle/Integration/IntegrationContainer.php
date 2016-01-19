@@ -11,7 +11,14 @@ class IntegrationContainer
      */
     public function addIntegration(Integration $integration)
     {
-        $this->integrations[] = $integration;
+        if (array_key_exists($integration->getName(), $this->integrations)) {
+            $this->addIntegration(new Integration($integration->getName() . ' (1)',
+                $integration->getImage(),
+                $integration->getDescription(),
+                $integration->getUrl()));
+        } else {
+            $this->integrations[$integration->getName()] = $integration;
+        }
     }
 
     /**
@@ -19,6 +26,7 @@ class IntegrationContainer
      */
     public function getIntegrations()
     {
+        ksort($this->integrations);
         return $this->integrations;
     }
 }

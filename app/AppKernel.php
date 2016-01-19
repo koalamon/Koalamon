@@ -22,8 +22,8 @@ class AppKernel extends Kernel
 
             // Custom Bundles
             new Bauer\IncidentDashboard\CoreBundle\BauerIncidentDashboardCoreBundle(),
-            new Bauer\IncidentDashboard\StatBundle\BauerIncidentDashboardStatBundle(),
 
+            new Koalamon\StatBundle\KoalamonStatBundle(),
             new Koalamon\DefaultBundle\KoalamonDefaultBundle(),
             new Koalamon\WebhookBundle\KoalamonWebhookBundle(),
             new Koalamon\ConsoleBundle\KoalamonConsoleBundle(),

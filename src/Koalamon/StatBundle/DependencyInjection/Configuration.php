@@ -1,6 +1,6 @@
 <?php
 
-namespace Bauer\IncidentDashboard\StatBundle\DependencyInjection;
+namespace Koalamon\StatBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

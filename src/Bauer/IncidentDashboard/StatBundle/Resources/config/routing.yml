@@ -1,5 +1,0 @@
-bauer_incident_dashboard_stat_homepage:
-    path:     /stats/day/{event}/
-    defaults: { _controller: BauerIncidentDashboardStatBundle:Default:day }
-    options:
-        expose: true
