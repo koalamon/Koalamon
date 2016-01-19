@@ -1,4 +1,4 @@
 services:
 #    bauer_incident_dashboard_stat.example:
-#        class: Bauer\IncidentDashboard\StatBundle\Example
+#        class: Koalamon\StatBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]

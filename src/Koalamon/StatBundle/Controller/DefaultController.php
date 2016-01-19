@@ -1,6 +1,6 @@
 <?php
 
-namespace Bauer\IncidentDashboard\StatBundle\Controller;
+namespace Koalamon\StatBundle\Controller;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Event;
 use Bauer\IncidentDashboard\CoreBundle\Util\DateHelper;

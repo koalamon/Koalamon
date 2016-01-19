@@ -34,8 +34,8 @@ koalamon_rest:
     resource: "@KoalamonRestBundle/Resources/config/routing.yml"
     prefix:   /
 
-bauer_incident_dashboard_stat:
-    resource: "@BauerIncidentDashboardStatBundle/Resources/config/routing.yml"
+koalamon_stat:
+    resource: "@KoalamonStatBundle/Resources/config/routing.yml"
     prefix:   /
 
 koalamon_webhook:

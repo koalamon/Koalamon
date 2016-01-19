@@ -23,7 +23,7 @@ function drawChart(event_id, div) {
     if (!loadedStats[event_id]) {
         loadedStats[event_id] = true;
 
-        jsonUrl = Routing.generate('bauer_incident_dashboard_stat_homepage', {'event': event_id});
+        jsonUrl = Routing.generate('koalamon_stat_day', {'event': event_id});
 
         var jsonData = $.ajax({
             url: jsonUrl,
