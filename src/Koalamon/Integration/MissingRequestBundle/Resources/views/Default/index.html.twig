@@ -1,0 +1,74 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <h1>MissingRequest</h1>
+
+    <div id="integration">
+        <div class="about">
+            Lorem Ipsum.
+        </div>
+
+        <div class="">
+            <h2>Systems</h2>
+
+            <table>
+                <tr>
+                    <td>System</td>
+                    <td>Collections</td>
+                    <td></td>
+                </tr>
+                {% for systemCollection in systemCollections %}
+                    <tr>
+                        <td>
+                            {{ systemCollection.system.name }}
+                        </td>
+                        <td>
+                            {% for collection in systemCollection.collections %}
+                                {{ collection.name }}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <a href="{{ path('koalamon_integration_missing_request_system_edit', {'system': systemCollection.system.id, 'project': project.identifier}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+
+            <h2>Request Collections</h2>
+
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>Urls / Pattern</td>
+                </tr>
+
+                {% for collection in collections %}
+                    <tr>
+                        <td>
+                            {{ collection.name }}
+                        </td>
+                        <td>
+                            <ul>
+                                {% for request in collection.requests %}
+                                    <li>{{ request.pattern }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            <a href="{{ path('koalamon_integration_missing_request_collection_delete',  {'project': project.identifier, 'collection': collection.id }) }}">delete</a> |
+                            <a href="{{ path('koalamon_integration_missing_request_collection_edit',  {'project': project.identifier, 'collection': collection.id }) }}">edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div class="button" style="width: 130px; text-align: center">
+                <a href="{{ path('koalamon_integration_missing_request_collection_new', {'project': project.identifier }) }}">
+                    Create new Collection
+                </a>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

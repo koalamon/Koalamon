@@ -1,0 +1,7 @@
+services:
+
+    koalamonintegration.missingrequest.init:
+        class: Koalamon\Integration\MissingRequestBundle\EventListener\IntegrationListener
+        arguments: [ @service_container ]
+        tags:
+            - { name: 'kernel.event_listener', event: 'koalamon.integration.init', method: onInit }

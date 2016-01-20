@@ -1,3 +1,7 @@
+koalamon_integration_missing_request:
+    resource: "@KoalamonIntegrationMissingRequestBundle/Resources/config/routing.yml"
+    prefix:   /
+
 koalamon_integration_webhook:
     resource: "@KoalamonIntegrationWebhookBundle/Resources/config/routing.yml"
     prefix:   /
