@@ -1,6 +1,6 @@
 <?php
 
-namespace Koalamon\Integration\KoalaPingBundle\EventListener;
+namespace Koalamon\Integration\MissingRequestBundle\EventListener;
 
 use Koalamon\IntegrationBundle\EventListener\IntegrationInitEvent;
 use Koalamon\IntegrationBundle\Integration\Integration;
@@ -18,7 +18,7 @@ class IntegrationListener
     public function onInit(IntegrationInitEvent $event)
     {
         $integrationContainer = $event->getIntegrationContainer();
-        $url = $this->router->generate('koalamon_integration_koala_ping_homepage', ['project' => $event->getProject()->getIdentifier()]);
-        $integrationContainer->addIntegration(new Integration('KoalaPing (lite)', '/images/integrations/koalaping.png', 'Tool for Pinging your systems.', $url));
+        $url = $this->router->generate('koalamon_integration_missing_request_homepage', ['project' => $event->getProject()->getIdentifier()]);
+        $integrationContainer->addIntegration(new Integration('MissingRequest (lite)', '', 'Tool for checking missing http requests.', $url));
     }
 }

@@ -1,0 +1,15 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <h1>{{ system.name }}</h1>
+
+    <form action="{{ path('koalamon_integration_missing_request_system_store', {'project': project.identifier, 'system': system.id}) }}" method="post">
+        {% for collection in allCollections %}
+            <div>
+                <input name="collections[{{ collection.id }}]" type="checkbox" {% if collection in collections %}checked="checked"{% endif %} style="padding-right: 20px">{{ collection.name }}
+            </div>
+        {% endfor %}
+        <input type="submit">
+    </form>
+{% endblock %}

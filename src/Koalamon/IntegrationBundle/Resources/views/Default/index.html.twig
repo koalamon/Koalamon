@@ -50,6 +50,10 @@
             padding-top: 10px;
             height: 50px;
         }
+
+        #integration-list .logo {
+            height: 170px;
+        }
     </style>
 
     <div id="integration-list">
@@ -65,7 +69,9 @@
             {% for integration in integrationContainer.integrations %}
                 <li>
                     <a href="{{ integration.url }}">
+                        <div class="logo">
                         {% if integration.image %}<img src="{{ integration.image }}"><br/>{% endif %}
+                        </div>
                         <div class="name">{{ integration.name }}</div>
                         <p class="info">{{ integration.description }}</p>
 

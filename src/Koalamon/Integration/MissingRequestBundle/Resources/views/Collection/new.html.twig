@@ -1,0 +1,55 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <script>
+        var nextIndex = 0;
+
+        function addNewRequest(name, pattern) {
+            var table = document.getElementById('request-list');
+            var newRow = table.insertRow(-1);
+
+            var cell0 = newRow.insertCell(0);
+            cell0.innerHTML = '<input type="text" name="request[' + nextIndex + '][name]" value="' + name + '">';
+
+            var cell1 = newRow.insertCell(1);
+            cell1.innerHTML = '<input type="text" name="request[' + nextIndex + '][pattern]" value="' + pattern + '">';
+
+            nextIndex++;
+        }
+    </script>
+
+    <h1>MissingRequest - Collections for "{{ project.name }}"</h1>
+
+    <form method="post" action="{{ path('koalamon_integration_missing_request_collection_store', {'project': project.identifier }) }}">
+
+        <input type="hidden" value="{{ collection.id }}" name="id">
+
+        <div>
+            Name <input type="text" value="{{ collection.name }}" name="name" required>
+        </div>
+
+        <h2>Requests</h2>
+
+        <table id="request-list">
+            <tr>
+                <td>Name</td>
+                <td>Pattern</td>
+            </tr>
+            <script>
+                {% for request in collection.requests %}
+                addNewRequest('{{ request.name }}', '{{ request.pattern  }}');
+                {% endfor %}
+            </script>
+        </table>
+
+        <button onclick="addNewRequest('', ''); return false;">Add new Request</button>
+
+        <input type="submit">
+    </form>
+
+    <script>
+        addNewRequest('', '');
+    </script>
+
+{% endblock %}
