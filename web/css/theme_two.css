@@ -322,3 +322,46 @@ h3 {
 #main .list ul li:nth-child(odd) {
     background-color: #eaeaea;
 }
+
+.code {
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#integration {
+    margin-right: 30px;
+    font-weight: 200;
+    line-height: 22px;
+}
+
+#integration li {
+    padding-bottom: 10px;
+}
+
+#main #integration h1 {
+    padding-bottom: 40px;
+}
+
+#main #integration h2 {
+    margin-top: 80px;
+    font-weight: 400;
+    font-size: 24px;
+    padding-bottom: 20px;
+}
+
+#integration .how-to {
+    width: 800px;
+    float: left;
+    margin-bottom: 100px;
+}
+
+#integration table .request-name {
+    width: 200px;
+}
+
+#integration table .request-pattern {
+    width: 440px;
+}

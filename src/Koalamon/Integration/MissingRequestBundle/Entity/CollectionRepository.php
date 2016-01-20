@@ -11,7 +11,7 @@ class CollectionRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder("c")
             ->where(':system MEMBER OF c.systems')
-            ->setParameters(array('system' => $system));
+            ->setParameter('system', $system);
         return $qb->getQuery()->getResult();
     }
 }
