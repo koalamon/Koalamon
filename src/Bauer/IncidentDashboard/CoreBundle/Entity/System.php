@@ -68,6 +68,7 @@ class System implements \JsonSerializable
 
     /**
      * @ORM\OneToMany(targetEntity="System", mappedBy="parent")
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private $children;
 
