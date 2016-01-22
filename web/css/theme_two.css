@@ -365,3 +365,11 @@ h3 {
 #integration table .request-pattern {
     width: 440px;
 }
+
+#integration button {
+    border: none;
+    padding: 10px;
+    color: white;
+    background-color: #7f8c8d;
+    border-radius: 3px;
+}
