@@ -51,9 +51,8 @@
             <table style="padding-top: 10px; margin-left: 20px">
                 <thead>
                 <tr>
-                    <td>Name</td>
-                    <td>Url</td>
-                    <td>Description</td>
+                    <td style="min-width: 250px">Name</td>
+                    <td style="min-width: 300px">Url</td>
                 </tr>
                 </thead>
                 {% for system in systems %}
@@ -62,7 +61,6 @@
                             <input type="checkbox" style="margin-right: 10px" name="systems[{{ system.id }}]" {% if system.id in koalaPings %}checked=checked{% endif %}>{{ system.name }}
                         </td>
                         <td>{{ system.url }}</td>
-                        <td>{{ system.description }}</td>
                     </tr>
 
                     {% for subsystem in system.subsystems %}
@@ -70,7 +68,6 @@
                             <td><input type="checkbox" style="margin-left: 20px; margin-right: 10px" name="systems[{{ subsystem.id }}]"
                                        {% if subsystem.id in koalaPings %}checked=checked{% endif %}>{{ subsystem.name }} </td>
                             <td>{{ subsystem.url }}</td>
-                            <td>{{ subsystem.description }}</td>
                         </tr>
                     {% endfor %}
 
