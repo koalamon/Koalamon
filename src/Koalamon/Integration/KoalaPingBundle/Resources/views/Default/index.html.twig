@@ -2,8 +2,6 @@
 
 {% block admin %}
 
-    <h1>KoalaPing</h1>
-
     <style>
         td {
             padding-right: 40px;
@@ -13,6 +11,11 @@
         td {
             line-height: 30px;
         }
+
+        #integration input[type="radio"] {
+            margin-top: 20px;
+        }
+
     </style>
 
     <script>
@@ -33,40 +36,50 @@
         }
     </script>
 
-    <form id="koalaping_admin_form">
-        <input type="radio" name="status" value="all" {% if config.status == 'all' %}checked="checked{% endif %}"> Ping all Systems <br>
-        <input type="radio" name="status" value="selected" {% if config.status != 'all' %}checked="checked{% endif %}"> Ping selected Systems
-        <table>
-            <thead>
-            <tr>
-                <td>Name</td>
-                <td>Url</td>
-                <td>Description</td>
-            </tr>
-            </thead>
-            {% for system in systems %}
-                <tr>
-                    <td>
-                        <input type="checkbox" style="margin-right: 10px" name="systems[{{ system.id }}]" {% if system.id in koalaPings %}checked=checked{% endif %}>{{ system.name }}
-                    </td>
-                    <td>{{ system.url }}</td>
-                    <td>{{ system.description }}</td>
-                </tr>
+    <h1>KoalaPing</h1>
 
-                {% for subsystem in system.subsystems %}
+    <div id="integration" style="width: 780px;">
+
+        <p>
+            KoalaPing in an easy to use minimal website monitor. Every url that is connected with this tool will be checked every
+            five minutes. If the website does not answer or will ruturn a http error status code an alert will be created.
+        </p>
+
+        <form id="koalaping_admin_form" style="padding-top: 20px">
+            <input type="radio" name="status" value="all" {% if config.status == 'all' %}checked="checked{% endif %}"> Ping all Systems <br>
+            <input type="radio" name="status" value="selected" {% if config.status != 'all' %}checked="checked{% endif %}"> Ping selected Systems only
+            <table style="padding-top: 10px; margin-left: 20px">
+                <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Url</td>
+                    <td>Description</td>
+                </tr>
+                </thead>
+                {% for system in systems %}
                     <tr>
-                        <td><input type="checkbox" style="margin-left: 20px; margin-right: 10px" name="systems[{{ subsystem.id }}]"
-                                   {% if subsystem.id in koalaPings %}checked=checked{% endif %}>{{ subsystem.name }} </td>
-                        <td>{{ subsystem.url }}</td>
-                        <td>{{ subsystem.description }}</td>
+                        <td>
+                            <input type="checkbox" style="margin-right: 10px" name="systems[{{ system.id }}]" {% if system.id in koalaPings %}checked=checked{% endif %}>{{ system.name }}
+                        </td>
+                        <td>{{ system.url }}</td>
+                        <td>{{ system.description }}</td>
                     </tr>
+
+                    {% for subsystem in system.subsystems %}
+                        <tr>
+                            <td><input type="checkbox" style="margin-left: 20px; margin-right: 10px" name="systems[{{ subsystem.id }}]"
+                                       {% if subsystem.id in koalaPings %}checked=checked{% endif %}>{{ subsystem.name }} </td>
+                            <td>{{ subsystem.url }}</td>
+                            <td>{{ subsystem.description }}</td>
+                        </tr>
+                    {% endfor %}
+
                 {% endfor %}
 
-            {% endfor %}
+            </table>
 
-        </table>
+            <button onclick="koalaPingStore(); return false;" style="margin-top: 30px">Store Configuration</button>
+        </form>
 
-        <button onclick="koalaPingStore(); return false;">Store</button>
-    </form>
-
+    </div>
 {% endblock %}
