@@ -1,20 +1,14 @@
 <?php
 
-namespace Koalamon\Integration\KoalaPingBundle\Controller;
+namespace Koalamon\Integration\JsErrorScannerBundle\Controller;
 
-use Bauer\IncidentDashboard\CoreBundle\Controller\ProjectAwareController;
 use Bauer\IncidentDashboard\CoreBundle\Entity\UserRole;
-use Koalamon\Integration\KoalaPingBundle\Entity\KoalaPingConfig;
-use Koalamon\Integration\KoalaPingBundle\Entity\KoalaPingSystem;
 use Koalamon\IntegrationBundle\Controller\SystemAwareIntegrationController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends SystemAwareIntegrationController
 {
-    // @todo should be done inside the config file
-    const API_KEY = '27010d2a-5617-4da2-9f0d-993edf547522';
-    const INTEGRATION_ID = 'KoalaPing';
+    const API_KEY = '27010d2a-5617-4da2-9f0d-993edf547abc';
+    const INTEGRATION_ID = 'JsErrorScanner';
 
     protected function getIntegrationIdentifier()
     {
@@ -30,7 +24,7 @@ class DefaultController extends SystemAwareIntegrationController
     {
         $this->assertUserRights(UserRole::ROLE_ADMIN);
 
-        return $this->render('KoalamonIntegrationKoalaPingBundle:Default:index.html.twig',
+        return $this->render('KoalamonIntegrationJsErrorScannerBundle:Default:index.html.twig',
             [
                 'config' => $this->getConfig(),
                 'systems' => $this->getSystems(),

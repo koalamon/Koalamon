@@ -1,0 +1,11 @@
+koalamon_integration_js_error_scanner_homepage:
+    path:     /p/{project}/integrations/jserrorscanner/
+    defaults: { _controller: KoalamonIntegrationJsErrorScannerBundle:Default:index }
+
+koalamon_integration_js_error_scanner_store:
+    path:     /p/{project}/integrations/jserrorscanner/store/
+    defaults: { _controller: KoalamonIntegrationJsErrorScannerBundle:Default:store }
+
+koalamon_integration_js_error_scanner_rest:
+    path:     /p/integrations/jserrorscanner/rest/
+    defaults: { _controller: KoalamonIntegrationJsErrorScannerBundle:Default:restGetSystems }
