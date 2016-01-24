@@ -19,6 +19,6 @@ class IntegrationListener
     {
         $integrationContainer = $event->getIntegrationContainer();
         $url = $this->router->generate('koalamon_integration_missing_request_homepage', ['project' => $event->getProject()->getIdentifier()]);
-        $integrationContainer->addIntegration(new Integration('MissingRequest (lite)', '', 'Tool for checking missing http requests.', $url));
+        $integrationContainer->addIntegration(new Integration('MissingRequest (lite)', '/images/integrations/missing_logo.png', 'Tool for checking missing http requests.', $url));
     }
 }
