@@ -1,0 +1,61 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+    <h1>Webhook</h1>
+
+    <div id="integration" style="width: 780px">
+        The koalamon webhook is the easiest way to integrate your own system. The only thing you have to do is
+        to fire a http request agains our server.
+
+        <div style="margin-top: 40px">
+            <strong>Webhook Url</strong> - The webhook url for this project (<i>{{ project.name }}</i>) is:
+            <div class="code">{{ url('koalamon_webhook_standard') }}?api_key={{ project.apiKey }}</div>
+        </div>
+
+        <div style="margin-top: 40px">
+            <strong>Webhook Format</strong> - As every webhook ours needs a special format.
+            <div class="code">
+<pre style="margin: 0">{
+    "identifier":"&lt;the event identifer&gt;",
+    "system":"&lt;the system&gt;",
+    "status":"&lt;the status&gt;",
+    "message":"&lt;the message&gt;",
+    "type":"&lt;the name of the tool that is sending this event&gt;",
+    "value":&lt;an integer value&gt;
+}</pre>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <strong>identifier</strong> - The identifier must be an unique representant of this event type.
+                    </li>
+                    <li>
+                        <strong>system</strong> - This must be the identifer of one of your systems.
+                    </li>
+                    <li>
+                        <strong>status</strong> - the status of this event. It can either be <strong>success</strong> or <strong>failure</strong>.
+                    </li>
+                    <li>
+                        <strong>message</strong> - the message that will be shown on the incident dashboard.
+                    </li>
+                    <li>
+                        <strong>type</strong> - the identifier for the tool that is sending the event. If the tool is not registered when sending
+                        the event the tool will be created. Afterwards you can add the description and the name of that tool in the adminstration tab.
+                    </li>
+                    <li>
+                        <strong>value</strong> - The value is an optional field. It represents the result of the test that triggered the event.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px">
+            <strong>PHP Client</strong> - When using PHP there is a very easy way to send a webhook. Because we already implements it for
+            you. Just download the koalamon client or integrate it via composer.
+            <div class="code">
+                <a href="https://github.com/koalamon/KoalamonClient">https://github.com/koalamon/KoalamonClient</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
