@@ -9,4 +9,4 @@ koalamon_integration_koala_ping_store:
 
 koalamon_integration_koala_ping_rest:
     path:     /p/integrations/koalaping/rest/
-    defaults: { _controller: KoalamonIntegrationKoalaPingBundle:Rest:Systems }
+    defaults: { _controller: KoalamonIntegrationKoalaPingBundle:Default:restGetSystems }

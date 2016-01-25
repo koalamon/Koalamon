@@ -373,3 +373,7 @@ h3 {
     background-color: #7f8c8d;
     border-radius: 3px;
 }
+
+#integration input[type="radio"] {
+    margin-top: 20px;
+}

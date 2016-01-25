@@ -1,0 +1,40 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <script>
+        function storeIntegration(formId) {
+            var url = $("#" + formId).attr('action');
+            $.post(url, $("#" + formId).serialize(), function (data) {
+                if (data['status'] == 'failure') {
+                    toastr.warning(data['message']);
+                } else {
+                    toastr.success(data['message']);
+                    $('#id' + data['elementId']).val(data['id']);
+                    if (reload) {
+                        location.reload();
+                    }
+                }
+            });
+        }
+    </script>
+
+    <h1>JsErrorScanner</h1>
+
+    <div id="integration" style="width: 780px;">
+
+        <p>
+            The JsErrorScanner checks the given systems for JavaScript errors. For the check it uses a PhantomJS browser. A headless webkit.
+        </p>
+
+        <form id="integration_admin_form" style="padding-top: 20px" action="{{ path('koalamon_integration_js_error_scanner_store', {'project': project.identifier}) }}">
+            <input type="radio" name="status" value="all" {% if config.status == 'all' %}checked="checked{% endif %}"> Scan all Systems <br>
+            <input type="radio" name="status" value="selected" {% if config.status != 'all' %}checked="checked{% endif %}"> Scan selected Systems only
+
+            {% include 'KoalamonIntegrationBundle:Partials:systems.check.html.twig' with {'systems': systems, 'checkedSystems': integratedSystems} only %}
+
+            <button onclick="storeIntegration('integration_admin_form'); return false;" style="margin-top: 30px">Store Configuration</button>
+        </form>
+
+    </div>
+{% endblock %}
