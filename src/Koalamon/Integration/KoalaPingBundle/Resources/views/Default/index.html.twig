@@ -2,27 +2,10 @@
 
 {% block admin %}
 
-    <style>
-        td {
-            padding-right: 40px;
-            font-size: 14px;
-        }
-
-        td {
-            line-height: 30px;
-        }
-
-        #integration input[type="radio"] {
-            margin-top: 20px;
-        }
-
-    </style>
-
     <script>
-        function koalaPingStore() {
-            var url = '{{ path('koalamon_integration_koala_ping_store', {'project': project.identifier}) }}';
-
-            $.post(url, $("#koalaping_admin_form").serialize(), function (data) {
+        function storeIntegration(formId) {
+            var url = $("#" + formId).attr('action');
+            $.post(url, $("#" + formId).serialize(), function (data) {
                 if (data['status'] == 'failure') {
                     toastr.warning(data['message']);
                 } else {
@@ -38,6 +21,7 @@
 
     <h1>KoalaPing</h1>
 
+
     <div id="integration" style="width: 780px;">
 
         <p>
@@ -45,37 +29,13 @@
             five minutes. If the website does not answer or will ruturn a http error status code an alert will be created.
         </p>
 
-        <form id="koalaping_admin_form" style="padding-top: 20px">
-            <input type="radio" name="status" value="all" {% if config.status == 'all' %}checked="checked{% endif %}"> Ping all Systems <br>
-            <input type="radio" name="status" value="selected" {% if config.status != 'all' %}checked="checked{% endif %}"> Ping selected Systems only
-            <table style="padding-top: 10px; margin-left: 20px">
-                <thead>
-                <tr>
-                    <td style="min-width: 250px">Name</td>
-                    <td style="min-width: 300px">Url</td>
-                </tr>
-                </thead>
-                {% for system in systems %}
-                    <tr>
-                        <td>
-                            <input type="checkbox" style="margin-right: 10px" name="systems[{{ system.id }}]" {% if system.id in koalaPings %}checked=checked{% endif %}>{{ system.name }}
-                        </td>
-                        <td>{{ system.url }}</td>
-                    </tr>
+        <form id="integration_admin_form" style="padding-top: 20px" action="{{ path('koalamon_integration_koala_ping_store', {'project': project.identifier}) }}">
+            <input type="radio" name="status" value="all" {% if config.status == 'all' %}checked="checked{% endif %}"> Scan all Systems <br>
+            <input type="radio" name="status" value="selected" {% if config.status != 'all' %}checked="checked{% endif %}"> Scan selected Systems only
 
-                    {% for subsystem in system.subsystems %}
-                        <tr>
-                            <td><input type="checkbox" style="margin-left: 20px; margin-right: 10px" name="systems[{{ subsystem.id }}]"
-                                       {% if subsystem.id in koalaPings %}checked=checked{% endif %}>{{ subsystem.name }} </td>
-                            <td>{{ subsystem.url }}</td>
-                        </tr>
-                    {% endfor %}
+            {% include 'KoalamonIntegrationBundle:Partials:systems.check.html.twig' with {'systems': systems, 'checkedSystems': integratedSystems} only %}
 
-                {% endfor %}
-
-            </table>
-
-            <button onclick="koalaPingStore(); return false;" style="margin-top: 30px">Store Configuration</button>
+            <button onclick="storeIntegration('integration_admin_form'); return false;" style="margin-top: 30px">Store Configuration</button>
         </form>
 
     </div>
