@@ -20,15 +20,23 @@
     </script>
 
     <style>
-        .subContent {
+        #integration .subContent {
             margin-left: 20px;
         }
 
-        .subContent a {
+        #integration .subContent a {
             border-bottom: 1px solid #555555;
         }
 
-        #main #integration .subContent h2 {
+        #main #integration h2 {
+            font-weight: 200;
+            text-transform: none;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+            padding-top: 20px;
+        }
+
+        #main #integration h3 {
             font-weight: 200;
             text-transform: none;
             border-top: 1px solid #eee;
@@ -50,17 +58,11 @@
 
             <input type="radio" name="saas" value="false" {% if not config.useSaaS %}checked="checked"{% endif %} onchange="$('.subContent').toggle()"> Use your own KoalaPing client.
 
-            <p style="margin-left: 20px">
-                When using your own KoalaPing client you are able to choose the check interval by your own.
-            </p>
-
             <div style="clear: both"></div>
 
             <input type="radio" name="saas" value="true" {% if config.useSaaS %}checked="checked"{% endif %} onchange="$('.subContent').toggle()"> Use the platform as a service solution
 
-            <p style="margin-left: 20px">
-                When using KoalaPing as a service we will check <strong>every five minutes</strong> if the given systems are still responding.
-            </p>
+            <div style="clear: both"></div>
 
             <button onclick="storeIntegration('integration_admin_form'); return false;" style="margin-top: 30px; margin-left: 20px">Store Configuration</button>
 
@@ -68,9 +70,8 @@
                 <h2>Use your own Client</h2>
 
                 <p>
-                    Yoe can find our KoalaPing in GitHub or download the newest phar file <a href="http://pharchive.phmlabs.com/archive/koalamon/KoalaPing/current/KoalaPing.phar">here</a>. The
-                    endpoint
-                    for configuring the client is
+                    You can find our KoalaPing in GitHub or download the newest phar file <a href="http://pharchive.phmlabs.com/archive/koalamon/KoalaPing/current/KoalaPing.phar">here</a>. The
+                    endpoint for configuring the client is
                 </p>
 
                 <div class="code">{{ url("koalamon_integration_koala_ping_rest_project", {'project': project.identifier}) }}?api_key={{ project.apiKey }}</div>
@@ -80,7 +81,15 @@
             </div>
 
             <div class="subContent" {% if not config.useSaaS %}style="display: none"{% endif %}>
-                <h2>Use the Koalamon Service</h2>
+                <h2>Use the Platform as a Service Solution</h2>
+
+                <p>
+                    When using KoalaPing as a Service our platform will check your systems every five minutes.
+                </p>
+            </div>
+
+            <div class="systems" style="margin-left: 20px">
+                <h3>Select the Systems to be tested</h3>
                 <input type="radio" name="status" value="all" {% if config.status == 'all' %}checked="checked{% endif %}"> Scan all Systems <br>
                 <input type="radio" name="status" value="selected" {% if config.status != 'all' %}checked="checked{% endif %}"> Scan selected Systems only
 
