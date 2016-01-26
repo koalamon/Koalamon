@@ -31,7 +31,7 @@ class IntegrationListener
         $integrationContainer->addIntegration(new Integration('Monitis', '/images/integrations/monitis.png', 'All-in-one application monitoring platform.', $url));
 
         $url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'webhook']);
-        $integrationContainer->addIntegration(new Integration('Webhook', '', 'Simple webhook for default integrations.', $url));
+        $integrationContainer->addIntegration(new Integration('Webhook', '/images/integrations/webhook.png', 'Simple webhook for default integrations.', $url));
 
         /*$url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'jira']);
         $integrationContainer->addIntegration(new Integration('Jira', '', 'Tool for Pinging your systems', $url));
