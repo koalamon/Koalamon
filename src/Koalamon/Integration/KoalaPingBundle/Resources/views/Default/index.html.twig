@@ -33,7 +33,7 @@
             <input type="radio" name="status" value="all" {% if config.status == 'all' %}checked="checked{% endif %}"> Scan all Systems <br>
             <input type="radio" name="status" value="selected" {% if config.status != 'all' %}checked="checked{% endif %}"> Scan selected Systems only
 
-            {% include 'KoalamonIntegrationBundle:Partials:systems.check.html.twig' with {'systems': systems, 'checkedSystems': integratedSystems} only %}
+            {% include 'KoalamonIntegrationBundle:Partials:systems.check.html.twig' with {'systems': systems, 'checkedSystems': integratedSystems, 'optionsTemplate': 'KoalamonIntegrationKoalaPingBundle:Partials:options.html.twig'} only %}
 
             <button onclick="storeIntegration('integration_admin_form'); return false;" style="margin-top: 30px">Store Configuration</button>
         </form>
