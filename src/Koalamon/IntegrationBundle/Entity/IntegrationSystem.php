@@ -1,6 +1,6 @@
 <?php
 
-namespace Koalamon\Integration\KoalaPingBundle\Entity;
+namespace Koalamon\IntegrationBundle\Entity;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\System;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity()
  */
-class KoalaPingSystem
+class IntegrationSystem
 {
     /**
      * @var integer
@@ -35,6 +35,12 @@ class KoalaPingSystem
     private $project;
 
     /**
+     * @var string
+     * @ORM\Column(name="integration", type="string", length=255)
+     */
+    private $integration;
+
+    /**
      * @return System
      */
     public function getSystem()
@@ -49,5 +55,45 @@ class KoalaPingSystem
     {
         $this->system = $system;
         $this->project = $system->getProject();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param mixed $project
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIntegration()
+    {
+        return $this->integration;
+    }
+
+    /**
+     * @param string $integration
+     */
+    public function setIntegration($integration)
+    {
+        $this->integration = $integration;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

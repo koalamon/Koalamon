@@ -1,6 +1,6 @@
 <?php
 
-namespace Koalamon\Integration\MissingRequestBundle\EventListener;
+namespace Koalamon\Integration\JsErrorScannerBundle\EventListener;
 
 use Koalamon\IntegrationBundle\EventListener\IntegrationInitEvent;
 use Koalamon\IntegrationBundle\Integration\Integration;
@@ -18,7 +18,7 @@ class IntegrationListener
     public function onInit(IntegrationInitEvent $event)
     {
         $integrationContainer = $event->getIntegrationContainer();
-        $url = $this->router->generate('koalamon_integration_missing_request_homepage', ['project' => $event->getProject()->getIdentifier()]);
-        $integrationContainer->addIntegration(new Integration('MissingRequest (lite)', '/images/integrations/missing_logo.png', 'Tool for checking missing http requests.', $url));
+        $url = $this->router->generate('koalamon_integration_js_error_scanner_homepage', ['project' => $event->getProject()->getIdentifier()]);
+        $integrationContainer->addIntegration(new Integration('JsErrorScanner (lite)', '/images/integrations/jserror.png', 'Scanning your systems for JavaScript errors.', $url));
     }
 }

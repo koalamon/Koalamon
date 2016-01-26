@@ -16,7 +16,7 @@ class SystemController extends ProjectAwareController
 
         $systems = $this->getDoctrine()
             ->getRepository('BauerIncidentDashboardCoreBundle:System')
-            ->findBy(['project' => $this->getProject(), 'parent' => null]);
+            ->findBy(['project' => $this->getProject(), 'parent' => null], ['name' => "ASC"]);
 
         return $this->render('KoalamonDefaultBundle:System:admin.html.twig', ['systems' => $systems]);
     }

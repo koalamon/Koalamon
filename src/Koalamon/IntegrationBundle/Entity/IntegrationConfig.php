@@ -1,6 +1,6 @@
 <?php
 
-namespace Koalamon\Integration\KoalaPingBundle\Entity;
+namespace Koalamon\IntegrationBundle\Entity;
 
 use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
 use Bauer\IncidentDashboard\CoreBundle\Entity\System;
@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity()
  */
-class KoalaPingConfig
+class IntegrationConfig
 {
     const STATUS_SELECTED = 'selected';
     const STATUS_ALL = 'all';
@@ -31,6 +31,12 @@ class KoalaPingConfig
      * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
      **/
     private $project;
+
+    /**
+     * @var string
+     * @ORM\Column(name="integration", type="string", length=255)
+     */
+    private $integration;
 
     /**
      * @ORM\Column(name="status", type="string")
@@ -67,5 +73,21 @@ class KoalaPingConfig
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIntegration()
+    {
+        return $this->integration;
+    }
+
+    /**
+     * @param string $integration
+     */
+    public function setIntegration($integration)
+    {
+        $this->integration = $integration;
     }
 }

@@ -1,0 +1,60 @@
+<style>
+
+    .admin-system-list table {
+        padding-top: 10px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+
+    .admin-system-list input[type='checkbox'] {
+        margin-right: 10px;
+    }
+
+    .admin-system-list table td {
+        width: 250px;
+        padding-right: 40px;
+        font-size: 14px;
+        line-height: 30px;
+    }
+
+    .admin-system-list table thead {
+        background-color: #eaeaea;
+        color: black;
+    }
+
+    .admin-system-list table td {
+        padding-left: 10px;
+    }
+
+</style>
+
+<div class="admin-system-list">
+    <table>
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td style="width: 400px">Url</td>
+        </tr>
+        </thead>
+        {% for system in systems %}
+            <tr class="row-system-main">
+                <td>
+                    <input type="checkbox" name="systems[{{ system.id }}]" {% if system.id in checkedSystems %}checked=checked{% endif %}>{{ system.name }}
+                </td>
+                <td>{{ system.url }}</td>
+            </tr>
+
+            {% for subsystem in system.subsystems %}
+                <tr class="row-system-sub">
+                    <td>
+                        <input type="checkbox" style="margin-left: 30px;" name="systems[{{ subsystem.id }}]"
+                               {% if subsystem.id in checkedSystems %}checked=checked{% endif %}>{{ subsystem.name }}
+                    </td>
+                    <td>{{ subsystem.url }}</td>
+                </tr>
+            {% endfor %}
+
+        {% endfor %}
+
+    </table>
+</div>
