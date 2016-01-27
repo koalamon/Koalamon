@@ -3,6 +3,7 @@
 namespace Bauer\IncidentDashboard\CoreBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 class EventRepository extends EntityRepository
 {
