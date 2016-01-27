@@ -13,4 +13,4 @@ services:
         class: Koalamon\DefaultBundle\Menu\Menu
 
     fos_user.doctrine_registry:
-       alias: doctrine
+        alias: doctrine
