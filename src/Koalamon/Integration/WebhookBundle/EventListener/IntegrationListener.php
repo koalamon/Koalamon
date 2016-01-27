@@ -16,7 +16,8 @@ class IntegrationListener
         $this->router = $container->get('router');
     }
 
-    private function initIntegrations(IntegrationContainer $container) {
+    private function initIntegrations(IntegrationContainer $container)
+    {
 
     }
 
@@ -33,16 +34,16 @@ class IntegrationListener
         $url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'webhook']);
         $integrationContainer->addIntegration(new Integration('Webhook', '/images/integrations/webhook.png', 'Simple webhook for default integrations.', $url));
 
+        $url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'appDynamics']);
+        $integrationContainer->addIntegration(new Integration('AppDynamics', '/images/integrations/appdynamics.png', 'The next generation of Application Intelligence has arrived', $url));
+
         /*$url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'jira']);
         $integrationContainer->addIntegration(new Integration('Jira', '', 'Tool for Pinging your systems', $url));
 
         $url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'jenkins']);
         $integrationContainer->addIntegration(new Integration('Jenkins', '', 'Tool for Pinging your systems', $url));
 
-        $url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'appDynamics']);
-        $integrationContainer->addIntegration(new Integration('AppDynamics', '', 'Tool for Pinging your systems', $url));
 
-        $url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'monitis']);
-        $integrationContainer->addIntegration(new Integration('Monitis', '', 'Tool for Pinging your systems', $url));*/
+*/
     }
 }
