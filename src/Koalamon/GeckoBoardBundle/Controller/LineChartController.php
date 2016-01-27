@@ -27,7 +27,7 @@ class LineChartController extends ProjectAwareController
             case 'h':
                 $groupDateForm = "%Y%m%d%H";
                 $selectDateForm = "%h %p";
-                $interval = 'PT1M';
+                $interval = 'P1D';
                 break;
             case 'd':
                 $groupDateForm = "%Y%m%d";
