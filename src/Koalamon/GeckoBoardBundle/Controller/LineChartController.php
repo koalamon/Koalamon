@@ -45,12 +45,15 @@ class LineChartController extends ProjectAwareController
 
         $chart = new \StdClass;
         $chart->x_axis = ['labels' => []];
-        $chart->series = ['data' => []];
+
+        $datas = [];
 
         foreach ($rows as $row) {
             $chart->x_axis['labels'][] = strtolower($row['timespan']);
-            $chart->series['data'][] = round($row['avgValue'], $decimal);
+            $datas[] = round($row['avgValue'], $decimal);
         }
+
+        $chart->series = [['data' => $datas]];
 
         $response = new JsonResponse($chart);
         $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT);
