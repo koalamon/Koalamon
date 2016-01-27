@@ -44,6 +44,11 @@ class IntegrationConfig
     private $status = self::STATUS_SELECTED;
 
     /**
+     * @ORM\Column(name="useSaaS", type="boolean")
+     */
+    private $useSaaS = true;
+
+    /**
      * @return Project
      */
     public function getProject()
@@ -89,5 +94,21 @@ class IntegrationConfig
     public function setIntegration($integration)
     {
         $this->integration = $integration;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getUseSaaS()
+    {
+        return $this->useSaaS;
+    }
+
+    /**
+     * @param boolean $useSaaS
+     */
+    public function setUseSaaS($useSaaS)
+    {
+        $this->useSaaS = $useSaaS;
     }
 }

@@ -39,19 +39,45 @@
         {% for system in systems %}
             <tr class="row-system-main">
                 <td>
-                    <input type="checkbox" name="systems[{{ system.id }}]" {% if system.id in checkedSystems %}checked=checked{% endif %}>{{ system.name }}
+                    <input
+                            type="checkbox"
+                            name="systems[{{ system.id }}][enabled]"
+                            onchange="$('#system_options_{{ system.id }}').toggle();"
+                            {% if checkedSystems[system.id] is defined %}checked=checked{% endif %}>
+                    <span style="font-weight: 400">{{ system.name }}</span>
                 </td>
                 <td>{{ system.url }}</td>
             </tr>
+            {% if optionsTemplate is defined %}
+                <tr style="{% if not checkedSystems[system.id] is defined %}display: none{% endif %}" id="system_options_{{ system.id }}">
+                    <td></td>
+                    <td>
+                        {% include optionsTemplate with { 'system': system } %}
+                    </td>
+                </tr>
+            {% endif %}
 
             {% for subsystem in system.subsystems %}
                 <tr class="row-system-sub">
                     <td>
-                        <input type="checkbox" style="margin-left: 30px;" name="systems[{{ subsystem.id }}]"
-                               {% if subsystem.id in checkedSystems %}checked=checked{% endif %}>{{ subsystem.name }}
+                        <input
+                                type="checkbox"
+                                onchange="$('#system_options_{{ subsystem.id }}').toggle();"
+                                style="margin-left: 30px;"
+                                name="systems[{{ subsystem.id }}][enabled]"
+                                {% if checkedSystems[subsystem.id] is defined %}checked=checked{% endif %}>
+                        {{ subsystem.name }}
                     </td>
                     <td>{{ subsystem.url }}</td>
                 </tr>
+                {% if optionsTemplate is defined %}
+                    <tr style="{% if not checkedSystems[subsystem.id] is defined %}display: none{% endif %}" id="system_options_{{ subsystem.id }}">
+                        <td></td>
+                        <td>
+                            {% include optionsTemplate with {'system':subsystem} %}
+                        </td>
+                    </tr>
+                {% endif %}
             {% endfor %}
 
         {% endfor %}

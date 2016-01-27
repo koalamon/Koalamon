@@ -41,6 +41,12 @@ class IntegrationSystem
     private $integration;
 
     /**
+     * @var string
+     * @ORM\Column(name="options", type="text", nullable=true)
+     */
+    private $options;
+
+    /**
      * @return System
      */
     public function getSystem()
@@ -87,6 +93,22 @@ class IntegrationSystem
     public function setIntegration($integration)
     {
         $this->integration = $integration;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return unserialize($this->options);
+    }
+
+    /**
+     * @param array $options
+     */
+    public function setOptions(array $options)
+    {
+        $this->options = serialize($options);
     }
 
     /**

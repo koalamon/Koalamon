@@ -1,3 +1,7 @@
+koalamon_gecko_board:
+    resource: "@KoalamonGeckoBoardBundle/Resources/config/routing.yml"
+    prefix:   /
+
 koalamon_integration_js_error_scanner:
     resource: "@KoalamonIntegrationJsErrorScannerBundle/Resources/config/routing.yml"
     prefix:   /
