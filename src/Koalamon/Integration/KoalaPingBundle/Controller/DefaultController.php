@@ -1,7 +1,6 @@
 <?php
 
 namespace Koalamon\Integration\KoalaPingBundle\Controller;
-
 use Bauer\IncidentDashboard\CoreBundle\Controller\ProjectAwareController;
 use Bauer\IncidentDashboard\CoreBundle\Entity\UserRole;
 use Koalamon\Integration\KoalaPingBundle\Entity\KoalaPingConfig;
@@ -25,11 +24,10 @@ class DefaultController extends SystemAwareIntegrationController
     {
         return self::API_KEY;
     }
-
+    
     public function indexAction()
     {
         $this->assertUserRights(UserRole::ROLE_ADMIN);
-
         return $this->render('KoalamonIntegrationKoalaPingBundle:Default:index.html.twig',
             [
                 'config' => $this->getConfig(),
