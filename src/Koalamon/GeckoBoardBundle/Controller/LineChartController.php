@@ -43,11 +43,13 @@ class LineChartController extends ProjectAwareController
         $sql = "SELECT AVG(value) as avgValue, DATE_FORMAT(created, '" . $selectDateForm . "') as timespan FROM `event` WHERE event_identifier_id=" . $eventIdentifier->getId() . " and created > '" . $startDate->format('Y-m-d H:i:s') . "' GROUP BY DATE_FORMAT(created, '" . $groupDateForm . "')";
         $rows = $conn->query($sql)->fetchAll();
 
-        $chart = array('x_axis' => ['labels' => []], 'series' => ['data' => []]);
+        $chart = new \StdClass;
+        $chart->x_axis = ['labels' => []];
+        $chart->series = ['data' => []];
 
         foreach ($rows as $row) {
-            $chart['x_axis']['labels'][] = strtolower($row['timespan']);
-            $chart['series']['data'][] = round($row['avgValue'], $decimal);
+            $chart->x_axis['labels'][] = strtolower($row['timespan']);
+            $chart->series['data'][] = round($row['avgValue'], $decimal);
         }
 
         $response = new JsonResponse($chart);
