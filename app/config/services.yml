@@ -11,3 +11,6 @@ services:
 
     koalamon_menu_admin:
         class: Koalamon\DefaultBundle\Menu\Menu
+
+    fos_user.doctrine_registry:
+       alias: doctrine
