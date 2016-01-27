@@ -1,0 +1,3 @@
+koalamon_gecko_board_homepage:
+    path:     /geckoboard/linechart/{eventIdentifier}/
+    defaults: { _controller: KoalamonGeckoBoardBundle:LineChart:render }
