@@ -23,6 +23,13 @@ class LineChartController extends ProjectAwareController
             $decimal = 0;
         }
 
+        if ($request->get('labelInterval')) {
+            $labelInterval = $request->get('labelInterval');
+        } else {
+            $labelInterval = 1;
+        }
+
+
         switch ($intervalType) {
             case 'h':
                 $groupDateForm = "%Y%m%d%H";
@@ -48,8 +55,14 @@ class LineChartController extends ProjectAwareController
 
         $datas = [];
 
+        $i = 0;
         foreach ($rows as $row) {
-            $chart->x_axis['labels'][] = strtolower($row['timespan']);
+            if ($i % $labelInterval == 0) {
+                $chart->x_axis['labels'][] = strtolower($row['timespan']);
+            } else {
+                $chart->x_axis['labels'][] = '';
+            }
+            $i++;
             $datas[] = round($row['avgValue'], $decimal);
         }
 
