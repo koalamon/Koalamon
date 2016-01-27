@@ -31,16 +31,18 @@ class LineChartController extends ProjectAwareController
 
 
         switch ($intervalType) {
-            case 'h':
-                $groupDateForm = "%Y%m%d%H";
-                $selectDateForm = "%h %p";
-                $interval = 'P1D';
-                break;
             case 'd':
                 $groupDateForm = "%Y%m%d";
                 $selectDateForm = "%d.%m.%Y";
                 $interval = 'P1M';
                 break;
+            case 'h':
+                $groupDateForm = "%Y%m%d%H";
+                $selectDateForm = "%h %p";
+                $interval = 'P1D';
+                break;
+            default:
+                return new JsonResponse(['status' => 'error', 'message' => 'IntervalType ' . $intervalType . ' does not exists.'], 404);
         }
 
         $startDate = new \DateTime('now');
