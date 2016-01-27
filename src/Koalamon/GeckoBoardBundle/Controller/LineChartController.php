@@ -11,8 +11,17 @@ class LineChartController extends ProjectAwareController
 {
     public function renderAction(Request $request, EventIdentifier $eventIdentifier)
     {
-        $intervalType = 'd';
-        $decimal = 0;
+        if ($request->get('interval')) {
+            $intervalType = $request->get('interval');
+        } else {
+            $intervalType = 'd';
+        }
+
+        if ($request->get('decimal')) {
+            $decimal = $request->get('decimal');
+        } else {
+            $decimal = 0;
+        }
 
         switch ($intervalType) {
             case 'h':
