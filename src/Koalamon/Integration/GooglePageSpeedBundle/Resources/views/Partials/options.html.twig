@@ -1,0 +1,4 @@
+<input type="number" min="0" max="100" required="required" name="systems[{{ system.id }}][options][limit]"
+        {% if checkedSystems[system.id] is defined and checkedSystems[system.id].options.limit is defined %}
+value={{ checkedSystems[system.id].options.limit }}
+        {% endif %}> Limit

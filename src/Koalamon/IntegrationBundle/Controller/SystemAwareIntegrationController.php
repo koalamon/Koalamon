@@ -78,10 +78,10 @@ abstract class SystemAwareIntegrationController extends ProjectAwareController
 
         $config->setStatus($status);
 
-        if ($request->get('saas') == 'true') {
-            $config->setUseSaaS(true);
-        } else {
+        if ($request->get('saas') == 'false') {
             $config->setUseSaaS(false);
+        } else {
+            $config->setUseSaaS(true);
         }
 
         $em->persist($config);
