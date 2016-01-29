@@ -377,3 +377,12 @@ h3 {
 #integration input[type="radio"] {
     margin-top: 20px;
 }
+
+#system #login-form input[type='text'] {
+    width: 325px;
+}
+
+#system #login-form input[type='password'] {
+    width: 325px;
+    margin-bottom: 20px;
+}

@@ -1,13 +1,36 @@
-{% extends 'base.html.twig' %}
+{% extends 'system.html.twig' %}
 
 {% block body %}
-<div id="register" class="modal_form">
-    <h1>Registrieren</h1>
+    <style>
+        #login_form input {
+            width: 325px;
+        }
 
-    {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+        #login_form input[type="submit"] {
+            width: 200px;
+            margin-top: 30px;
+            margin-left: 63px;
+        }
 
-    <div style="text-align: center; width: 100%; padding-top: 30px">
-        <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" target="_parent"><img src="/images/facebook_login.png" /></a>
+        #login_form h1 {
+            margin-bottom: 30px;
+        }
+
+    </style>
+
+    <div id="content">
+        <a href="{{ path('koalamon_default_homepage') }}"><img src="/images/logo.png" width="200" height="200" style="position: relative; left: 394px; top: 75px;"></a>
+
+        <div class="">
+            <div id="login_form">
+                <h1>Registrieren</h1>
+
+                {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+
+                <div style="text-align: center; width: 100%; padding-top: 30px">
+                    <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" target="_parent"><img src="/images/facebook_login.png"/></a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 {% endblock %}

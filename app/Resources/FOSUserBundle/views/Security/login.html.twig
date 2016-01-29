@@ -6,18 +6,18 @@
 {% block body %}
 
     <style>
-        #login-form input[type='text'] {
+        #system #login-form input[type='text'] {
             width: 325px;
         }
 
-        #login-form input[type='password'] {
+        #system #login-form input[type='password'] {
             width: 325px;
             margin-bottom: 20px;
         }
     </style>
 
     <div id="content">
-        <img src="/images/logo.png" width="200px" style="position: relative; left: 394px; top: 75px;">
+        <a href="{{ path('koalamon_default_homepage') }}"><img src="/images/logo.png" width="200px" style="position: relative; left: 394px; top: 75px;"></a>
 
         <div class="">
             <div id="login_form">
