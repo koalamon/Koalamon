@@ -1,0 +1,167 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <script>
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function renderSystem(id, identifier, url, name, desc, parent) {
+            var table = document.getElementById('admin-system');
+
+            if (id) {
+                var newRow = table.insertRow(-1);
+            } else {
+                var row = document.getElementById("id" + parent).parentNode.parentNode;
+                var newRow = document.createElement('tr');
+                row.parentNode.insertBefore(newRow, row.nextSibling);
+            }
+
+            var att = document.createAttribute("id");
+            att.value = 'row_' + id;
+            newRow.setAttributeNode(att);                          // Add the class attribute to <h1>
+
+            if (id) {
+                var systemId = id;
+            } else {
+                var systemId = getRandomInt(0, 100000);
+            }
+
+            var cell0 = newRow.insertCell(0);
+
+            if (parent) {
+                cell0.innerHTML = '<span style="font-weight: normal; margin-left: 70px">Subsystem</span><input type="hidden" id="id' + systemId + '" value="' + id + '"><input type="hidden" id="parent' + systemId + '" value="' + parent + '">';
+            } else {
+                cell0.innerHTML = '<input type="hidden" id="id' + systemId + '" value="' + systemId + '"><input name="identifier" required id="identifier' + systemId + '" value="' + identifier + '" />';
+            }
+
+            var cell1 = newRow.insertCell(1);
+            cell1.innerHTML = '<input name="name" id="name' + systemId + '" value="' + name + '"/>';
+
+
+            var cell2 = newRow.insertCell(2);
+            cell2.innerHTML = '<input type="url" name="url" id="url' + systemId + '" required value="' + url + '"/>';
+
+
+            var cell3 = newRow.insertCell(3);
+            cell3.innerHTML = '<input name="description" style="width: 300px; margin-right: 25px" id="description' + systemId + '" value="' + desc + '"/>';
+
+            var cell4 = newRow.insertCell(4);
+            storeButton = '<div class="button" style="margin-left: 0; width: auto; display: inline; margin-right: 5px" onclick="storeSystem(' + systemId + ')">store</div>';
+            deleteButton = '<div class="button" style="margin-left: 0; width: auto; display: inline; margin-right: 5px" onclick="deleteSystem(' + systemId + ')">delete</div>';
+            addSubSystemButton = '<div class="button" style="margin-left: 0; width: auto; display: inline; margin-right: 5px" onclick="addSubSystem(' + systemId + ')">add subsystem</div>';
+
+            if (parent) {
+                cell4.innerHTML = storeButton + deleteButton;
+            } else {
+                cell4.innerHTML = addSubSystemButton + storeButton + deleteButton;
+            }
+
+        }
+
+        function addSubSystem(systemId) {
+            renderSystem('', '', '', '', '', systemId);
+        }
+
+        function storeSystem(element, reload) {
+            url = '{{ path('koalamon_default_admin_system_store', { 'project': project.identifier }) }}';
+
+            $.post(url, {
+                'system': {
+                    id: $("#id" + element).val(),
+                    parent: $("#parent" + element).val(),
+                    identifier: $("#identifier" + element).val(),
+                    url: $("#url" + element).val(),
+                    name: $("#name" + element).val(),
+                    description: $("#description" + element).val(),
+                    elementId: element
+                }
+            }).done(function (data) {
+                if (data['status'] == 'failure') {
+                    toastr.warning(data['message']);
+                } else {
+                    toastr.success(data['message']);
+                    $('#id' + data['elementId']).val(data['id']);
+                    if (reload) {
+                        location.reload();
+                    }
+                }
+            });
+        }
+
+        function deleteSystem(element) {
+            var url = '{{ path('koalamon_default_admin_system_delete', { 'project': project.identifier }) }}';
+
+            var id = $('#id' + element).val();
+
+            console.log('#id' + element);
+
+            if (id) {
+                $.post(url, {
+                    'system_id': id
+                }).done(function (data) {
+                    console.log(data);
+                    if (data['status'] == 'failure') {
+                        toastr.warning(data['message']);
+                    } else {
+                        toastr.success(data['message']);
+                        $('#row_' + data['id']).remove();
+                    }
+                });
+            } else {
+                $('#row_' + data['id']).remove();
+            }
+        }
+    </script>
+
+    <div class="box-element">
+        <div class="box-element-header">Systems</div>
+        <div class="box-element-content">
+
+            <style>
+                tr {
+                    line-height: 25px;
+                }
+
+                tr .button {
+                    font-weight: 200;
+                }
+            </style>
+
+            <table id="admin-system">
+                <thead>
+                <td>Identifier</td>
+                <td>Name</td>
+                <td>Url</td>
+                <td>Description</td>
+                <td>Actions</td>
+                </thead>
+
+                <script>
+                    {% for system in systems %}
+                    renderSystem({{ system.id }}, '{{ system.identifier }}', '{{ system.url }}', '{{ system.name }}', '{{ system.description }}');
+                    {% for subsystem in system.subsystems %}
+                    renderSystem({{ subsystem.id }}, '{{ subsystem.identifier }}', '{{ subsystem.url }}', '{{ subsystem.name }}', '{{ subsystem.description }}', {{ system.id }});
+                    {% endfor %}
+                    {% endfor %}
+                </script>
+                <tr>
+                    <form method="post" action="{{ path("koalamon_default_admin_system_store", {"project": project.identifier}) }}" name="system_form_new">
+                        <td>
+                            <input type="hidden" id="id_new">
+                            <input id="identifier_new" placeholder="Identifier" required/>
+                        </td>
+                        <td><input id="name_new" placeholder="Name"/></td>
+                        <td><input type="url" id="url_new" placeholder="URL" required/></td>
+                        <td><input style="width: 300px; margin-right: 25px" id="description_new" placeholder="Description"/></td>
+                        <td>
+                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="storeSystem('_new', true)">store</div>
+                        </td>
+                    </form>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

@@ -17,7 +17,7 @@ class InformationRepository extends EntityRepository
         $qb->orderBy('i.id', 'ASC');
 
         $qb->setParameter('project', $project);
-        $qb->setParameter('endDate', time());
+        $qb->setParameter('endDate', date("Y-m-d H:i:s", time()));
 
         return $qb->getQuery()->getResult();
     }

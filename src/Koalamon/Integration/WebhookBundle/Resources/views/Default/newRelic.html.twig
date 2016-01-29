@@ -1,0 +1,65 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <h1>New Relic</h1>
+
+    <div id="integration">
+        <div class="about">
+            <img src="/images/integrations/newrelic_about.jpg" style="float: left; width: 300px; padding-right: 80px">
+            Your customers and business depend on increasingly complex applications and infrastructure. New Relic Software Analytics uses real-time data to bring it all together.
+            <ul>
+                <li>
+                    <b>High-performing apps.</b> - Quickly pinpoint if it was your code, backend server, or 3rd-party service that caused an issue.
+                    Improve your application performance with APM, Synthetics, Plugins, and Servers.
+                </li>
+                <li><b>Delightful customer experiences.</b> - Monitor real-user interactions to identify errors, crashes, and drop-offs in optimal user flows.
+                    See the true picture of your customer experience with Browser and Mobile.
+                </li>
+                <li>
+                    <b>Better business results.</b> - Stop guessing. See how issues affect your customers and your business, then take action faster armed with real data.
+                    Get to the bottom-line with Insights.
+                </li>
+                <li>
+                    <b>Thrive in the cloud.</b> - From adoption to migration, New Relic gives you pinpoint insights for every phase of your cloud journey. As a pure SaaS solution, we’re uniquely
+                    poised to deliver accurate metrics—so you can see clearly and instantly how your apps are performing, wherever they are.
+                </li>
+            </ul>
+        </div>
+        <div style="clear: both"></div>
+        <div class="how-to">
+            <h2>How to integrate New Relic</h2>
+
+            <ol>
+                <li>
+                    <strong>Go to Alerts</strong> - The alerts section is used to tell NewRelic who or what to inform. We assume that you
+                    have already created some alert policies you want to be alerted of. If you haven't please create some.
+                </li>
+                <li>
+                    <strong>Notification channels</strong> - A notification channel defines how to inform other systems or persons about occuring
+                    Incidents.
+                </li>
+                <li style="padding-bottom: 0"><strong>New notification channel - </strong>
+                    When creating a new notification channel there are only three fields you have to fill out.
+                    <ul style="padding-top: 20px; mrgin-bottom: 0">
+                        <li>
+                            <strong>Select channel type</strong> - As channel type you have to choose <strong>Webhook</strong>.
+                            A webhook is a simple http interface we provide for NewRelic users.
+                        </li>
+                        <li><strong>Channel name</strong> - You can choose any channel name you want.
+                            We prefer names like <i>Koalamon - www.example.com</i>, but it's up to you.
+                        </li>
+                        <li><strong>Base Url</strong> - The webhook for this project (<i>{{ project.name }}</i>) is:
+                            <div class="code">{{ url('koalamon_webhook_format', {'format': 'newrelic'}) }}?api_key={{ project.apiKey }}</div>
+                        </li>
+                    </ul>
+                </li>
+                <li><strong>Wait for your first alert</strong> - We're done. Now you can wait for the first alert to occur.</li>
+
+            </ol>
+
+
+        </div>
+    </div>
+
+{% endblock %}

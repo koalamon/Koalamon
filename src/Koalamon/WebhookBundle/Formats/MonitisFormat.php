@@ -14,6 +14,12 @@ class MonitisFormat implements Format
     {
         $newEvent = json_decode(urldecode($payload));
 
+        if ($request->get('confirmationURL')) {
+            $url = trim(preg_replace('/\s\s+/', ' ', $request->get('confirmationURL')));
+            $content = file_get_contents($url);
+            return false;
+        }
+
         if (!property_exists($newEvent, 'alert')) {
             return false;
         }

@@ -79,11 +79,10 @@ body {
     margin-right: 30px;
     background-color: #2B333E;
     width: 220px;
-    padding-left: 50px;
-    margin-top: 98px;
+    padding-left: 35px;
     z-index: 0;
     color: white;
-    height: calc(100% - 98px);
+    height: 100%;
 }
 
 #sitebar a {
@@ -148,8 +147,8 @@ body {
     color: white;
 }
 
-#main {
-    padding-top: 115px;
+#body {
+    padding-top: 20px;
     margin-left: 300px;
     margin-bottom: 50px;
 }
@@ -173,8 +172,9 @@ body {
     font-weight: 200;
     font-size: 14px;
     clear: both;
-    width: 100%;
+    width: calc(100% - 300px);
     margin-bottom: 30px;
+    padding-left: 300px;
 }
 
 #main #breadcrumb ul {
@@ -321,4 +321,68 @@ h3 {
 
 #main .list ul li:nth-child(odd) {
     background-color: #eaeaea;
+}
+
+.code {
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#integration {
+    margin-right: 30px;
+    font-weight: 200;
+    line-height: 22px;
+}
+
+#integration li {
+    padding-bottom: 10px;
+}
+
+#main #integration h1 {
+    padding-bottom: 40px;
+}
+
+#main #integration h2 {
+    margin-top: 80px;
+    font-weight: 400;
+    font-size: 24px;
+    padding-bottom: 20px;
+}
+
+#integration .how-to {
+    width: 800px;
+    float: left;
+    margin-bottom: 100px;
+}
+
+#integration table .request-name {
+    width: 200px;
+}
+
+#integration table .request-pattern {
+    width: 440px;
+}
+
+#integration button {
+    border: none;
+    padding: 10px;
+    color: white;
+    background-color: #7f8c8d;
+    border-radius: 3px;
+}
+
+#integration input[type="radio"] {
+    margin-top: 20px;
+}
+
+#system #login-form input[type='text'] {
+    width: 325px;
+}
+
+#system #login-form input[type='password'] {
+    width: 325px;
+    margin-bottom: 20px;
 }

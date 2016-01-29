@@ -1,0 +1,37 @@
+<style>
+    #menu-admin {
+        list-style: none;
+        padding: 0;
+        padding-bottom: 50px;
+    }
+
+    .menu-admin-element {
+        margin-right: 10px;
+        padding: 5px 10px 5px 10px;
+        float: left;
+        background-color: #eaeaea;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+    .menu-admin-element .active a {
+        color: white;
+    }
+
+    .menu-admin-element.active {
+        background-color: #3498db;
+    }
+
+    .menu-admin-element.active a {
+        color: white;
+        font-weight: 200;
+    }
+</style>
+
+<ul id="menu-admin">
+    {% for element in menu.elements %}
+        <li class="{{ element.identifier }} menu-admin-element {% if currentUri == element.url %}active{% endif %}">
+            <a href="{{ element.url }}">{{ element.name }}</a>
+        </li>
+    {% endfor %}
+</ul>

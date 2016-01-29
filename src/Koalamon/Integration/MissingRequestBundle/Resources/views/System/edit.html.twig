@@ -1,0 +1,24 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <h1>{{ system.name }}</h1>
+
+    <div id="integration" style="width: 780px;">
+
+        <p>In this panel you can connect the given system ({{ system.name }}) with the created request collections. Once the connection is stored the MissingRequest
+            server will test your websites for missing requests.</p>
+
+        <div>
+            <form action="{{ path('koalamon_integration_missing_request_system_store', {'project': project.identifier, 'system': system.id}) }}" method="post">
+                {% for collection in allCollections %}
+                    <div style="padding-top: 20px">
+                        <input name="collections[{{ collection.id }}]" type="checkbox" {% if collection in collections %}checked="checked"{% endif %} style="padding-right: 20px">{{ collection.name }}
+                    </div>
+                {% endfor %}
+                <br>
+                <input type="submit" style="marging-top: 30px" value="Connect System">
+            </form>
+        </div>
+    </div>
+{% endblock %}

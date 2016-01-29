@@ -55,7 +55,7 @@ security:
         - { path: ^/user/, role: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/user, role: IS_AUTHENTICATED_REMEMBERED }
 
-        - { path: ^/p/, role: IS_AUTHENTICATED_REMEMBERED }
+        #- { path: ^/p/, role: IS_AUTHENTICATED_REMEMBERED }
 
         - { path: ^/secure_area/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/secure_area/register, role: IS_AUTHENTICATED_ANONYMOUSLY }

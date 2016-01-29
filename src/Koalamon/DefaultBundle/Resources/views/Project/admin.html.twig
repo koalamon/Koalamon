@@ -11,158 +11,18 @@
         </div>
     </div>
 
-    <div class="box-element">
-        <div class="box-element-header">
-            Users
+    {% if app.user.hasUserRole(project, constant('Bauer\\IncidentDashboard\\CoreBundle\\Entity\\UserRole::ROLE_OWNER')) %}
+        <div class="box-element first">
+            <div class="box-element-header">Project Options</div>
+            <div class="box-element-content">
+                <form method="post" action="{{ path('koalamon_default_project_admin_store', {'project': project.identifier }) }}">
+                    <input name="options[isPublic]" type="checkbox" {% if project.public %}checked=checked{% endif %} id="options_isPublic">
+                    <span><strong>Public Project</strong> - Check this option if you want to grand read access to public.</span>
+                    <br><br>
+                    <input type="submit" value="Store Options">
+                </form>
+            </div>
         </div>
-        <div class="box-element-content">
-            <ul style="list-style: none; font-size: 12px; padding-left: 10px; margin-bottom: 20px">
-                {% for userRole in project.userRoles %}
-                    <li>
-                        <div style="width: 200px; float: left">{{ userRole.user.username }}</div>
-                        <div style="width: 200px; float: left">{{ userRole.roleName }}</div>
-                        <div class="options">
-                            <form name="collaborator_remove_form_{{ userRole.user.id }}" action="{{ path("koalamon_default_project_collaborator_remove", {"project": project.identifier}) }}"
-                                  method="post">
-                                <input type="hidden" value="{{ userRole.user.id }}" name="userId">
-                                {% if userRole.role != constant('Bauer\\IncidentDashboard\\CoreBundle\\Entity\\UserRole::ROLE_OWNER') and app.user != userRole.user %}<a href=""
-                                                                                                                                                                         onclick="document.collaborator_remove_form_{{ userRole.user.id }}.submit(); return false;">
-                                        remove user</a>{% else %}<strong>Project
-                                    Owner</strong>{% endif %}
-                            </form>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-            <div style="clear: both"></div>
-
-            <form method="post" name="collaborator_form" action="{{ path("koalamon_default_project_collaborator_add", { "project": project.identifier }) }}">
-                <input id="collaborator" style="float: left; padding: 4px; width: 180px" type="text"/>
-                <input type="hidden" name="userId" id="userId">
-                <select name="role" style="margin-left: 10px; float: left; width: 180px; margin-top: 3px">
-                    {% for key, roleName in roles %}
-                        {% if key > app.user.getUserRole(project).role %}
-                            <option value="{{ key }}">
-                                {{ roleName }}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
-
-                <div onClick="document.collaborator_form.submit();" class="button" style="width: 50px; margin-left: 409px; margin-top: 0">add user</div>
-            </form>
-
-            <script>
-                $('#collaborator').autocomplete({
-                    serviceUrl: '{{ path("koalamon_rest_user_startswith") }}',
-                    onSelect: function (suggestion) {
-                        $('#userId').val(suggestion.data);
-                        console.log($('#userId').val());
-                    }
-                });
-            </script>
-        </div>
-    </div>
-
-    <div class="box-element">
-        <div class="box-element-header">Translations</div>
-        <div class="box-element-content">
-
-            <table>
-                <thead style="font-size: 12px">
-                <td>Pattern</td>
-                <td>System</td>
-                <td>Tool</td>
-                <td>Message</td>
-                </thead>
-                {% for translation in project.translations %}
-                    <tr style="line-height: 25px">
-                        <form style="margin-top: 0px;" method="post" action="{{ path("koalamon_default_project_translation_store", {"project": project.identifier}) }}"
-                              name="translation_form_{{ translation.id }}">
-                            <td><input type="hidden" name="translation[id]" value="{{ translation.id }}"><input name="translation[identifier]" value="{{ translation.identifier }}" required/></td>
-                            <td><input name="translation[system]" value="{{ translation.system }}"/></td>
-                            <td><input name="translation[type]" value="{{ translation.type }}"/></td>
-                            <td><input name="translation[message]" style="width: 300px; margin-right: 25px" value="{{ translation.message }}"/></td>
-                        </form>
-                        <form style="margin-top: 0px;" method="post" action="{{ path("koalamon_default_project_translation_delete", {"project": project.identifier}) }}"
-                              name="translation_delete_form_{{ translation.id }}">
-                            <input type="hidden" value="{{ translation.id }}" name="translation_id">
-                        </form>
-                        <td>
-                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.translation_form_{{ translation.id }}.submit()">store</div>
-                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.translation_delete_form_{{ translation.id }}.submit()">delete</div>
-                            </form>
-                        </td>
-                    </tr>
-
-                {% endfor %}
-                <tr>
-                    <form method="post" action="{{ path("koalamon_default_project_translation_store", {"project": project.identifier}) }}" name="translation_form_new">
-                        <td><input name="translation[identifier]" required placeholder="Pattern"/></td>
-                        <td><input name="translation[system]" placeholder="System"/></td>
-                        <td><input name="translation[type]" placeholder="Tool"/></td>
-                        <td><input style="width: 300px; margin-right: 25px" name="translation[message]" placeholder="Message"/></td>
-                        <td>
-                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.translation_form_new.submit()">store</div>
-                        </td>
-                    </form>
-                </tr>
-            </table>
-            </form>
-            <!--div onClick="document.translation_form.submit();" class="button" style="width: 95px; margin-left: 0px; margin-top: 20px">store translations</div-->
-        </div>
-    </div>
-
-    <div class="box-element">
-        <div class="box-element-header">Systems</div>
-        <div class="box-element-content">
-            <table>
-                <thead>
-                <td>Identifier</td>
-                <td>URL</td>
-                <td>Name</td>
-                <td>Description</td>
-                </thead>
-                {% for system in project.systems %}
-                    <tr style="line-height: 25px">
-                        <form style="margin-top: 0px;" method="post" action="{{ path("koalamon_default_project_system_store", {"project": project.identifier}) }}" name="system_form_{{ system.id }}">
-                            <td><input type="hidden" name="system[id]" value="{{ system.id }}"><input name="system[identifier]" value="{{ system.identifier }}" required/></td>
-                            <td><input type="url" name="system[url]" value="{{ system.url }}" required/></td>
-                            <td><input name="system[name]" value="{{ system.name }}"/></td>
-                            <td><input name="system[description]" style="width: 300px; margin-right: 25px" value="{{ system.description }}"/></td>
-                        </form>
-                        <form style="margin-top: 0px;" method="post" action="{{ path("koalamon_default_project_system_delete", {"project": project.identifier}) }}"
-                              name="system_delete_form_{{ system.id }}">
-                            <input type="hidden" value="{{ system.id }}" name="system_id">
-                        </form>
-                        <td>
-                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.system_form_{{ system.id }}.submit()">store</div>
-                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.system_delete_form_{{ system.id }}.submit()">delete</div>
-                            </form>
-                        </td>
-                    </tr>
-
-                {% endfor %}
-                <tr>
-                    <form method="post" action="{{ path("koalamon_default_project_system_store", {"project": project.identifier}) }}" name="system_form_new">
-                        <td><input name="system[identifier]" placeholder="Identifier" required/></td>
-                        <td><input type="url" name="system[url]" placeholder="URL" required/></td>
-                        <td><input name="system[name]" placeholder="Name"/></td>
-                        <td><input style="width: 300px; margin-right: 25px" name="system[description]" placeholder="Description"/></td>
-                        <td>
-                            <div class="button" style="margin-left: 0; width: auto; display: inline" onclick="document.system_form_new.submit()">store</div>
-                        </td>
-                    </form>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="box-element">
-        <div class="box-element-header">Api Key</div>
-        <div class="box-element-content">
-            <div style="width: 100%; text-align: center; padding-bottom: 20px"><span class="code">{{ project.apiKey }}</span></div>
-        </div>
-    </div>
+    {% endif %}
 
 {% endblock %}

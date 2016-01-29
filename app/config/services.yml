@@ -8,3 +8,9 @@ services:
         class: Twig_Extensions_Extension_Date
         tags:
             - { name: twig.extension }
+
+    koalamon_menu_admin:
+        class: Koalamon\DefaultBundle\Menu\Menu
+
+    fos_user.doctrine_registry:
+        alias: doctrine

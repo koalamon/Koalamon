@@ -1,0 +1,105 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <script>
+        function storeIntegration(formId) {
+            var url = $("#" + formId).attr('action');
+            $.post(url, $("#" + formId).serialize(), function (data) {
+                if (data['status'] == 'failure') {
+                    toastr.warning(data['message']);
+                } else {
+                    toastr.success(data['message']);
+                    $('#id' + data['elementId']).val(data['id']);
+                    if (reload) {
+                        location.reload();
+                    }
+                }
+            });
+        }
+    </script>
+
+    <style>
+        #integration .subContent {
+            margin-left: 20px;
+        }
+
+        #integration .subContent a {
+            border-bottom: 1px solid #555555;
+        }
+
+        #main #integration h2 {
+            font-weight: 200;
+            text-transform: none;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+            padding-top: 20px;
+        }
+
+        #main #integration h3 {
+            font-weight: 200;
+            text-transform: none;
+            margin-top: 50px;
+            padding-top: 20px;
+        }
+    </style>
+
+    <h1>KoalaPing</h1>
+
+    <form id="integration_admin_form" style="padding-top: 20px" action="{{ path('koalamon_integration_koala_ping_store', {'project': project.identifier}) }}">
+
+        <div id="integration" style="width: 780px;">
+
+            <p>
+                KoalaPing in an easy to use minimal website monitor. Every url that is connected with this tool will be checked every
+                five minutes. If the website does not answer or will ruturn a http error status code an alert will be created.
+            </p>
+
+            <input type="radio" name="saas" value="false" {% if not config.useSaaS %}checked="checked"{% endif %} onchange="$('.subContent').toggle()"> Use your own KoalaPing client.
+
+            <div style="clear: both"></div>
+
+            <input type="radio" name="saas" value="true" {% if config.useSaaS %}checked="checked"{% endif %} onchange="$('.subContent').toggle()"> Use the platform as a service solution
+
+            <div style="clear: both"></div>
+
+            <button onclick="storeIntegration('integration_admin_form'); return false;" style="margin-top: 30px; margin-left: 20px">Store Configuration</button>
+
+            <div class="subContent" {% if config.useSaaS %}style="display: none"{% endif %}>
+                <h2>Use your own Client</h2>
+
+                <p>
+                    You can find our KoalaPing in GitHub or download the newest phar file <a href="http://pharchive.phmlabs.com/archive/koalamon/KoalaPing/current/KoalaPing.phar">here</a>. The
+                    endpoint for configuring the client is
+                </p>
+
+                <div class="code">{{ url("koalamon_integration_koala_ping_rest_project", {'project': project.identifier}) }}?api_key={{ project.apiKey }}</div>
+                <p>
+                    For more information about the client please use the <a href="https://github.com/koalamon/KoalaPing">GitHub page</a>.
+                </p>
+            </div>
+
+            <div class="subContent" {% if not config.useSaaS %}style="display: none"{% endif %}>
+                <h2>Use the Platform as a Service Solution</h2>
+
+                <p>
+                    When using KoalaPing as a Service our platform will check your systems every five minutes.
+                </p>
+            </div>
+
+            <div class="systems" style="margin-left: 20px">
+                <h3>Select the Systems to be tested</h3>
+                <input type="radio" name="status" value="all" {% if config.status == 'all' %}checked="checked{% endif %}"> Scan all Systems <br>
+                <input type="radio" name="status" value="selected" {% if config.status != 'all' %}checked="checked{% endif %}"> Scan selected Systems only
+
+                {% include 'KoalamonIntegrationBundle:Partials:systems.check.html.twig' with {'systems': systems, 'checkedSystems': integratedSystems, 'optionsTemplate': 'KoalamonIntegrationKoalaPingBundle:Partials:options.html.twig'} only %}
+
+            </div>
+
+            <div style="clear: both"></div>
+
+            <button onclick="storeIntegration('integration_admin_form'); return false;" style="margin-top: 30px; margin-left: 20px">Store Configuration</button>
+
+        </div>
+    </form>
+{% endblock %}

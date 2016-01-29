@@ -1,0 +1,88 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <style>
+        #integration-list {
+            margin-right: 30px;
+            margin-bottom: 100px;
+            font-weight: 200;
+        }
+
+        #integration-list .name {
+            font-weight: 400;
+        }
+
+        #integration-list .button {
+            font-weight: 400;
+        }
+
+        #integration-list h1 {
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #integration-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #integration-list ul li {
+            width: 200px;
+            height: 300px;
+            margin-right: 30px;
+            margin-bottom: 30px;
+            float: left;
+            border: 1px solid #bbb;
+            background-color: #f9f9f9;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #integration-list ul li img {
+            height: 140px;
+            margin-bottom: 20px;
+        }
+
+        #integration-list .info {
+            font-size: 14px;
+            padding-top: 10px;
+            height: 50px;
+        }
+
+        #integration-list .logo {
+            height: 170px;
+        }
+    </style>
+
+    <div id="integration-list">
+
+        <h1>Integrations</h1>
+
+        <p style="margin-bottom: 40px">
+            The strength of Koalamon is the many integrations we provide. Additionally it is very easy to
+            create new ones, using one of our many webhooks.
+        </p>
+
+        <ul>
+            {% for integration in integrationContainer.integrations %}
+                <li>
+                    <a href="{{ integration.url }}">
+                        <div class="logo">
+                        {% if integration.image %}<img src="{{ integration.image }}"><br/>{% endif %}
+                        </div>
+                        <div class="name">{{ integration.name }}</div>
+                        <p class="info">{{ integration.description }}</p>
+
+                        <div class="button integration-button">Integrate</div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div style="clear: both"></div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,5 @@
+koalamon_stat_day:
+    path:     /stats/day/{event}/
+    defaults: { _controller: KoalamonStatBundle:Default:day }
+    options:
+        expose: true

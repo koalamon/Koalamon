@@ -5,11 +5,10 @@ namespace Bauer\IncidentDashboard\CoreBundle\Util;
 use Bauer\IncidentDashboard\CoreBundle\Entity\Event;
 use Bauer\IncidentDashboard\CoreBundle\Entity\Project;
 use Bauer\IncidentDashboard\CoreBundle\Entity\Tool;
+use Bauer\IncidentDashboard\CoreBundle\EventListener\NewEventEvent;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
-use Koalamon\NotificationEngineBundle\Entity\NotificationConfiguration;
-use Koalamon\NotificationEngineBundle\Sender\SenderFactory;
-use Koalamon\NotificationEngineBundle\Sender\SlackSender;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class ProjectHelper
@@ -20,12 +19,11 @@ use Koalamon\NotificationEngineBundle\Sender\SlackSender;
  */
 class ProjectHelper
 {
-    static public function addEvent(Router $router, EntityManager $doctrineManager, Event $event)
+    static public function addEvent(Router $router, EntityManager $doctrineManager, Event $event, EventDispatcherInterface $eventDispatcher)
     {
         self::handleTool($event, $doctrineManager);
 
         $project = $event->getEventIdentifier()->getProject();
-        // $project->incEventCount();
 
         $lastEvent = $doctrineManager
             ->getRepository('BauerIncidentDashboardCoreBundle:Event')
@@ -69,9 +67,11 @@ class ProjectHelper
 
         self::storeData($doctrineManager, $event, $project);
 
-        if ((!$lastEvent && $event->getStatus() == Event::STATUS_FAILURE) || ($lastEvent && ($lastEvent->getStatus() != $event->getStatus()))) {
-            self::notify($router, $doctrineManager, $event);
+        $dispatcherEvent = new NewEventEvent($event);
+        if ($lastEvent) {
+            $dispatcherEvent->setLastEvent($lastEvent);
         }
+        $eventDispatcher->dispatch('koalamon.event.create', $dispatcherEvent);
     }
 
     static private function handleTool(Event &$event, EntityManager $doctrineManager)
@@ -102,22 +102,5 @@ class ProjectHelper
 
         $doctrineManager->persist($event->getEventIdentifier());
         $doctrineManager->flush();
-    }
-
-    static private function notify(Router $router, EntityManager $doctrineManager, Event $event)
-    {
-        $configs = $doctrineManager->getRepository('KoalamonNotificationEngineBundle:NotificationConfiguration')
-            ->findBy(['project' => $event->getEventIdentifier()->getProject()]);
-
-        /** @var NotificationConfiguration[] $configs */
-
-        foreach ($configs as $config) {
-            if ($config->isNotifyAll() || $config->isConnectedTool($event->getEventIdentifier()->getTool())) {
-                $sender = SenderFactory::getSender($config->getSenderType());
-                $sender->init($router, $config->getOptions());
-
-                $sender->send($event);
-            }
-        }
     }
 }

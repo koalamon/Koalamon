@@ -8,7 +8,7 @@
         <script>toastr.success('{{ flash_message }}');</script>
     {% endfor %}
 
-    {% if project is defined %}
+    {% if project is defined and not project is null%}
         <div id="informations">
             {{ render(controller('KoalamonInformationBundle:Default:current', { 'project': project })) }}
         </div>

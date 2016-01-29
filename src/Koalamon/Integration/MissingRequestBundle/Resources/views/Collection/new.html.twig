@@ -1,0 +1,67 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <script>
+        var nextIndex = 0;
+
+        function addNewRequest(name, pattern) {
+            var table = document.getElementById('request-list');
+            var newRow = table.insertRow(-1);
+
+            var cell0 = newRow.insertCell(0);
+            cell0.innerHTML = '<input type="text" name="request[' + nextIndex + '][name]" value="' + name + '" class="request-name">';
+
+            var cell1 = newRow.insertCell(1);
+            cell1.innerHTML = '<input type="text" name="request[' + nextIndex + '][pattern]" value="' + pattern + '" class="request-pattern">';
+
+            nextIndex++;
+        }
+    </script>
+
+    <div id="integration" style="width: 780px">
+        <h1>MissingRequest - Collections for "{{ project.name }}"</h1>
+
+        <p style="margin-bottom: 50px">
+            In most cases most of your systems and subsystems have to been checked against the same pattern. To make configuration easier we use request collections
+            that group urls. For example a "Google Analytics Collection" would contain two elements: the loading of the javascript file and the collect data request.
+        </p>
+
+        <form method="post" action="{{ path('koalamon_integration_missing_request_collection_store', {'project': project.identifier }) }}">
+
+            <input type="hidden" value="{{ collection.id }}" name="id">
+
+            <div>
+                Name <input type="text" value="{{ collection.name }}" name="name" required style="width: 650px; margin-left: 40px">
+
+                <p style="margin-left: 90px">
+                    This is the name for the request collection.
+                </p>
+            </div>
+
+            <div style="margin-top: 50px">Requests</div>
+
+            <table id="request-list" style="margin-left: 80px">
+                <tr>
+                    <td>Name</td>
+                    <td>Pattern</td>
+                </tr>
+                <script>
+                    {% for request in collection.requests %}
+                    addNewRequest('{{ request.name }}', '{{ request.pattern  }}');
+                    {% endfor %}
+                </script>
+            </table>
+
+            <button onclick="addNewRequest('', ''); return false;" style="margin-left: 85px; margin-top: 10px">Add new Request</button>
+
+            <div style="padding-top: 40px"><input type="submit" value="Store Collection"></div>
+        </form>
+
+    </div>
+
+    <script>
+        addNewRequest('', '');
+    </script>
+
+{% endblock %}

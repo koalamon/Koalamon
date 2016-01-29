@@ -1,0 +1,114 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+    <h1>AppDynamics</h1>
+
+    <div id="integration">
+
+        <div class="how-to">
+            In this how-to we only describe the fields where the default AppDynamics values are not correct.
+            <ul>
+                <li>
+                    <strong>Alert & Respond</strong> - When using AppDynamics to send events to koalamon we can use the standard alerting
+                    system.
+                </li>
+                <li><strong>Http Request Template</strong> - We call it webhook, AppDynamics is calling it Http Request. No matter what
+                    you call it, it is a great feature.
+                </li>
+                <li>
+                    <strong>New</strong><br>
+                    When creating a new Http Request Template you only have to change four fields: name, request method, url and payload.
+                    <ul>
+                        <li>
+                            <strong>Name</strong> - You can chose whatever you want as a new. In our opinion it makes sence to include the
+                            koalamon project name because it makes it easier to handle if you own more than one project.
+                        </li>
+                        <li><strong>Request URL</strong> - The request URL is the endpoint where AppDynamics sends the payload to. You have
+                            to chose <strong>POST</strong> as method and use the following url:
+                            <div class="code">
+                                {{ url('koalamon_webhook_format', {'format': 'appdynamics'}) }}?api_key={{ project.apiKey }}
+                            </div>
+                        </li>
+                        <li><strong>Payload</strong> We decided to put a lot of data into the payload. It will make it easier for
+                            us to parse the information and provide the most valuable event information.
+                            <div class="code">
+<pre style="margin: 0">
+{
+  "policy": {
+    "id": ${policy.id},
+    "entityType": "${policy.entityType}",
+    "name": "${policy.name}",
+    "digest": ${policy.digest},
+    "digestDurationInMins": ${policy.digestDurationInMins}
+  },
+  "event": {
+    "eventType": "${latestEvent.eventType}",
+    "id": "${latestEvent.id}",
+    "guid": "${latestEvent.guid}",
+    "eventTypeKey": "${latestEvent.eventTypeKey}",
+    "eventTime": "${latestEvent.eventTime}",
+    "displayName": "${latestEvent.displayName}",
+    "summaryMessage": "${latestEvent.summaryMessage}",
+    "eventMessage": "${latestEvent.eventMessage}",
+    "deepLink":  "${latestEvent.deepLink}",
+    "application": {
+      "id": ${latestEvent.application.id},
+      "entityType": "${latestEvent.application.entityType}",
+      "entityTypeDisplayName": "${latestEvent.application.entityTypeDisplayName}",
+      "name": "${latestEvent.application.name}"
+    },
+    "tier": {
+      "id": "${latestEvent.tier.id}",
+      "entityType": "${latestEvent.tier.entityType}",
+      "entityTypeDisplayName": "${latestEvent.tier.entityTypeDisplayName}",
+      "name": "${latestEvent.tier.name}"
+    },
+    "node": {
+      "id": "${latestEvent.node.id}",
+      "entityType": "${latestEvent.node.entityType}",
+      "entityTypeDisplayName": "${latestEvent.node.entityTypeDisplayName}",
+      "name": "${latestEvent.node.name}"
+    },
+    "healthRuleEvent": "${latestEvent.healthRuleEvent}",
+    "healthRule": {
+      "id": "${latestEvent.healthRule.id}",
+      "entityType": "${latestEvent.healthRule.entityType}",
+      "entityTypeDisplayName": "${latestEvent.healthRule.entityTypeDisplayName}",
+      "name": "${latestEvent.healthRule.name}"
+    },
+    "incident": {
+      "id": "${latestEvent.incident.id}",
+      "entityType": "${latestEvent.incident.entityType}",
+      "entityTypeDisplayName": "${latestEvent.incident.entityTypeDisplayName}",
+      "name": "${latestEvent.incident.name}"
+    },
+    "healthRuleViolationEvent": "${latestEvent.healthRuleViolationEvent}",
+    "severity": "${latestEvent.severity}",
+    "severityImage": {
+      "name": "${latestEvent.severityImage.name}",
+      "fileName": "${latestEvent.severityImage.fileName}",
+      "deepLink": "${latestEvent.severityImage.deepLink}"
+    }
+  },
+  "icon": {
+    "name": "${appDynamicsIcon.name}",
+    "fileName": "${appDynamicsIcon.fileName}",
+    "deepLink": "${appDynamicsIcon.deepLink}"
+  },
+  "logo": {
+    "name": "${appDynamicsLogo.name}",
+    "fileName": "${appDynamicsLogo.fileName}",
+    "deepLink": "${appDynamicsLogo.deepLink}"
+  }
+}
+</pre>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            When finished you can now use the HTTP Request Template in your Actions and afterwards you can create the Policies that will connect
+            the actions with the health rules.
+        </div>
+    </div>
+{% endblock %}

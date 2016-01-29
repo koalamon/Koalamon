@@ -22,15 +22,22 @@ class AppKernel extends Kernel
 
             // Custom Bundles
             new Bauer\IncidentDashboard\CoreBundle\BauerIncidentDashboardCoreBundle(),
-            new Bauer\IncidentDashboard\StatBundle\BauerIncidentDashboardStatBundle(),
 
+            new Koalamon\StatBundle\KoalamonStatBundle(),
             new Koalamon\DefaultBundle\KoalamonDefaultBundle(),
             new Koalamon\WebhookBundle\KoalamonWebhookBundle(),
             new Koalamon\ConsoleBundle\KoalamonConsoleBundle(),
             new Koalamon\RestBundle\KoalamonRestBundle(),
-            new Koalamon\NotificationEngineBundle\KoalamonNotificationEngineBundle(),
+            new Koalamon\NotificationBundle\KoalamonNotificationBundle(),
             new Koalamon\ArchiveBundle\KoalamonArchiveBundle(),
             new Koalamon\InformationBundle\KoalamonInformationBundle(),
+            new Koalamon\IntegrationBundle\KoalamonIntegrationBundle(),
+            new Koalamon\PluginBundle\KoalamonPluginBundle(),
+            new Koalamon\Integration\KoalaPingBundle\KoalamonIntegrationKoalaPingBundle(),
+            new Koalamon\Integration\WebhookBundle\KoalamonIntegrationWebhookBundle(),
+            new Koalamon\Integration\MissingRequestBundle\KoalamonIntegrationMissingRequestBundle(),
+            new Koalamon\Integration\JsErrorScannerBundle\KoalamonIntegrationJsErrorScannerBundle(),
+            new Koalamon\GeckoBoardBundle\KoalamonGeckoBoardBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -23,15 +23,31 @@ class ScreenshotCommand extends ContainerAwareCommand
 
         $systems = $em->getRepository('BauerIncidentDashboardCoreBundle:System')->findAll();
 
+        $webDir = $this->getContainer()->getParameter('assetic.write_to');
+        $imageDir = $webDir . '/images/screenshots/';
+
+        $phantomExec = $this->getExecutable('phantomjs');
+        $timeoutExec = $this->getExecutable('timeout');
+
+        if ($phantomExec == '') {
+            $output->writeln("<error>No PhantomJS executeable found in \$PATH. Did you install it?</error>");
+        }
+
+        if ($timeoutExec == '') {
+            $timeoutCommand = '';
+            $output->writeln("<info>No timeout executable found. Run screenshot command without timeout.</info>");
+        } else {
+            $timeoutCommand = 'timeout 30s';
+            $output->writeln("Timeout executable found. Run screenshot command with" . $timeoutCommand);
+        }
+
         foreach ($systems as $system) {
 
             if ($system->getUrl()) {
 
                 $imageName = time() . rand(1, 100000000) . '.png';
 
-                $imageDir = __DIR__ . "/../../../../htdocs/images/screenshots/";
-
-                $command = "timeout 30s /root/phantomjs/bin/phantomjs "
+                $command = "$timeoutCommand $phantomExec "
                     . __DIR__ . "/screenshot.js "
                     . $system->getUrl() . " "
                     . $imageDir . $imageName
@@ -52,5 +68,16 @@ class ScreenshotCommand extends ContainerAwareCommand
                 }
             }
         }
+    }
+
+    /**
+     * @return string phantomjs executeable
+     */
+    private function getExecutable($program)
+    {
+        $command = "which ". (string) $program;
+        exec($command, $commandOutput, $commandStatus);
+        $commandString = reset($commandOutput);
+        return (string) $commandString;
     }
 }

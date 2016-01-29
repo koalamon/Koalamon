@@ -35,19 +35,12 @@
     </div>
     <div class="identifier">
         <a href="{{ path("bauer_incident_dashboard_core_systems", {"project": project.identifier} ) }}#{{ event.system }}">{{ event.system }}</a>
-        <!--span class="id_code">{{ event.eventIdentifier.identifier }}</span-->
-        {#% if event.type %}
-            <span class="tipso desktop" data-tipso-title="{{ event.type }}"
-                  data-tipso="{{ event.type }}">
-                        <span class="tool-button">Tool</span>
-                    </span>
-        {% endif %#}
     </div>
 
     <div class="tool">{{ event.type }}</div>
 
     <div class="option" style="float: right; text-align: right; width: 60px">
-        {% if app.user.hasUserRole(project, constant('Bauer\\IncidentDashboard\\CoreBundle\\Entity\\UserRole::ROLE_COLLABORATOR')) %}
+        {% if not app.user is null and app.user.hasUserRole(project, constant('Bauer\\IncidentDashboard\\CoreBundle\\Entity\\UserRole::ROLE_COLLABORATOR')) %}
             {% if event.status == "failure" and not event.eventIdentifier.knownIssue %}
                 <a href="{{ path("koalamon_default_event_knownissue_mark", { "eventIdentifier": event.eventIdentifier.id }) }}"><img src="/images/check.jpg" width="15" style="float: left"/></a>
                 <a href="{{ path("bauer_incident_dashboard_core_close", { "project": project.identifier, "event": event.id }) }}"><img src="/images/close.jpg" width="15" style="float: left"/></a>

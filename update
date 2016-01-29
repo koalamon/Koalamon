@@ -1,5 +1,5 @@
-git pull origin develop
-composer.phar update
+git pull origin master
+# composer.phar update
 ./app/console doctrine:schema:update -f
 rm -rf app/cache/*
 ./app/console cache:clear --env=prod

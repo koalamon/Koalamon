@@ -1,15 +1,29 @@
-{% extends 'base.html.twig' %}
+{% extends 'system.html.twig' %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block title %}Login{% endblock %}
 {% block body %}
 
+    <style>
+        #system #login-form input[type='text'] {
+            width: 325px;
+        }
+
+        #system #login-form input[type='password'] {
+            width: 325px;
+            margin-bottom: 20px;
+        }
+    </style>
+
     <div id="content">
+        <a href="{{ path('koalamon_default_homepage') }}"><img src="/images/logo.png" width="200px" style="position: relative; left: 394px; top: 75px;"></a>
+
         <div class="">
             <div id="login_form">
 
                 <h1>Login</h1>
+
                 <p>If you don't already have an account you easyly register a <strong>free</strong> account.</p>
 
                 <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" target="_parent">

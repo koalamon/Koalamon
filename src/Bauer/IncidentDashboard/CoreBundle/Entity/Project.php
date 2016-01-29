@@ -57,14 +57,6 @@ class Project implements \JsonSerializable
      */
     private $apiKey;
 
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="notification_slack", type="string", length=255, nullable=true)
-     */
-    private $slackWebhook;
-
     /**
      * @var string
      *
@@ -78,6 +70,13 @@ class Project implements \JsonSerializable
      * @ORM\Column(name="openIncidentCount", type="integer", nullable=true)
      */
     private $openIncidentCount = 0;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="public", type="boolean", nullable=true)
+     */
+    private $public = false;
 
     /**
      * @var string
@@ -198,7 +197,13 @@ class Project implements \JsonSerializable
      */
     public function getUserRoles()
     {
-        return $this->userRoles;
+        $sortedRoles = $this->userRoles->toArray();
+
+        usort($sortedRoles, function (UserRole $a, UserRole $b) {
+            return ($a->getUser()->getUsername() < $b->getUser()->getUsername()) ? -1 : 1;
+        });
+
+        return $sortedRoles;
     }
 
     public function getUserRole(User $user)
@@ -213,14 +218,6 @@ class Project implements \JsonSerializable
     public function addUserRole(UserRole $userRole)
     {
         $this->userRoles[] = $userRole;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlackWebhook()
-    {
-        return $this->slackWebhook;
     }
 
     /**
@@ -354,29 +351,11 @@ class Project implements \JsonSerializable
      */
     function jsonSerialize()
     {
-        $project = new \stdClass();
-        $project->name = $this->getName();
-        $project->description = $this->getDescription();
-        $project->identifier = $this->getIdentifier();
-        $project->owner = $this->getOwner()->getUsernameCanonical();
-        $project->slackWebhook = $this->getSlackWebhook();
-
-        $systems = [];
-        foreach ($this->getSystems() as $system) {
-            $systems[] = $system->getIdentifier();
-        }
-        if (0 < count($systems)) {
-            $project->systems = $systems;
-        }
-        $users = [];
-        foreach ($this->getUsers() as $user) {
-            $users[] = $user->getUsernameCanonical();
-        }
-        if (0 < count($users)) {
-            $project->users = $users;
-        }
-
-        return $project;
+        return [
+            "api_key" => $this->getApiKey(),
+            "name" => $this->getName(),
+            "identifier" => $this->getIdentifier()
+        ];
     }
 
     /**
@@ -426,5 +405,22 @@ class Project implements \JsonSerializable
         }
         return $this->getFailedEventCount() / $eventCount * 100;
     }
+
+    /**
+     * @return string
+     */
+    public function isPublic()
+    {
+        return $this->public;
+    }
+
+    /**
+     * @param string $public
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+    }
+
 }
 

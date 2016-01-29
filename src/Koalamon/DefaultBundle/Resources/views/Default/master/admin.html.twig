@@ -2,10 +2,9 @@
 
 {% block content %}
 
-    {% include "KoalamonDefaultBundle:Default:partials/admin.menu.html.twig" %}
+    {{ render(controller('KoalamonDefaultBundle:Admin:renderMenu', { 'project': project, 'currentUri': app.request.uri })) }}
 
     {% block admin %}
-
     {% endblock %}
 
 {% endblock %}

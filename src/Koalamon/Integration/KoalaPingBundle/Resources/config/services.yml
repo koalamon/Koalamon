@@ -1,0 +1,7 @@
+services:
+
+    koalamonintegration.koalaping.init:
+        class: Koalamon\Integration\KoalaPingBundle\EventListener\IntegrationListener
+        arguments: [ @service_container ]
+        tags:
+            - { name: 'kernel.event_listener', event: 'koalamon.integration.init', method: onInit }

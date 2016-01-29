@@ -1,0 +1,127 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <style>
+
+        #integration table tr td {
+            padding-right: 40px;
+        }
+
+        #integration table tr td {
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        #integration table thead tr td {
+            background-color: #eaeaea;
+        }
+
+        #integration ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+    </style>
+
+    <h1>MissingRequest</h1>
+
+    <div id="integration" style="width: 780px;">
+        <div class="about" style="padding-top: 20px">
+            MissingRequest helps you to check your systems for missing requests. If you know that an url has for example a google analytics integration you can
+            assert that the google analytics javascript file was fetched and a request was created that sends the google collect data.
+        </div>
+
+        <h2>Request Collections</h2>
+
+        <p>
+            In most cases most of your systems and subsystems have to been checked against the same pattern. To make configuration easier we use request collections
+            that group urls. For example a "Google Analytics Collection" would contain two elements: the loading of the javascript file and the collect data request.
+        </p>
+
+        <table>
+            <thead>
+            <tr>
+                <td style="min-width: 300px">Name</td>
+                <td style="min-width: 300px">Urls / Pattern</td>
+                <td style="width: 100px">Options</td>
+            </tr>
+            </thead>
+
+            {% for collection in collections %}
+                <tr>
+                    <td>
+                        {{ collection.name }}
+                    </td>
+                    <td>
+                        <ul>
+                            {% for request in collection.requests %}
+                                <li>{{ request.pattern }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <a href="{{ path('koalamon_integration_missing_request_collection_delete',  {'project': project.identifier, 'collection': collection.id }) }}">delete</a> |
+                        <a href="{{ path('koalamon_integration_missing_request_collection_edit',  {'project': project.identifier, 'collection': collection.id }) }}">edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="button" style="width: 130px; text-align: center">
+            <a href="{{ path('koalamon_integration_missing_request_collection_new', {'project': project.identifier }) }}">
+                Create new Collection
+            </a>
+        </div>
+
+        <h2>Systems</h2>
+
+
+        <p>
+            After creating the request collections they can be assigned to any registred system. We recomment to create a subsystem for every special page type you have.
+        </p>
+
+        <table>
+            <thead>
+            <tr>
+                <td style="min-width: 300px">System</td>
+                <td style="min-width: 300px">Collections</td>
+                <td style="width: 100px">Options</td>
+            </tr>
+            </thead>
+            {% for systemCollection in systemCollections %}
+                <tr>
+                    <td style="font-weight: 400">
+                        {{ systemCollection.system.name }}
+                    </td>
+                    <td>
+                        <ul>
+                            {% for collection in systemCollection.collections %}
+                                <li>{{ collection.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <a href="{{ path('koalamon_integration_missing_request_system_edit', {'system': systemCollection.system.id, 'project': project.identifier}) }}">edit</a>
+                    </td>
+                </tr>
+                {% for subsystemCollections in systemCollection.subsystems %}
+                    <tr>
+                        <td>
+                            <span style="padding-left: 20px">{{ subsystemCollections.system.name }}</span>
+                        </td>
+                        <td>
+                            <ul>
+                                {% for collection in subsystemCollections.collections %}
+                                    <li>{{ collection.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            <a href="{{ path('koalamon_integration_missing_request_system_edit', {'system': subsystemCollections.system.id, 'project': project.identifier}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

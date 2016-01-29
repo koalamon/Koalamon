@@ -1,0 +1,7 @@
+koalamon_gecko_board_linechart:
+    path:     /geckoboard/linechart/{eventIdentifier}/
+    defaults: { _controller: KoalamonGeckoBoardBundle:LineChart:render }
+
+koalamon_gecko_board_number:
+    path:     /geckoboard/numberchart/{eventIdentifier}/
+    defaults: { _controller: KoalamonGeckoBoardBundle:NumberChart:render }

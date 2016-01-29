@@ -1,3 +1,31 @@
+koalamon_gecko_board:
+    resource: "@KoalamonGeckoBoardBundle/Resources/config/routing.yml"
+    prefix:   /
+
+koalamon_integration_js_error_scanner:
+    resource: "@KoalamonIntegrationJsErrorScannerBundle/Resources/config/routing.yml"
+    prefix:   /
+
+koalamon_integration_missing_request:
+    resource: "@KoalamonIntegrationMissingRequestBundle/Resources/config/routing.yml"
+    prefix:   /
+
+koalamon_integration_webhook:
+    resource: "@KoalamonIntegrationWebhookBundle/Resources/config/routing.yml"
+    prefix:   /
+
+koalamon_integration_koala_ping:
+    resource: "@KoalamonIntegrationKoalaPingBundle/Resources/config/routing.yml"
+    prefix:   /
+
+koalamon_plugin:
+    resource: "@KoalamonPluginBundle/Resources/config/routing.yml"
+    prefix:   /
+
+koalamon_integration:
+    resource: "@KoalamonIntegrationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 koalamon_information:
     resource: "@KoalamonInformationBundle/Resources/config/routing.yml"
     prefix:   /
@@ -6,8 +34,8 @@ koalamon_archive:
     resource: "@KoalamonArchiveBundle/Resources/config/routing.yml"
     prefix:   /
 
-koalamon_notification_engine:
-    resource: "@KoalamonNotificationEngineBundle/Resources/config/routing.yml"
+koalamon_notification:
+    resource: "@KoalamonNotificationBundle/Resources/config/routing.yml"
     prefix:   /
 
 koalamon_default:
@@ -18,8 +46,8 @@ koalamon_rest:
     resource: "@KoalamonRestBundle/Resources/config/routing.yml"
     prefix:   /
 
-bauer_incident_dashboard_stat:
-    resource: "@BauerIncidentDashboardStatBundle/Resources/config/routing.yml"
+koalamon_stat:
+    resource: "@KoalamonStatBundle/Resources/config/routing.yml"
     prefix:   /
 
 koalamon_webhook:

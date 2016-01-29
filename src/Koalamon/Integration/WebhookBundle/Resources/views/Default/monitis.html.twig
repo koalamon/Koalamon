@@ -1,0 +1,73 @@
+{% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
+
+{% block admin %}
+
+    <h1>Monitis</h1>
+
+    <div id="integration">
+        <div class="about">
+            <img src="/images/integrations/monitis_screen.png" style="width: 400px; float: left; margin-top: 30px; margin-right: 50px; margin-bottom: 50px">
+            All-in-one application monitoring platform. Monitor your websites, servers, applications and more... anytime from anywhere
+            <ul>
+                <li>
+                    <strong>No software</strong> - No software to buy or look after. Just get online, sign up and you are up and running in 3 minutes. Access your monitoring anytime from anywhere.
+                    Non-stop visibility 24/7/365.
+                </li>
+                <li>
+                    <strong>Unified dashboard</strong> - Website uptime and response time, Server health, Network performance, Custom metrics, and more. It’s fast, intuitive and easy. Customize the
+                    display and view your data the way you want.
+                </li>
+                <li>
+                    <strong>Instant alert</strong> - Take full control of your alerts. Set your triggers and get instant alerts via email, SMS, Twitter or phone whenever something is wrong. Our data
+                    center will alert you even if your network is down.
+                </li>
+                <li>
+                    <strong>Open API</strong> - Do you have unique monitoring needs? With the easy-to-use API, integrations and plug-ins, we monitor whatever it is to make your business hassle-free
+                    and productive.
+                </li>
+            </ul>
+        </div>
+        <div style="clear: both"></div>
+        <div class="how-to">
+            <h2>How to integrate Monitis</h2>
+            <ol>
+                <li>
+                    <strong>Go to Alerts / Contacts</strong> - In Monitis every external integration is defined via a contact.
+                </li>
+                <li style="padding-bottom: 0">
+                    <strong>New Contact </strong> -
+                    Create a new contact.
+                    <ul style="padding-top: 20px; mrgin-bottom: 0">
+                        <li>
+                            <strong>Chose a name</strong> - As Monitis handles a webhook like every other contact you have to choose a name. We
+                            would use Koalamon as Last Name, but it's up to you.
+                        </li>
+                        <li>
+                            <strong>Contact type</strong> - You can choose any channel name you want.
+                            We prefer names like <i>Koalamon - www.example.com</i>, but it's up to you.
+                        </li>
+                        <li>
+                            <strong>Webhook Url</strong> - The webhook url for this project (<i>{{ project.name }}</i>) is:
+                            <div class="code">{{ url('koalamon_webhook_format', {'format': 'monitis'}) }}?api_key={{ project.apiKey }}</div>
+                        </li>
+                        <li>
+                            <strong>Request type</strong> - Chose POST as your request type.
+                        </li>
+                        <li>
+                            <strong>Data format</strong> - Our webhooks understand JSON format. So please chose it.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Confirm webhook</strong> Normally you now have to confirm your webhook,
+                    but this will be automatically done by koalamon.
+                </li>
+                <li><strong>Wait for your first alert</strong> - We're done. Now you can wait for the first alert to occur.</li>
+
+            </ol>
+
+
+        </div>
+    </div>
+
+{% endblock %}

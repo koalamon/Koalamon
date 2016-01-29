@@ -1,0 +1,3 @@
+koalamon_integration_home:
+    path:     /p/{project}/integrations/
+    defaults: { _controller: KoalamonIntegrationBundle:Default:index }
