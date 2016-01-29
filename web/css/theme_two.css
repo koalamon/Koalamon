@@ -147,7 +147,7 @@ body {
     color: white;
 }
 
-#main {
+#body {
     padding-top: 20px;
     margin-left: 300px;
     margin-bottom: 50px;
@@ -172,8 +172,9 @@ body {
     font-weight: 200;
     font-size: 14px;
     clear: both;
-    width: 100%;
+    width: calc(100% - 300px);
     margin-bottom: 30px;
+    padding-left: 300px;
 }
 
 #main #breadcrumb ul {

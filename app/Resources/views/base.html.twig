@@ -67,7 +67,8 @@
 <body>
 
 <div id="sitebar">
-    <img src="/images/logo.png" width="150" style="margin-top: 30px; margin-left: 15px">
+    <a href="{{ path('koalamon_default_homepage') }}"><img src="/images/logo.png" width="150" style="margin-top: 30px; margin-left: 15px"></a>
+    {#
     {% if app.user.username is defined and app.user.hasFavoriteProjects %}
         <div class="sitebar-block">
             <h2><a href="{{ path("koalamon_user_homepage") }}">Favorites</a></h2>
@@ -84,7 +85,7 @@
             </ul>
         </div>
     {% endif %}
-
+#}
     {% if app.user.username is defined %}
         <div class="sitebar-block">
             <h2><a href="{{ path("koalamon_user_homepage") }}">Projects</a></h2>
@@ -156,9 +157,35 @@
 
 <div id="main">
 
+    <style>
+        #header-bar {
+            height: 50px;
+            padding-top: 25px;
+            border-bottom: 1px solid #ccc;
+            color: #000;
+            padding-left: 300px;
+            width: calc(100% - 340px);
+            padding-right: 40px;
+            font-weight: 200;
+        }
+
+        #header-bar #user-menu {
+            float: right;
+        }
+    </style>
+
+    <div id="header-bar">
+        <div id="user-menu">
+            {{ app.user.username }}
+            <a class="button selected" href="{{ path("fos_user_security_logout") }}">Logout</a>
+        </div>
+    </div>
+
     {% include "BauerIncidentDashboardCoreBundle:Default:partials/breadcrumb.html.twig" %}
 
-    {% block body %}{% endblock %}
+    <div id="body">
+        {% block body %}{% endblock %}
+    </div>
 </div>
 
 <!--div id="footer">
