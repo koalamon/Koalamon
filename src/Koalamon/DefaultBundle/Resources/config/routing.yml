@@ -6,16 +6,16 @@ koalamon_default_event_knownissue_unmark:
     path:     /p/knownissue/unmark/{eventIdentifier}/
     defaults: { _controller: KoalamonDefaultBundle:Event:unMarkAsKnownIssue }
 
-koalamon_default_homepage:
-    path:     /
-    defaults: { _controller: KoalamonDefaultBundle:Default:index }
-
 koalamon_default_imprint:
     path:     /we/imprint.html
     defaults: { _controller: KoalamonDefaultBundle:Default:imprint }
 
+koalamon_default_homepage:
+    path:     /
+    defaults: { _controller: KoalamonDefaultBundle:User:index }
+
 koalamon_user_homepage:
-    path:     /user/
+    path:     /
     defaults: { _controller: KoalamonDefaultBundle:User:index }
 
 koalamon_default_project_create:
@@ -51,16 +51,16 @@ koalamon_default_project_tool_delete:
 
 # collaborators
 koalamon_default_user_admin:
-    path:     /p/{project}/admin/user/
-    defaults: { _controller: KoalamonDefaultBundle:User:admin }
+    path:     /p/{project}/admin/collaborator/
+    defaults: { _controller: KoalamonDefaultBundle:Collaborator:admin }
 
 koalamon_default_user_admin_collaborator_add:
     path:     /p/{project}/admin/user/collaborator/add/
-    defaults: { _controller: KoalamonDefaultBundle:User:addCollaborator }
+    defaults: { _controller: KoalamonDefaultBundle:Collaborator:addCollaborator }
 
 koalamon_default_user_admin_collaborator_remove:
     path:     /p/{project}/admin/user/collaborator/remove/
-    defaults: { _controller: KoalamonDefaultBundle:User:removeCollaborator }
+    defaults: { _controller: KoalamonDefaultBundle:Collaborator:removeCollaborator }
 
 #systems
 koalamon_default_system_admin:

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Incident Management{% endblock %} - KOALAMON</title>
+    {% block stylesheets %}{% endblock %}
+
+    <!-- external javascript libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <!-- toastr flash messages-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+    <!-- tipso library for tooltips -->
+    <link rel="stylesheet" href="/tipso/tipso.css">
+    <script src="/tipso/tipso.js"></script>
+
+    <script src="/js/autocomplete.js"></script>
+
+    <!-- koalamon icons -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png">
+
+    <!-- koalamon css files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel='stylesheet' href='/css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='/css/mobile.css' type='text/css' media='all'/>
+
+    <link rel='stylesheet' href='/css/theme_two.css' type='text/css' media='all'/>
+
+    <!-- koalamon js files -->
+    <script src="{{ asset('bundles/koalamondefault/js/project_status.js') }}"></script>
+
+    <!-- external fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- fosuser js rounting bundle -->
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+
+    <!--Load the AJAX API. Do this only once per web page! -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+</head>
+
+<body style="background-color: #eee;">
+
+<div id="system">
+    {% include "BauerIncidentDashboardCoreBundle:Default:partials/breadcrumb.html.twig" %}
+
+    {% block body %}{% endblock %}
+</div>
+
+<!--div id="footer">
+    {% block footer %}
+        {% include '::partials/footer.html.twig' %}
+    {% endblock %}
+</div>
+<div id="footer-sub"-->
+
+</div>
+
+<script>
+    $('.tipso').tipso({
+        size: 'small'
+    });
+</script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

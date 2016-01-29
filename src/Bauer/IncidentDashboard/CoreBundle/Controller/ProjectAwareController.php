@@ -96,7 +96,9 @@ class ProjectAwareController extends Controller
     protected function redirectToRoute($route, array $parameters = array(), $status = 302)
     {
         if (!array_key_exists('project', $parameters)) {
-            $parameters['project'] = $this->project->getIdentifier();
+            if (!is_null($this->project)) {
+                $parameters['project'] = $this->project->getIdentifier();
+            }
         }
 
         return parent::redirectToRoute($route, $parameters, $status);
@@ -105,7 +107,9 @@ class ProjectAwareController extends Controller
     public function generateUrl($route, $parameters = array(), $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH)
     {
         if (!array_key_exists('project', $parameters)) {
-            $parameters['project'] = $this->project->getIdentifier();
+            if (!is_null($this->project)) {
+                $parameters['project'] = $this->project->getIdentifier();
+            }
         }
 
         return parent::generateUrl($route, $parameters, $referenceType);
