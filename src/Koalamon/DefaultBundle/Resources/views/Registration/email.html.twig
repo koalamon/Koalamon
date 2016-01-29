@@ -1,7 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% block subject %}
     {% autoescape false %}
-        Welcome to <www class="koalamon com"></www>
+        Welcome to Koalamon
     {% endautoescape %}
 {% endblock %}
 {% block body_text %}
@@ -9,6 +9,7 @@
 
         Hi {{ user.username }},
 
+        please click on the link to confirm your account:
         {{ confirmationUrl }}
 
         Have fun.

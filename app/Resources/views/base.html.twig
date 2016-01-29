@@ -20,7 +20,7 @@
     <script src="/js/autocomplete.js"></script>
 
     <!-- koalamon icons -->
-    <link rel="icon" type="image/png" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" href="/favicon-logo.png">
 
     <!-- koalamon css files -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -66,34 +66,8 @@
 
 <body>
 
-<div id="header-top">
-    <a href="{{ path("koalamon_default_homepage") }}">
-        <div class="logo">
-            <img src="http://www.phmlabs.com/slack.png" width="30">
-        </div>
-        <h1><strong>Koala</strong>Mon</h1>
-    </a>
-
-    <div id="header-user">
-        {% if app.user.username is defined %}
-            <a class="button selected" href="{{ path("fos_user_security_logout") }}">Logout</a>
-        {% else %}
-            <a class="button" href="{{ path("fos_user_security_login") }}">Login</a>
-            <a class="button selected" href="{{ path("fos_user_registration_register") }}">Sign up for FREE</a>
-        {% endif %}
-    </div>
-</div>
-<div id="header-bottom">
-    <ul>
-        <li><a href="{{ path("koalamon_default_homepage") }}">Home</a></li>
-        <li>Integrations</li>
-        <li>Help</li>
-        <li>Blog</li>
-        <li><a href="{{ path("koalamon_default_imprint") }}">Imprint</a></li>
-    </ul>
-</div>
-
 <div id="sitebar">
+    <img src="/images/logo.png" width="150" style="margin-top: 30px; margin-left: 15px">
     {% if app.user.username is defined and app.user.hasFavoriteProjects %}
         <div class="sitebar-block">
             <h2><a href="{{ path("koalamon_user_homepage") }}">Favorites</a></h2>

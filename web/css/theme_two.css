@@ -79,11 +79,10 @@ body {
     margin-right: 30px;
     background-color: #2B333E;
     width: 220px;
-    padding-left: 50px;
-    margin-top: 98px;
+    padding-left: 35px;
     z-index: 0;
     color: white;
-    height: calc(100% - 98px);
+    height: 100%;
 }
 
 #sitebar a {
@@ -149,7 +148,7 @@ body {
 }
 
 #main {
-    padding-top: 115px;
+    padding-top: 20px;
     margin-left: 300px;
     margin-bottom: 50px;
 }
