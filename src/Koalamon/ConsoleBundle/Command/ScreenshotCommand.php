@@ -47,11 +47,17 @@ class ScreenshotCommand extends ContainerAwareCommand
 
                 $imageName = time() . rand(1, 100000000) . '.png';
 
-                $command = "$timeoutCommand $phantomExec "
+                /*$command = "$timeoutCommand $phantomExec "
                     . __DIR__ . "/screenshot.js "
                     . $system->getUrl() . " "
                     . $imageDir . $imageName
                     . " 1366px*2000px";
+                */
+
+                $command = "$timeoutCommand $phantomExec "
+                    . __DIR__ . "/simpleshot.js "
+                    . $system->getUrl() . " "
+                    . $imageDir . $imageName;
 
                 $output->writeln("Creating screenshot for " . $system->getUrl());
 
@@ -75,9 +81,9 @@ class ScreenshotCommand extends ContainerAwareCommand
      */
     private function getExecutable($program)
     {
-        $command = "which ". (string) $program;
+        $command = "which " . (string)$program;
         exec($command, $commandOutput, $commandStatus);
         $commandString = reset($commandOutput);
-        return (string) $commandString;
+        return (string)$commandString;
     }
 }
