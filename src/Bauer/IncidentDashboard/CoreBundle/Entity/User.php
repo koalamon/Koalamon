@@ -151,7 +151,7 @@ class User extends FosUser implements \JsonSerializable
         $projects = array();
 
         foreach ($this->userRoles as $userRole) {
-            $projects[$userRole->getProject()->getName()] = $userRole->getProject();
+            $projects[strtolower($userRole->getProject()->getName())] = $userRole->getProject();
         }
 
         ksort($projects);
