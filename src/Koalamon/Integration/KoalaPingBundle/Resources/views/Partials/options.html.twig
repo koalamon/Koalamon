@@ -1,2 +1,2 @@
-<input type="checkbox" name="systems[{{ system.id }}][options][addTimeStamp]"
-       {% if checkedSystems[system.id] is defined and checkedSystems[system.id].options.addTimeStamp is defined %}checked=checked{% endif %}> Add timestamp to url
+<input type="checkbox" name="{{ elementName }}[addTimeStamp]"
+       {% if options.addTimeStamp is defined %}checked=checked{% endif %}> Add timestamp to url

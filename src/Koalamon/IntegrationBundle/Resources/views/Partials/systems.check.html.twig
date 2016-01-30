@@ -52,7 +52,12 @@
                 <tr style="{% if not checkedSystems[system.id] is defined %}display: none{% endif %}" id="system_options_{{ system.id }}">
                     <td></td>
                     <td>
-                        {% include optionsTemplate with { 'system': system } %}
+                        {% if not checkedSystems[system.id] is defined and not checkedSystems[system.id].options is defined %}
+                            {% set options = {} %}
+                        {% else %}
+                            {% set options = checkedSystems[system.id].options %}
+                        {% endif %}
+                        {% include optionsTemplate with { 'system': system, 'options': options, 'elementName': 'systems[' ~ system.id ~ '][options]' } %}
                     </td>
                 </tr>
             {% endif %}
@@ -74,7 +79,12 @@
                     <tr style="{% if not checkedSystems[subsystem.id] is defined %}display: none{% endif %}" id="system_options_{{ subsystem.id }}">
                         <td></td>
                         <td>
-                            {% include optionsTemplate with {'system':subsystem} %}
+                            {% if not checkedSystems[subsystem.id] is defined and not checkedSystems[subsystem.id].options is defined %}
+                                {% set options = {} %}
+                            {% else %}
+                                {% set options = checkedSystems[subsystem.id].options %}
+                            {% endif %}
+                            {% include optionsTemplate with { 'system': subsystem, 'options': options, 'elementName': 'systems[' ~ subsystem.id ~ '][options]' } %}
                         </td>
                     </tr>
                 {% endif %}
