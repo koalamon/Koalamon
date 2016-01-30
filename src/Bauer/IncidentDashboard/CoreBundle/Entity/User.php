@@ -143,7 +143,6 @@ class User extends FosUser implements \JsonSerializable
     }
 
 
-
     /**
      * @return mixed
      */
@@ -171,7 +170,7 @@ class User extends FosUser implements \JsonSerializable
 
         foreach ($this->userRoles as $userRole) {
             if ($userRole->isFavorite()) {
-                $projects[$userRole->getProject()->getName()] = $userRole->getProject();
+                $projects[strtolower($userRole->getProject()->getName())] = $userRole->getProject();
             }
         }
         ksort($projects);
