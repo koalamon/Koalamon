@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new Koalamon\Integration\KoalaPingBundle\KoalamonIntegrationKoalaPingBundle(),
             new Koalamon\Integration\WebhookBundle\KoalamonIntegrationWebhookBundle(),
             new Koalamon\Integration\MissingRequestBundle\KoalamonIntegrationMissingRequestBundle(),
+            new Koalamon\Integration\GooglePageSpeedBundle\KoalamonIntegrationGooglePageSpeedBundle(),
             new Koalamon\Integration\JsErrorScannerBundle\KoalamonIntegrationJsErrorScannerBundle(),
             new Koalamon\GeckoBoardBundle\KoalamonGeckoBoardBundle(),
         );

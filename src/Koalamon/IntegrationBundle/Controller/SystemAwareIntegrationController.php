@@ -78,10 +78,14 @@ abstract class SystemAwareIntegrationController extends ProjectAwareController
 
         $config->setStatus($status);
 
-        if ($request->get('saas') == 'true') {
-            $config->setUseSaaS(true);
-        } else {
+        if ($request->get('saas') == 'false') {
             $config->setUseSaaS(false);
+        } else {
+            $config->setUseSaaS(true);
+        }
+
+        if ($request->get('options')) {
+            $config->setOptions($request->get('options'));
         }
 
         $em->persist($config);
@@ -138,7 +142,7 @@ abstract class SystemAwareIntegrationController extends ProjectAwareController
         foreach ($configs as $config) {
             $systems = $config->getProject()->getSystems();
             foreach ($systems->toArray() as $system) {
-                $activeSystems[] = ['system' => $system];
+                $activeSystems[] = ['system' => $system, 'options' => $config->getOptions()];
             }
         }
 
@@ -175,7 +179,7 @@ abstract class SystemAwareIntegrationController extends ProjectAwareController
         foreach ($configs as $config) {
             $systems = $config->getProject()->getSystems();
             foreach ($systems->toArray() as $system) {
-                $activeSystems[] = ['system' => $system];
+                $activeSystems[] = ['system' => $system, 'options' => $config->getOptions()];
             }
         }
 

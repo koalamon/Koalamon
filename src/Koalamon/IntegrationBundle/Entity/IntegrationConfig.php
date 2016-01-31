@@ -49,6 +49,12 @@ class IntegrationConfig
     private $useSaaS = true;
 
     /**
+     * @var string
+     * @ORM\Column(name="options", type="text", nullable=true)
+     */
+    private $options;
+
+    /**
      * @return Project
      */
     public function getProject()
@@ -110,5 +116,21 @@ class IntegrationConfig
     public function setUseSaaS($useSaaS)
     {
         $this->useSaaS = $useSaaS;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return unserialize($this->options);
+    }
+
+    /**
+     * @param array $options
+     */
+    public function setOptions(array $options)
+    {
+        $this->options = serialize($options);
     }
 }

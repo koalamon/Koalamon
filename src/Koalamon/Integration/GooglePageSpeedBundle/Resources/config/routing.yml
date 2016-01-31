@@ -1,0 +1,11 @@
+koalamon_integration_google_page_speed_homepage:
+    path:     /p/{project}/integrations/googlepagespeed/
+    defaults: { _controller: KoalamonIntegrationGooglePageSpeedBundle:Default:index }
+
+koalamon_integration_google_page_speed_store:
+    path:     /p/{project}/integrations/googlepagespeed/store/
+    defaults: { _controller: KoalamonIntegrationGooglePageSpeedBundle:Default:store }
+
+koalamon_integration_google_page_speed_rest:
+    path:     /p/integrations/googlepagespeed/rest/
+    defaults: { _controller: KoalamonIntegrationGooglePageSpeedBundle:Default:restGetSystems }
