@@ -1,3 +1,0 @@
-koalamon_plugin_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: KoalamonPluginBundle:Default:index }
