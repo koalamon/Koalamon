@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new Koalamon\Integration\GooglePageSpeedBundle\KoalamonIntegrationGooglePageSpeedBundle(),
             new Koalamon\Integration\JsErrorScannerBundle\KoalamonIntegrationJsErrorScannerBundle(),
             new Koalamon\GeckoBoardBundle\KoalamonGeckoBoardBundle(),
+            new Koalamon\Integration\SiteInfoBundle\KoalamonIntegrationSiteInfoBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

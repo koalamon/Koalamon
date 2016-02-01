@@ -22,6 +22,10 @@ koalamon_integration_google_page_speed:
     resource: "@KoalamonIntegrationGooglePageSpeedBundle/Resources/config/routing.yml"
     prefix:   /
 
+koalamon_integration_site_info:
+    resource: "@KoalamonIntegrationSiteInfoBundle/Resources/config/routing.yml"
+    prefix:   /
+
 
 koalamon_plugin:
     resource: "@KoalamonPluginBundle/Resources/config/routing.yml"
