@@ -37,9 +37,9 @@ class IntegrationListener
         $url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'appDynamics']);
         $integrationContainer->addIntegration(new Integration('AppDynamics', '/images/integrations/appdynamics.png', 'The next generation of Application Intelligence has arrived', $url));
 
-        /*$url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'jira']);
-        $integrationContainer->addIntegration(new Integration('Jira', '', 'Tool for Pinging your systems', $url));
-
+        $url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'jira']);
+        $integrationContainer->addIntegration(new Integration('Jira', '/images/integrations/jira-logo-01.png', 'Your favourite issue tracker.', $url));
+        /*
         $url = $this->router->generate('koalamon_integration_webhook', ['project' => $event->getProject()->getIdentifier(), 'hookName' => 'jenkins']);
         $integrationContainer->addIntegration(new Integration('Jenkins', '', 'Tool for Pinging your systems', $url));
 
