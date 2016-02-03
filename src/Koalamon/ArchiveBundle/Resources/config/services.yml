@@ -1,4 +1,0 @@
-services:
-#    koalamon_archive.example:
-#        class: Koalamon\ArchiveBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

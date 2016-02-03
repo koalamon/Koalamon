@@ -1,3 +1,7 @@
+koalamon_core:
+    resource: "@KoalamonIncidentDashboardBundle/Resources/config/routing.yml"
+    prefix:   /
+
 koalamon_gecko_board:
     resource: "@KoalamonGeckoBoardBundle/Resources/config/routing.yml"
     prefix:   /
@@ -39,10 +43,6 @@ koalamon_information:
     resource: "@KoalamonInformationBundle/Resources/config/routing.yml"
     prefix:   /
 
-koalamon_archive:
-    resource: "@KoalamonArchiveBundle/Resources/config/routing.yml"
-    prefix:   /
-
 koalamon_notification:
     resource: "@KoalamonNotificationBundle/Resources/config/routing.yml"
     prefix:   /
@@ -61,10 +61,6 @@ koalamon_stat:
 
 koalamon_webhook:
     resource: "@KoalamonWebhookBundle/Resources/config/routing.yml"
-    prefix:   /
-
-bauer_incident_dashboard_core:
-    resource: "@BauerIncidentDashboardCoreBundle/Resources/config/routing.yml"
     prefix:   /
 
 # HWIOAuthBundle
