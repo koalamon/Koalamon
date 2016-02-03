@@ -87,7 +87,7 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: secure_area
-    user_class: "Bauer\IncidentDashboard\CoreBundle\Entity\User"
+    user_class: "Koalamon\Bundle\IncidentDashboardBundle\Entity\User"
 
     registration:
         confirmation:
