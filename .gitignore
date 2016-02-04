@@ -9,6 +9,7 @@ app/logs
 app/data
 
 htdocs
+html
 
 composer.lock
 
