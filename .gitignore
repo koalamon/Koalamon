@@ -36,6 +36,12 @@ app/config/parameters.yml
 app/config/community.yml
 
 htdocs
+html
+
+composer.lock
+
+web/images/screenshots/
+web/bundles
 build/
 vendor
 composer.phar
