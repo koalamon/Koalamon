@@ -1,8 +1,12 @@
 {% extends 'KoalamonDefaultBundle:Default:master/admin.html.twig' %}
 
 {% block admin %}
-<h1>Jira</h1>
+    <h1>Jira</h1>
 
-    
+    <div id="integration">
+        <div class="code">
+            {{ url('koalamon_webhook_format', {'format': 'jira'}) }}?api_key={{ project.apiKey }}
+        </div>
+    </div>
 
 {% endblock %}
