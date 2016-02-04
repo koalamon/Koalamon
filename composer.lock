@@ -1315,12 +1315,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koalamon/KoalamomPlatform.git",
-                "reference": "985b7951e842bdfe3f4caada1cf7f9db2164fca1"
+                "reference": "c79e93c738727f9c7dda93e74c3f705d052c5793"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koalamon/KoalamomPlatform/zipball/985b7951e842bdfe3f4caada1cf7f9db2164fca1",
-                "reference": "985b7951e842bdfe3f4caada1cf7f9db2164fca1",
+                "url": "https://api.github.com/repos/koalamon/KoalamomPlatform/zipball/c79e93c738727f9c7dda93e74c3f705d052c5793",
+                "reference": "c79e93c738727f9c7dda93e74c3f705d052c5793",
                 "shasum": ""
             },
             "require": {
@@ -1359,7 +1359,7 @@
                 "source": "https://github.com/koalamon/KoalamomPlatform/tree/master",
                 "issues": "https://github.com/koalamon/KoalamomPlatform/issues"
             },
-            "time": "2016-02-03 20:52:37"
+            "time": "2016-02-03 22:03:34"
         },
         {
             "name": "koalamon/notificationbundle",
@@ -1367,12 +1367,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koalamon/KoalamonNotificationBundle.git",
-                "reference": "5c3f1415f1e0fc6c16b2f610c93b512577bf7e7f"
+                "reference": "d1b4009d8b66a6403ae77202eafb0abc448dd584"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koalamon/KoalamonNotificationBundle/zipball/5c3f1415f1e0fc6c16b2f610c93b512577bf7e7f",
-                "reference": "5c3f1415f1e0fc6c16b2f610c93b512577bf7e7f",
+                "url": "https://api.github.com/repos/koalamon/KoalamonNotificationBundle/zipball/d1b4009d8b66a6403ae77202eafb0abc448dd584",
+                "reference": "d1b4009d8b66a6403ae77202eafb0abc448dd584",
                 "shasum": ""
             },
             "type": "library",
@@ -1383,7 +1383,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "implements notifications for koalamon",
-            "time": "2016-01-29 10:37:55"
+            "time": "2016-02-03 21:53:40"
         },
         {
             "name": "kriswallsmith/assetic",
