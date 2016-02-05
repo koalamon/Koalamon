@@ -2,8 +2,8 @@
 
 namespace Koalamon\Integration\SiteInfoBundle\Controller;
 
-use Bauer\IncidentDashboard\CoreBundle\Entity\UserRole;
-use Koalamon\IntegrationBundle\Controller\SystemAwareIntegrationController;
+use Koalamon\Bundle\IncidentDashboardBundle\Entity\UserRole;
+use Koalamon\Bundle\IntegrationBundle\Controller\SystemAwareIntegrationController;
 
 class DefaultController extends SystemAwareIntegrationController
 {

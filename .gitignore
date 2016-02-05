@@ -1,16 +1,54 @@
-.idea
-vendor/
+######################
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
 
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+######################
+
+web/bundles/*
+web/media/*
+web/css/*
+web/js/*
+web/app_local.php
+web/images/screenshots
+
+app/AppKernel_local.php
+app/archive/*
+app/cache/*
+app/data
+app/check.php
+app/logs/*
+app/bootstrap.php.cache
+app/phpunit.xml
+app/SymfonyRequirements.php
 app/config/parameters.yml
 app/config/community.yml
 
-app/cache
-app/logs
-app/data
-
 htdocs
+html
 
 composer.lock
 
 web/images/screenshots/
 web/bundles
+build/
+vendor
+composer.phar
+/bin/*
+!bin/*.sh
+.idea
+.env
+*.iml
+phpunit.xml
+app/var/sessions

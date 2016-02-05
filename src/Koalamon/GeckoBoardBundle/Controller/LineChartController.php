@@ -2,15 +2,17 @@
 
 namespace Koalamon\GeckoBoardBundle\Controller;
 
-use Bauer\IncidentDashboard\CoreBundle\Controller\ProjectAwareController;
-use Bauer\IncidentDashboard\CoreBundle\Entity\EventIdentifier;
+use Koalamon\Bundle\IncidentDashboardBundle\Controller\ProjectAwareController;
+use Koalamon\Bundle\IncidentDashboardBundle\Entity\EventIdentifier;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+
 
 class LineChartController extends ProjectAwareController
 {
     public function renderAction(Request $request, EventIdentifier $eventIdentifier)
     {
+
         if ($request->get('interval')) {
             $intervalType = $request->get('interval');
         } else {
@@ -28,7 +30,6 @@ class LineChartController extends ProjectAwareController
         } else {
             $labelInterval = 1;
         }
-
 
         switch ($intervalType) {
             case 'd':
@@ -58,6 +59,7 @@ class LineChartController extends ProjectAwareController
         $datas = [];
 
         $i = 0;
+
         foreach ($rows as $row) {
             if ($i % $labelInterval == 0) {
                 $chart->x_axis['labels'][] = strtolower($row['timespan']);
@@ -69,10 +71,8 @@ class LineChartController extends ProjectAwareController
         }
 
         $chart->series = [['data' => $datas]];
-
         $response = new JsonResponse($chart);
         $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT);
-
         return $response;
     }
 }

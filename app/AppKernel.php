@@ -21,25 +21,26 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
             // Custom Bundles
-            new Bauer\IncidentDashboard\CoreBundle\BauerIncidentDashboardCoreBundle(),
+            new Koalamon\Bundle\IncidentDashboardBundle\KoalamonIncidentDashboardBundle(),
 
-            new Koalamon\StatBundle\KoalamonStatBundle(),
-            new Koalamon\DefaultBundle\KoalamonDefaultBundle(),
-            new Koalamon\WebhookBundle\KoalamonWebhookBundle(),
-            new Koalamon\ConsoleBundle\KoalamonConsoleBundle(),
-            new Koalamon\RestBundle\KoalamonRestBundle(),
+            new Koalamon\Bundle\StatBundle\KoalamonStatBundle(),
+            new Koalamon\Bundle\DefaultBundle\KoalamonDefaultBundle(),
+            new Koalamon\Bundle\WebhookBundle\KoalamonWebhookBundle(),
+            new Koalamon\Bundle\ConsoleBundle\KoalamonConsoleBundle(),
+            new Koalamon\Bundle\RestBundle\KoalamonRestBundle(),
             new Koalamon\NotificationBundle\KoalamonNotificationBundle(),
-            new Koalamon\ArchiveBundle\KoalamonArchiveBundle(),
-            new Koalamon\InformationBundle\KoalamonInformationBundle(),
-            new Koalamon\IntegrationBundle\KoalamonIntegrationBundle(),
-            new Koalamon\PluginBundle\KoalamonPluginBundle(),
-            new Koalamon\Integration\KoalaPingBundle\KoalamonIntegrationKoalaPingBundle(),
-            new Koalamon\Integration\WebhookBundle\KoalamonIntegrationWebhookBundle(),
-            new Koalamon\Integration\MissingRequestBundle\KoalamonIntegrationMissingRequestBundle(),
-            new Koalamon\Integration\GooglePageSpeedBundle\KoalamonIntegrationGooglePageSpeedBundle(),
-            new Koalamon\Integration\JsErrorScannerBundle\KoalamonIntegrationJsErrorScannerBundle(),
-            new Koalamon\GeckoBoardBundle\KoalamonGeckoBoardBundle(),
-            new Koalamon\Integration\SiteInfoBundle\KoalamonIntegrationSiteInfoBundle()
+
+            new Koalamon\Bundle\InformationBundle\KoalamonInformationBundle(),
+            new Koalamon\Bundle\IntegrationBundle\KoalamonIntegrationBundle(),
+            new Koalamon\Bundle\PluginBundle\KoalamonPluginBundle(),
+            new Koalamon\Bundle\Integration\KoalaPingBundle\KoalamonIntegrationKoalaPingBundle(),
+            new Koalamon\Bundle\Integration\WebhookBundle\KoalamonIntegrationWebhookBundle(),
+            new Koalamon\Bundle\Integration\MissingRequestBundle\KoalamonIntegrationMissingRequestBundle(),
+            new Koalamon\Bundle\Integration\GooglePageSpeedBundle\KoalamonIntegrationGooglePageSpeedBundle(),
+            new Koalamon\Bundle\Integration\JsErrorScannerBundle\KoalamonIntegrationJsErrorScannerBundle(),
+            new Koalamon\Bundle\GeckoBoardBundle\KoalamonGeckoBoardBundle(),
+            new Koalamon\Integration\SiteInfoBundle\KoalamonIntegrationSiteInfoBundle(),
+            new Koalamon\Bundle\Integration\SmokeBundle\KoalamonIntegrationSmokeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
