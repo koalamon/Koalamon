@@ -1,7 +1,0 @@
-services:
-
-    koalamonintegration.SiteInfoBundle.init:
-        class: Koalamon\Integration\SiteInfoBundle\EventListener\IntegrationListener
-        arguments: [ @service_container ]
-        tags:
-            - { name: 'kernel.event_listener', event: 'koalamon.integration.init', method: onInit }
