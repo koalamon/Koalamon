@@ -2,8 +2,8 @@
 
 namespace Koalamon\GeckoBoardBundle\Controller;
 
-use Bauer\IncidentDashboard\CoreBundle\Controller\ProjectAwareController;
-use Bauer\IncidentDashboard\CoreBundle\Entity\EventIdentifier;
+use Koalamon\Bundle\IncidentDashboardBundle\Controller\ProjectAwareController;
+use Koalamon\Bundle\IncidentDashboardBundle\Entity\EventIdentifier;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 

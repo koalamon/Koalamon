@@ -45,4 +45,3 @@ class ComparisonChartController extends ProjectAwareController
         return $response;
     }
 }
-
