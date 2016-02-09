@@ -2,8 +2,8 @@
 
 namespace Koalamon\GeckoBoardBundle\EventListener;
 
-use Koalamon\DefaultBundle\EventListener\AdminMenuEvent;
-use Koalamon\DefaultBundle\Menu\Element;
+use Koalamon\Bundle\DefaultBundle\EventListener\AdminMenuEvent;
+use Koalamon\Bundle\DefaultBundle\Menu\Element;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class PluginListener

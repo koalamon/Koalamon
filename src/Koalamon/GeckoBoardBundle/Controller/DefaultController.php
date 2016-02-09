@@ -2,7 +2,7 @@
 
 namespace Koalamon\GeckoBoardBundle\Controller;
 
-use Bauer\IncidentDashboard\CoreBundle\Controller\ProjectAwareController;
+use Koalamon\Bundle\IncidentDashboardBundle\Controller\ProjectAwareController;
 
 class DefaultController extends ProjectAwareController
 {

@@ -6,6 +6,10 @@ koalamon_gecko_board_linechart:
     path:     /geckoboard/linechart/{eventIdentifier}/
     defaults: { _controller: KoalamonGeckoBoardBundle:LineChart:render }
 
-koalamon_gecko_board_number:
-    path:     /geckoboard/numberchart/{eventIdentifier}/
-    defaults: { _controller: KoalamonGeckoBoardBundle:NumberChart:render }
+koalamon_gecko_board_compare:
+    path:     /geckoboard/comparison/{eventIdentifier}/
+    defaults: { _controller: KoalamonGeckoBoardBundle:ComparisonChart:render }
+
+koalamon_gecko_board_trendline:
+    path:     /geckoboard/trendline/{eventIdentifier}/
+    defaults: { _controller: KoalamonGeckoBoardBundle:TrendlineChart:render }
