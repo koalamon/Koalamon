@@ -41,6 +41,7 @@ class AppKernel extends Kernel
             new Koalamon\Bundle\GeckoBoardBundle\KoalamonGeckoBoardBundle(),
             new Koalamon\Integration\SiteInfoBundle\KoalamonIntegrationSiteInfoBundle(),
             new Koalamon\Bundle\Integration\SmokeBundle\KoalamonIntegrationSmokeBundle(),
+            new Koalamon\Bundle\Integration\SmokeBasicBundle\KoalamonIntegrationSmokeBasicBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
