@@ -26,6 +26,10 @@ koalamon_integration_smoke:
     resource: "@KoalamonIntegrationSmokeBundle/Resources/config/routing.yml"
     prefix:   /
 
+koalamon_integration_smoke_basic:
+    resource: "@KoalamonIntegrationSmokeBasicBundle/Resources/config/routing.yml"
+    prefix:   /
+
 koalamon_integration_google_page_speed:
     resource: "@KoalamonIntegrationGooglePageSpeedBundle/Resources/config/routing.yml"
     prefix:   /
