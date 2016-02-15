@@ -28,7 +28,7 @@ class AppKernel extends Kernel
             new Koalamon\Bundle\WebhookBundle\KoalamonWebhookBundle(),
             new Koalamon\Bundle\ConsoleBundle\KoalamonConsoleBundle(),
             new Koalamon\Bundle\RestBundle\KoalamonRestBundle(),
-            new Koalamon\NotificationBundle\KoalamonNotificationBundle(),
+            // new Koalamon\NotificationBundle\KoalamonNotificationBundle(),
 
             new Koalamon\Bundle\InformationBundle\KoalamonInformationBundle(),
             new Koalamon\Bundle\IntegrationBundle\KoalamonIntegrationBundle(),
@@ -39,8 +39,10 @@ class AppKernel extends Kernel
             new Koalamon\Bundle\Integration\GooglePageSpeedBundle\KoalamonIntegrationGooglePageSpeedBundle(),
             new Koalamon\Bundle\Integration\JsErrorScannerBundle\KoalamonIntegrationJsErrorScannerBundle(),
             new Koalamon\Bundle\GeckoBoardBundle\KoalamonGeckoBoardBundle(),
-            new Koalamon\Integration\SiteInfoBundle\KoalamonIntegrationSiteInfoBundle(),
+            new Koalamon\Bundle\Integration\SiteInfoBundle\KoalamonIntegrationSiteInfoBundle(),
             new Koalamon\Bundle\Integration\SmokeBundle\KoalamonIntegrationSmokeBundle(),
+            new Koalamon\Bundle\Integration\SmokeBasicBundle\KoalamonIntegrationSmokeBasicBundle(),
+            new \Koalamon\NotificationBundle\KoalamonNotificationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
