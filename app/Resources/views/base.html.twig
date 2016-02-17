@@ -110,7 +110,7 @@
                                 </li>
                                 <li><a href="{{ path("bauer_incident_dashboard_core_systems", {"project": project.identifier} ) }}">Systems</a>
 
-                                    <div class="counter">{{ project.systems|length }}</div>
+                                    <div class="counter">{{ project.mainSystems|length }}</div>
                                 </li>
                                 <li><a href="{{ path("bauer_incident_dashboard_core_tools", {"project": project.identifier} ) }}">Tools</a>
 
@@ -141,7 +141,7 @@
                             </li>
                             <li><a href="{{ path("bauer_incident_dashboard_core_systems", {"project": project.identifier} ) }}">Systems</a>
 
-                                <div class="counter">{{ project.systems|length }}</div>
+                                <div class="counter">{{ project.mainSystems|length }}</div>
                             </li>
                             <li><a href="{{ path("bauer_incident_dashboard_core_tools", {"project": project.identifier} ) }}">Tools</a>
 
