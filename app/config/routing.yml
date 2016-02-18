@@ -1,3 +1,7 @@
+koalamon_screenshot:
+    resource: "@KoalamonScreenshotBundle/Resources/config/routing.yml"
+    prefix:   /
+
 koalamon_core:
     resource: "@KoalamonIncidentDashboardBundle/Resources/config/routing.yml"
     prefix:   /
