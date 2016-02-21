@@ -19,31 +19,6 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-
-            // Custom Bundles
-            new Koalamon\Bundle\IncidentDashboardBundle\KoalamonIncidentDashboardBundle(),
-
-            new Koalamon\Bundle\StatBundle\KoalamonStatBundle(),
-            new Koalamon\Bundle\DefaultBundle\KoalamonDefaultBundle(),
-            new Koalamon\Bundle\WebhookBundle\KoalamonWebhookBundle(),
-            new Koalamon\Bundle\ConsoleBundle\KoalamonConsoleBundle(),
-            new Koalamon\Bundle\RestBundle\KoalamonRestBundle(),
-            // new Koalamon\NotificationBundle\KoalamonNotificationBundle(),
-
-            new Koalamon\Bundle\InformationBundle\KoalamonInformationBundle(),
-            new Koalamon\Bundle\IntegrationBundle\KoalamonIntegrationBundle(),
-            new Koalamon\Bundle\PluginBundle\KoalamonPluginBundle(),
-            new Koalamon\Bundle\Integration\KoalaPingBundle\KoalamonIntegrationKoalaPingBundle(),
-            new Koalamon\Bundle\Integration\WebhookBundle\KoalamonIntegrationWebhookBundle(),
-            new Koalamon\Bundle\Integration\MissingRequestBundle\KoalamonIntegrationMissingRequestBundle(),
-            new Koalamon\Bundle\Integration\GooglePageSpeedBundle\KoalamonIntegrationGooglePageSpeedBundle(),
-            new Koalamon\Bundle\Integration\JsErrorScannerBundle\KoalamonIntegrationJsErrorScannerBundle(),
-            new Koalamon\Bundle\GeckoBoardBundle\KoalamonGeckoBoardBundle(),
-            new Koalamon\Bundle\Integration\SiteInfoBundle\KoalamonIntegrationSiteInfoBundle(),
-            new Koalamon\Bundle\Integration\SmokeBundle\KoalamonIntegrationSmokeBundle(),
-            new Koalamon\Bundle\Integration\SmokeBasicBundle\KoalamonIntegrationSmokeBasicBundle(),
-            new \Koalamon\NotificationBundle\KoalamonNotificationBundle(),
-            new Koalamon\Bundle\ScreenshotBundle\KoalamonScreenshotBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -53,6 +28,13 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
+
+        // koalamon platform
+        $bundles = array_merge($bundles, Koalamon\BundleKernel::registerBundles($this->getEnvironment()));
+
+        // leanKoala platform
+        // $bundles = array_merge($bundles, LeanKoala\BundleKernel::registerBundles($this->getEnvironment()));
+
         return $bundles;
     }
 

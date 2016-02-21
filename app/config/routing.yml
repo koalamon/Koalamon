@@ -1,78 +1,9 @@
-koalamon_screenshot:
-    resource: "@KoalamonScreenshotBundle/Resources/config/routing.yml"
-    prefix:   /
+#lean_koala_core:
+#    resource: "@LeanKoalaCoreBundle/Resources/config/routing.yml"
+#    prefix:   /
 
 koalamon_core:
-    resource: "@KoalamonIncidentDashboardBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_gecko_board:
-    resource: "@KoalamonGeckoBoardBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_integration_js_error_scanner:
-    resource: "@KoalamonIntegrationJsErrorScannerBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_integration_missing_request:
-    resource: "@KoalamonIntegrationMissingRequestBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_integration_webhook:
-    resource: "@KoalamonIntegrationWebhookBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_integration_koala_ping:
-    resource: "@KoalamonIntegrationKoalaPingBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_integration_smoke:
-    resource: "@KoalamonIntegrationSmokeBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_integration_smoke_basic:
-    resource: "@KoalamonIntegrationSmokeBasicBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_integration_google_page_speed:
-    resource: "@KoalamonIntegrationGooglePageSpeedBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_integration_site_info:
-    resource: "@KoalamonIntegrationSiteInfoBundle/Resources/config/routing.yml"
-    prefix:   /
-
-
-koalamon_plugin:
-    resource: "@KoalamonPluginBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_integration:
-    resource: "@KoalamonIntegrationBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_information:
-    resource: "@KoalamonInformationBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_notification:
-    resource: "@KoalamonNotificationBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_default:
-    resource: "@KoalamonDefaultBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_rest:
-    resource: "@KoalamonRestBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_stat:
-    resource: "@KoalamonStatBundle/Resources/config/routing.yml"
-    prefix:   /
-
-koalamon_webhook:
-    resource: "@KoalamonWebhookBundle/Resources/config/routing.yml"
+    resource: "@KoalamonCoreBundle/Resources/config/routing.yml"
     prefix:   /
 
 # HWIOAuthBundle

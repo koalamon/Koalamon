@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "326d31e6222a7ea50bef7bad4cea27ab",
-    "content-hash": "14cdfbfe47f4fd5b921ef4add12fd153",
+    "hash": "d08dfa5924bf03d4524f04d9f98e6089",
+    "content-hash": "94bc8cbec85bd09b438b1e0148b7b9ed",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -357,16 +357,16 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "c4ffef2b2296e9d0179eb0b5248e5ae25c9bba3b"
+                "reference": "e9c2ccf573b59b7cea566390f34254fed3c20ed9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/c4ffef2b2296e9d0179eb0b5248e5ae25c9bba3b",
-                "reference": "c4ffef2b2296e9d0179eb0b5248e5ae25c9bba3b",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/e9c2ccf573b59b7cea566390f34254fed3c20ed9",
+                "reference": "e9c2ccf573b59b7cea566390f34254fed3c20ed9",
                 "shasum": ""
             },
             "require": {
@@ -382,6 +382,7 @@
                 "doctrine/orm": "~2.3",
                 "phpunit/phpunit": "~4",
                 "satooshi/php-coveralls": "~0.6.1",
+                "symfony/phpunit-bridge": "~2.7|~3.0",
                 "symfony/validator": "~2.2|~3.0",
                 "symfony/yaml": "~2.2|~3.0",
                 "twig/twig": "~1.10"
@@ -431,7 +432,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2015-11-16 17:11:46"
+            "time": "2016-01-10 17:21:44"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -774,27 +775,27 @@
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
-            "version": "1.5.4",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git",
-                "reference": "539a6ac0c1fb6b010f92a1c877426a4caa5abba1"
+                "reference": "2f52d924692647db02bbcb27c159fef03bf000c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/539a6ac0c1fb6b010f92a1c877426a4caa5abba1",
-                "reference": "539a6ac0c1fb6b010f92a1c877426a4caa5abba1",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/2f52d924692647db02bbcb27c159fef03bf000c9",
+                "reference": "2f52d924692647db02bbcb27c159fef03bf000c9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/console": "~2.0",
-                "symfony/framework-bundle": "~2.0",
-                "symfony/serializer": "~2.0",
+                "symfony/console": "~2.0|3.*",
+                "symfony/framework-bundle": "~2.0|3.*",
+                "symfony/serializer": "~2.0|3.*",
                 "willdurand/jsonp-callback-validator": "~1.0"
             },
             "require-dev": {
-                "symfony/expression-language": "~2.4"
+                "symfony/expression-language": "~2.4|3.*"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -828,7 +829,7 @@
                 "javascript",
                 "routing"
             ],
-            "time": "2015-01-23 02:44:26"
+            "time": "2015-10-28 15:08:39"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1012,16 +1013,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "f5d04bdd2881ac89abde1fb78cc234bce24327bb"
+                "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5d04bdd2881ac89abde1fb78cc234bce24327bb",
-                "reference": "f5d04bdd2881ac89abde1fb78cc234bce24327bb",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/2e89629ff057ebb49492ba08e6995d3a6a80021b",
+                "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b",
                 "shasum": ""
             },
             "require": {
@@ -1066,7 +1067,7 @@
                 "stream",
                 "uri"
             ],
-            "time": "2016-01-23 01:23:02"
+            "time": "2016-02-18 21:54:00"
         },
         {
             "name": "hwi/oauth-bundle",
@@ -1315,12 +1316,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koalamon/KoalamomPlatform.git",
-                "reference": "c79e93c738727f9c7dda93e74c3f705d052c5793"
+                "reference": "6de2d5957f68abc3786142d9bf712c3ff00f9c82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koalamon/KoalamomPlatform/zipball/c79e93c738727f9c7dda93e74c3f705d052c5793",
-                "reference": "c79e93c738727f9c7dda93e74c3f705d052c5793",
+                "url": "https://api.github.com/repos/koalamon/KoalamomPlatform/zipball/6de2d5957f68abc3786142d9bf712c3ff00f9c82",
+                "reference": "6de2d5957f68abc3786142d9bf712c3ff00f9c82",
                 "shasum": ""
             },
             "require": {
@@ -1350,8 +1351,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Koalamon\\Bundle\\": "src/Koalamon/Bundle",
-                    "Koalamon\\Component\\": "src/Koalamon/Component"
+                    "Koalamon\\": "src/Koalamon/"
                 }
             },
             "description": "The foundation of the koalamon platform",
@@ -1359,7 +1359,55 @@
                 "source": "https://github.com/koalamon/KoalamomPlatform/tree/master",
                 "issues": "https://github.com/koalamon/KoalamomPlatform/issues"
             },
-            "time": "2016-02-03 22:03:34"
+            "time": "2016-02-21 10:53:40"
+        },
+        {
+            "name": "koalamon/leankoalaplatform",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/koalamon/LeanKoalaPlatform.git",
+                "reference": "2e3f524a8c7ccb5f97b2ea33ae9b9da928b94dc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/koalamon/LeanKoalaPlatform/zipball/2e3f524a8c7ccb5f97b2ea33ae9b9da928b94dc1",
+                "reference": "2e3f524a8c7ccb5f97b2ea33ae9b9da928b94dc1",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "~1.4",
+                "doctrine/orm": "^2.4.8",
+                "friendsofsymfony/jsrouting-bundle": "~1.5",
+                "friendsofsymfony/user-bundle": "~2.0@dev",
+                "hwi/oauth-bundle": "0.4.*@dev",
+                "incenteev/composer-parameter-handler": "~2.0",
+                "maknz/slack": "~1.7.0",
+                "php": ">= 5.5.0",
+                "sensio/distribution-bundle": "~4.0",
+                "sensio/framework-extra-bundle": "^3.0.2",
+                "symfony/assetic-bundle": "~2.3",
+                "symfony/monolog-bundle": "~2.4",
+                "symfony/swiftmailer-bundle": "~2.3",
+                "symfony/symfony": "2.7.*",
+                "twig/extensions": "~1.3.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-fixtures-bundle": "^2.3",
+                "heroku/heroku-buildpack-php": "*",
+                "kriswallsmith/buzz": ">=0.5",
+                "phpunit/phpunit": "~4.0",
+                "sensio/generator-bundle": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LeanKoala\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "The foundation of the lean koala platform",
+            "time": "2016-02-21 10:52:02"
         },
         {
             "name": "koalamon/notificationbundle",
@@ -1638,16 +1686,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "1.1.6",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "e6f80ab77885151908d0ec743689ca700886e8b0"
+                "reference": "b0e69d10852716b2ccbdff69c75c477637220790"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/e6f80ab77885151908d0ec743689ca700886e8b0",
-                "reference": "e6f80ab77885151908d0ec743689ca700886e8b0",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/b0e69d10852716b2ccbdff69c75c477637220790",
+                "reference": "b0e69d10852716b2ccbdff69c75c477637220790",
                 "shasum": ""
             },
             "require": {
@@ -1682,7 +1730,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-01-29 16:19:52"
+            "time": "2016-02-06 03:52:05"
         },
         {
             "name": "psr/http-message",
@@ -1773,17 +1821,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v4.0.4",
+            "version": "v4.0.5",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "cc0c9478da84f051da4465cf3a67f537ae758b13"
+                "reference": "c89375c9d95fc5afaeb99e7a49b428b6e3beb9d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/cc0c9478da84f051da4465cf3a67f537ae758b13",
-                "reference": "cc0c9478da84f051da4465cf3a67f537ae758b13",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/c89375c9d95fc5afaeb99e7a49b428b6e3beb9d3",
+                "reference": "c89375c9d95fc5afaeb99e7a49b428b6e3beb9d3",
                 "shasum": ""
             },
             "require": {
@@ -1829,7 +1877,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-11-26 18:10:31"
+            "time": "2016-02-12 16:21:25"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2616,7 +2664,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "koalamon/notificationbundle": 20,
-        "koalamon/koalamonplatform": 20
+        "koalamon/koalamonplatform": 20,
+        "koalamon/leankoalaplatform": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
