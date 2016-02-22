@@ -19,7 +19,6 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new KoalamonIntegration\CoreBundle\KoalamonIntegrationCoreBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
