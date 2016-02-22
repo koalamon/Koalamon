@@ -37,7 +37,7 @@ class AppKernel extends Kernel
         $bundles = array_merge($bundles, KoalamonIntegration\BundleKernel::registerBundles($this->getEnvironment()));
 
         // leanKoala platform
-        // $bundles = array_merge($bundles, LeanKoala\BundleKernel::registerBundles($this->getEnvironment()));
+        $bundles = array_merge($bundles, LeanKoala\BundleKernel::registerBundles($this->getEnvironment()));
 
         return $bundles;
     }

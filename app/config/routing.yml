@@ -2,9 +2,9 @@ koalamon_integration_core:
     resource: "@KoalamonIntegrationCoreBundle/Resources/config/routing.yml"
     prefix:   /
 
-#lean_koala_core:
-#    resource: "@LeanKoalaCoreBundle/Resources/config/routing.yml"
-#    prefix:   /
+lean_koala_core:
+    resource: "@LeanKoalaCoreBundle/Resources/config/routing.yml"
+    prefix:   /
 
 koalamon_core:
     resource: "@KoalamonCoreBundle/Resources/config/routing.yml"
