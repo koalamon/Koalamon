@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d08dfa5924bf03d4524f04d9f98e6089",
-    "content-hash": "94bc8cbec85bd09b438b1e0148b7b9ed",
+    "hash": "c1546c70b7b62d689bf4773e1d34abdc",
+    "content-hash": "07c4013cfc291600ccf5f43f5d565326",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1309,6 +1309,30 @@
                 "sql"
             ],
             "time": "2014-01-12 16:20:24"
+        },
+        {
+            "name": "koalamon/koalamonintegration",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/koalamon/KoalamonIntegrations.git",
+                "reference": "5ee0dad37bd4acc79982dddbb92e65c050cd1acc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/koalamon/KoalamonIntegrations/zipball/5ee0dad37bd4acc79982dddbb92e65c050cd1acc",
+                "reference": "5ee0dad37bd4acc79982dddbb92e65c050cd1acc",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "KoalamonIntegration\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "The koalamon integrations",
+            "time": "2016-02-22 08:17:23"
         },
         {
             "name": "koalamon/koalamonplatform",
@@ -2665,6 +2689,7 @@
     "stability-flags": {
         "koalamon/notificationbundle": 20,
         "koalamon/koalamonplatform": 20,
+        "koalamon/koalamonintegration": 20,
         "koalamon/leankoalaplatform": 20
     },
     "prefer-stable": true,

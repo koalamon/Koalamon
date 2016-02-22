@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new KoalamonIntegration\CoreBundle\KoalamonIntegrationCoreBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -31,6 +32,9 @@ class AppKernel extends Kernel
 
         // koalamon platform
         $bundles = array_merge($bundles, Koalamon\BundleKernel::registerBundles($this->getEnvironment()));
+
+        // koalamon integrations
+        $bundles = array_merge($bundles, KoalamonIntegration\BundleKernel::registerBundles($this->getEnvironment()));
 
         // leanKoala platform
         // $bundles = array_merge($bundles, LeanKoala\BundleKernel::registerBundles($this->getEnvironment()));

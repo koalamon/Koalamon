@@ -1,0 +1,3 @@
+koalamon_integration_core:
+    resource: "@KoalamonIntegrationWebhookBundle/Resources/config/routing.yml"
+    prefix:   /
