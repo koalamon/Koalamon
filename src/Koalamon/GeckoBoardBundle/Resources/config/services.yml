@@ -1,7 +1,0 @@
-services:
-
-    koalamon.geckobaord.adminMenu:
-        class: Koalamon\GeckoBoardBundle\EventListener\PluginListener
-        arguments: [ @service_container ]
-        tags:
-            - { name: 'kernel.event_listener', event: 'koalamon.plugin.admin.menu.init', method: onKoalamonPluginAdminMenuInit, priority: 10 }
