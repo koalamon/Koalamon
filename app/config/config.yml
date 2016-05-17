@@ -130,3 +130,5 @@ hwi_oauth:
             client_id:           "%oauth_github_client_id%"
             client_secret:       "%oauth_github_secret%"
             scope:               "user:email"
+
+ornicar_gravatar: ~

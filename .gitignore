@@ -53,4 +53,9 @@ composer.phar
 phpunit.xml
 app/var/sessions
 
+<<<<<<< HEAD
 vhosts
+=======
+app/bootstrap.php.cache
+composer.lock
+>>>>>>> 9b2eab017d1dff2bd3a55a82826c13cb0abf2479

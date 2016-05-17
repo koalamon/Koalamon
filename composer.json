@@ -18,8 +18,8 @@
   "require": {
     "php": ">=5.3.9",
 
-    "koalamon/notificationbundle": "dev-master",
-    "koalamon/koalamonplatform": "dev-master"
+    "koalamon/koalamonplatform": "dev-master",
+    "koalamon/koalamonintegration": "dev-master"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3",
