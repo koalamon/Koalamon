@@ -29,22 +29,6 @@ security:
                 default_target_path: koalamon_user_homepage
                 always_use_default_target_path: true
 
-            oauth:
-                failure_path: /secure_area/connect
-                login_path: fos_user_security_login
-                check_path: /secure_area/connect
-
-                default_target_path: koalamon_default_homepage
-                always_use_default_target_path: true
-
-                provider: fos_userbundle
-
-                resource_owners:
-                    facebook:           "/secure_area/login/check-facebook"
-                    github:             "/secure_area/login/check-github"
-                oauth_user_provider:
-                    service: hwi_oauth.user.provider.fosub_bridge
-
             anonymous: true
             logout:
                 path:           /secure_area/logout
