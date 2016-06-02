@@ -62,9 +62,6 @@
               "database_password": "MYSQL_PASSWORD",
               "secret": "SYMFONY_SECRET"
          }
-      },
-      {
-        "file": "app/config/community.yml"
       }
     ]
   }
