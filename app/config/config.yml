@@ -105,30 +105,4 @@ fos_user:
                 address:        reset@koalamon.com
                 sender_name:    "amilio - Passwortverwaltung"
 
-# HWI OAuth Configuration
-hwi_oauth:
-    # name of the firewall in which this bundle is active, this setting MUST be set
-    firewall_name: secure_area
-
-    fosub:
-        properties:
-            facebook: facebookId
-            github: githubId
-
-    connect: ~
-        #confirmation: true
-        #account_connector: hwi_oauth.user.provider.fosub_bridge
-
-    resource_owners:
-        facebook:
-            type:                facebook
-            client_id:           "%oauth_facebook_client_id%"
-            client_secret:       "%oauth_facebook_secret%"
-            scope:               "email"
-        github:
-            type:                github
-            client_id:           "%oauth_github_client_id%"
-            client_secret:       "%oauth_github_secret%"
-            scope:               "user:email"
-
 ornicar_gravatar: ~
